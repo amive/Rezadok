@@ -1,63 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rezadok login</title>
-  </head>
-  <body>
-    <div class="register visible" id="register">
-      <h2 style="font-size: 16px">Create a new account</h2>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>تسجيل الدخول / التسجيل - Rezadok</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer>
+        function toggleForms() {
+            document.getElementById("login-form").classList.toggle("hidden");
+            document.getElementById("register-form").classList.toggle("hidden");
+        }
 
-      <form id="register-form" method="post">
-        <input type="text" name="name" placeholder="Name" required />
+        function toggleDoctorFields() {
+            document.getElementById("doctorFields").style.display = (document.getElementById("role").value == "doctor") ? "block" : "none";
+        }
+    </script>
+    <style>
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
 
-        <input type="email" name="email" placeholder="Email" required />
+<div class="container">
+    <h2>🩺 Rezadok - تسجيل الدخول / التسجيل</h2>
 
-        <input
-          type="text"
-          name="phoneNumber"
-          placeholder="Phone Number"
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          required
-        />
+    <?php if (!empty($errors)): ?>
+        <div class="error">
+            <?php foreach ($errors as $error) echo "<p>$error</p>"; ?>
+        </div>
+    <?php endif; ?>
 
-        <button type="submit">Register</button>
+    <!-- ✅ نموذج تسجيل الدخول -->
+    <form id="login-form" method="POST">
+        <h3>🔑 تسجيل الدخول</h3>
+        <input type="email" name="email" placeholder="📧 البريد الإلكتروني" required>
+        <input type="password" name="password" placeholder="🔑 كلمة المرور" required>
+        <button type="submit" name="login" class="btn">➡️ تسجيل الدخول</button>
+        <button type="button" class="btn switch" onclick="toggleForms()">🔄 إنشاء حساب جديد</button>
+    </form>
 
-        <p>
-          <a class="switch" onclick="toggleForms()"
-            >Already have an account? Log in</a
-          >
-        </p>
-      </form>
-    </div>
+    <!-- ✅ نموذج إنشاء حساب -->
+    <form id="register-form" method="POST" class="hidden">
+        <h3>🆕 إنشاء حساب</h3>
+        <input type="text" name="name" placeholder="👤 الاسم الكامل" required>
+        <input type="email" name="email" placeholder="📧 البريد الإلكتروني" required>
+        <input type="password" name="password" placeholder="🔑 كلمة المرور" required>
+        <input type="text" name="phone" placeholder="📞 رقم الهاتف" required>
+        <select name="role" id="role" required onchange="toggleDoctorFields()">
+            <option value="">🩺 اختر دورك</option>
+            <option value="doctor">👨‍⚕️ طبيب</option>
+            <option value="patient">👨‍⚕️ مريض</option>
+        </select>
+        <div id="doctorFields" style="display: none;">
+            <input type="text" name="specialty" placeholder="⚕️ التخصص">
+            <textarea name="bio" placeholder="📝 نبذة عنك"></textarea>
+        </div>
 
-    <div class="login hidden" id="login">
-      <h2 style="font-size: 36px">Login</h2>
+        <button type="submit" name="register" class="btn">✅ تسجيل</button>
+        <button type="button" class="btn switch" onclick="toggleForms()">🔄 لدي حساب بالفعل</button>
+    </form>
+</div>
 
-      <form id="login-form" method="post">
-        <input type="email" name="email" placeholder="Email" required />
-
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          required
-        />
-
-        <button type="submit">Login</button>
-
-        <p>
-          <a class="switch" onclick="toggleForms()"
-            >Don't have an account? Register</a
-          >
-        </p>
-      </form>
-    </div>
-  </body>
+</body>
 </html>

@@ -10,7 +10,19 @@
     <link rel="stylesheet" href="/Design/index.css">
 </head>
 <body>
-
+<nav>
+    <div>
+        <button onclick="showForm('login')">تسجيل الدخول</button>
+        <button onclick="showForm('register')">إنشاء حساب</button>
+    </div>
+    <h1>Rezadok</h1>
+    <div>
+        <a href="#">اتصل بنا</a>
+        <a href="#">من نحن</a>
+        <a href="#">الخدمات</a>
+        <a href="#">الرئيسية</a>
+    </div>
+</nav>
 <div class="top-right-buttons">
     <button onclick="showForm('login')"><img src="/assets/login.png" alt="Login"></button>
     <button onclick="showForm('register')"><img src="/assets/register.png" alt="Register"></button>

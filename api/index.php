@@ -44,8 +44,8 @@
     <input type="text" name="phone" placeholder="رقم الهاتف" required>
     <select name="role" id="role" required onchange="toggleDoctorFields()">
         <option value="">اختر دورك</option>
-        <option value="doctor">طبيب</option>
-        <option value="patient">مريض</option>
+        <option value="doctor">طبيب(ة)</option>
+        <option value="patient">مريض(ة)</option>
     </select>
     <div id="doctorFields" class="hidden">
         <input type="text" name="specialty" placeholder="التخصص">

@@ -7,7 +7,7 @@
     <meta name="keywords" content="حجز مواعيد طبية، أطباء، رعاية صحية، تسجيل الدخول، إنشاء حساب">
     <meta name="author" content="Rezadok Team">
     <title>Rezadok - حجز المواعيد الطبية</title>
-    <link rel="stylesheet" href="./Design/index.css">
+    <link rel="stylesheet" href="./public/Design/index.css">
 </head>
 <body>
 
@@ -45,6 +45,6 @@
     </div>
     <button type="submit" class="btn">تسجيل</button>
 </div>
-<script src="./script/index.js"></script>
+<script src="./public/script/index.js"></script>
 </body>
 </html>

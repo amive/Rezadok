@@ -12,8 +12,8 @@
 <body>
 
 <div class="top-right-buttons">
-    <button onclick="showForm('login')"><img src="./assets/images/login.png" alt="Login"></button>
-    <button onclick="showForm('register')"><img src="./assets/images/register.png" alt="Register"></button>
+    <button onclick="showForm('login')"><img src="/assets/images/login.png" alt="Login"></button>
+    <button onclick="showForm('register')"><img src="/assets/images/register.png" alt="Register"></button>
 </div>
 
 <div class="container" id="main-section">

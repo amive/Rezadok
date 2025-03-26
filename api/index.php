@@ -1,4 +1,3 @@
-<?php $base_url = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'];?>
 <!DOCTYPE html>
 <html lang="ar">
 <head>
@@ -8,13 +7,13 @@
     <meta name="keywords" content="حجز مواعيد طبية، أطباء، رعاية صحية، تسجيل الدخول، إنشاء حساب">
     <meta name="author" content="Rezadok Team">
     <title>Rezadok - حجز المواعيد الطبية</title>
-    <link rel="stylesheet" href="<?= $base_url ?>/Design/index.css">
+    <link rel="stylesheet" href="Design/index.css">
 </head>
 <body>
 
 <div class="top-right-buttons">
-    <button onclick="showForm('login')"><img src="<?= $base_url ?>/assets/login.png" alt="Login"></button>
-    <button onclick="showForm('register')"><img src="<?= $base_url ?>/assets/register.png" alt="Register"></button>
+    <button onclick="showForm('login')"><img src="/assets/login.png" alt="Login"></button>
+    <button onclick="showForm('register')"><img src="/assets/register.png" alt="Register"></button>
 </div>
 
 <div class="container" id="main-section">
@@ -46,6 +45,6 @@
     </div>
     <button type="submit" class="btn">تسجيل</button>
 </div>
-<script src="<?= $base_url ?>/script/index.js"></script>
+<script src="script/index.js"></script>
 </body>
 </html>

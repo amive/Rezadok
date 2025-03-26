@@ -23,11 +23,7 @@
         <a href="#">الرئيسية</a>
     </div>
 </nav>
-<div class="top-right-buttons">
-    <button onclick="showForm('login')"><img src="/assets/login.png" alt="Login"></button>
-    <button onclick="showForm('register')"><img src="/assets/register.png" alt="Register"></button>
-</div>
-
+    
 <div class="container" id="main-section">
     <h2>Rezadok مرحبًا بك في</h2>
     <p>احجز مواعيدك الطبية بسهولة وسرعة من خلال منصتنا المتكاملة. تواصل مع الأطباء المتخصصين وحدد موعدك في ثوانٍ</p>

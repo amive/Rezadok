@@ -56,6 +56,6 @@
     <button type="submit" class="btn">تسجيل</button>
     <button onclick="showForm('main')">رجوع</button>
 </div>
-
+<script src="/script/index.js"></script>
 </body>
 </html>

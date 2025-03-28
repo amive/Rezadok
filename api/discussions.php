@@ -36,8 +36,8 @@
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         text-align: left;
-        scale: 0.5;
-        transform: translateY(-43%);
+        scale: 0.6;
+        transform: translateY(-25%);
         font-size: 20px;
       }
       .chat-box {

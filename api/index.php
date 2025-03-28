@@ -14,7 +14,7 @@
     <header>
         <h2><i class="fa-solid fa-stethoscope"></i> Rezadok</h2>
         <nav>
-            <a href="index.html" class="icon-btn"data-text="الرئيسية"><i class="fa-solid fa-house"></i></a>
+            <a href="index.php" class="icon-btn"data-text="الرئيسية"><i class="fa-solid fa-house"></i></a>
             <a href="#" class="icon-btn"data-text="الخدمات"><i class="fa-solid fa-user-doctor"></i></a>
             <a href="#" class="icon-btn"data-text="من نحن"><i class="fa-solid fa-circle-info"></i></a>
             <a href="#" class="icon-btn"data-text="اتصل بنا"><i class="fa-solid fa-phone"></i> </a>

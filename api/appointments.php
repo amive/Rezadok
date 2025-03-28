@@ -24,7 +24,7 @@
             </a>
             <div class="dropdown">
                 <button>
-                    <i class="fa-solid fa-user-circle"></i> <?php echo $_SESSION['user_name']; ?>
+                   
                 </button>
                 <div class="dropdown-content">
                     <a href="#"><i class="fa-solid fa-user"></i> حسابي</a>

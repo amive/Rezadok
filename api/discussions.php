@@ -80,7 +80,7 @@
       input,
       button,
       select {
-        width: 90%;
+        width: 70%;
         padding: 10px;
         margin-top: 5px;
         border-radius: 5px;
@@ -90,9 +90,10 @@
       button {
         background-color: #007bff;
         width: 15%;
-        border-radius: 30%;
+        border-radius: 0%;
+        border-top-left-radius: 25%;
         font-size: 17px;
-        transform: translateX(300%);
+        transform: translateX(55%);
         color: white;
         cursor: pointer;
       }
@@ -134,7 +135,7 @@
       <button onclick="sendMessage()">إرسال</button>
 
       <input type="file" id="fileInput" accept="image/*, .pdf, .doc, .docx" />
-      <button onclick="sendFile()">📎 إرسال الملف</button>
+      <button onclick="sendFile()">إرسال الملف</button>
     </div>
 
     <script>

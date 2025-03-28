@@ -22,7 +22,7 @@
     </header>
     <div class="container-index" id="main-section">
         <h2>مرحبًا بك في <i class="fa-solid fa-stethoscope"></i> Rezadok</h2>
-        <p id="p_index">احجز مواعيدك الطبية بسهولة وسرعة من خلال منصتنا المتكاملة. تواصل مع الأطباء المتخصصين وحدد موعدك في ثوانٍ</p>
+        <p id="p_index">.احجز مواعيدك الطبية بسهولة وسرعة من خلال منصتنا المتكاملة، تواصل مع الأطباء المتخصصين وحدد موعدك في ثوانٍ</p>
         <div class="toggle-buttons">
             <button onclick="showForm('login')">تسجيل الدخول</button>
             <button onclick="showForm('register')">إنشاء حساب</button>

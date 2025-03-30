@@ -12,19 +12,16 @@
         <h2><i class="fa-solid fa-stethoscope"></i> Rezadok</h2>
             <!--الرةابط-->
         <nav>
-            <a href="#" class="icon-btn" data-text="الرسائل">
-                <i class="fa-solid fa-comments"></i>
-            </a>
-            <a href="#" class="icon-btn" data-text="مواعيدي">
-                <i class="fa-solid fa-calendar-days"></i>
-            </a>
-            
-            <a href="#" class="icon-btn"data-text="الرئيسية">
+            <a href="appointments_dashboard.php" class="icon-btn"data-text="الرئيسية">
                 <i class="fa-solid fa-house"></i>
             </a>
+            <a href="discussions.php" class="icon-btn" data-text="الرسائل">
+                <i class="fa-solid fa-comments"></i>
+            </a>
+            <!-- القائمة -->
             <div class="dropdown">
                 <button>
-                   
+                    <i class="fa-solid fa-user-circle"></i>
                 </button>
                 <div class="dropdown-content">
                     <a href="#"><i class="fa-solid fa-user"></i> حسابي</a>
@@ -34,10 +31,8 @@
             </div>
         </nav>
     </header>
-
     <div class="container-appointments">
         <h2>🗓️ قائمة المواعيد</h2>
-
         <?php if ($role === 'doctor'): ?>
             <!-- جدول الطبيب -->
             <table>
@@ -62,7 +57,7 @@
                 </tr>
             </table>
         <?php elseif ($role === 'patient'): ?>
-            <!-- 🏥 جدول المريض -->
+            <!--جدول المريض -->
             <table>
                 <tr>
                     <th>اسم الطبيب</th>
@@ -78,10 +73,9 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td id="countdown"></td>
+                    <td></td>
                 </tr>
             </table>
-
         <?php else: ?>
             <p id="error">⚠️ يجب تسجيل الدخول لعرض المواعيد!</p>
         <?php endif; ?>

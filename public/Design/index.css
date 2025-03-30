@@ -1,3 +1,4 @@
+/* (البداية)أنماط عامة لكل الصفحات */
 body {
     font-family: Arial, sans-serif;
     background-color: #f5f5f5;
@@ -18,7 +19,9 @@ header {
     align-items: center;
     z-index: 1000; 
 }
-/* العام*/
+header h2 {
+    margin-right: 50px;
+}
 .container {
     background: white;
     padding: 20px;
@@ -28,33 +31,9 @@ header {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
-/* خاصة بصفحة اولىindex*/
-.container-index {
-    background: white;
-    padding: 20px;
-    margin: 130px auto;
-    width: 50%;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-/* خاصة بصفحة المواعيد*/
-.container-appointments {
-    background: white;
-    padding: 20px;
-    margin: 20px auto;
-    width: 70%;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-body h2 {
+#h2-post {
     text-align: center;
     margin-right: 50px;
-}
-#p_index{
-    margin-right: 30px;
-    font-size: 23px;
-    text-align: center;
 }
 nav a {
     color: white;
@@ -71,23 +50,8 @@ button {
     cursor: pointer;
     margin-left: 100px;
 }
-
 button:hover {
     background-color: #4ecaa0;
-}
-.toggle-buttons button {
-    padding: 15px 30px;
-    font-size: 18px;
-    border-radius: 15px;
-    width: 90%;
-    margin-top: 20px;
-    margin-right: 25px;
-}
-#btn-login-register {
-    width: 100%;
-    padding: 15px 30px;
-    font-size: 18px;
-    border-radius: 8px;
 }
 .dropdown {
     position: relative;
@@ -146,9 +110,6 @@ button:hover {
 .hidden {
     display: none;
 }
-.toggle-buttons {
-    margin-top: 21px;
-}
 input, select, textarea {
     width: 90%;
     padding: 12px;
@@ -157,13 +118,52 @@ input, select, textarea {
     border-radius: 8px;
     font-size: 16px;
 }
-
 input:focus, select:focus, textarea:focus {
     border-color: #63E6BE;
     outline: none;
     box-shadow: 0 0 5px rgba(99, 230, 190, 0.5);
 }
+/* (النهاية)أنماط عامة لكل الصفحات */
 
+/*--------------------------------------------------------------------------------*/
+
+/* (البداية)أنماط الصفحة الرئيسية index*/
+.container-index {
+    background: white;
+    padding: 20px;
+    margin: 130px auto;
+    width: 50%;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.container-index h2{
+    text-align: center;
+}
+span{
+    color: #63E6BE;
+}
+#p_index {
+    margin-right: 30px;
+    font-size: 23px;
+    text-align: center;
+}
+.toggle-buttons button {
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 15px;
+    width: 90%;
+    margin-top: 20px;
+    margin-right: 25px;
+}
+.toggle-buttons {
+    margin-top: 21px;
+}
+#btn-login-register {
+    width: 100%;
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 8px;
+}
 #login-form .btn-login-register, #btn-login-register {
     background-color: #63E6BE;
     color: white;
@@ -173,14 +173,38 @@ input:focus, select:focus, textarea:focus {
     width: 100%;
     margin-top: 10px;
 }
-
 #login-form .btn-login-register:hover, #btn-login-register:hover {
     background-color: #4ecaa0;
 }
 #doctorFields {
     display: none;
 }
+/* (النهاية)أنماط الصفحة الرئيسية index*/
 
+/*--------------------------------------------------------------------------------*/
+
+/* (البداية)أنماط الصفحة الرئيسية doctor_dashboard*/
+
+/* (النهاية)أنماط الصفحة الرئيسية doctor_dashboard*/
+
+/*--------------------------------------------------------------------------------*/
+
+/* (البداية)أنماط الصفحة الرئيسية patient_dashboard*/
+
+/* (النهاية)أنماط الصفحة الرئيسية patient_dashboard*/
+
+/*--------------------------------------------------------------------------------*/
+
+/* (البداية)أنماط الصفحة الرئيسية appointments*/
+.container-appointments {
+    background: white;
+    padding: 20px;
+    margin: 20px auto;
+    width: 70%;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
 table {
     width: 100%;
     border-collapse: collapse;
@@ -189,32 +213,19 @@ table {
     border-radius: 8px;
     overflow: hidden;
 }
-
 th, td {
     border: 1px solid #ddd;
     padding: 12px;
     text-align: center;
 }
-
 th {
     background-color: #63E6BE;
     color: white;
     font-size: 18px;
 }
-
 td {
     font-size: 16px;
     color: #333;
-}
-.cancel-btn:hover {
-    background-color: #c9302c;
-}
-.confirm-btn:hover {
-    background-color: #2cf803;
-}
-#error{
-    font-size: 20px;
-    color: #f70b02;
 }
 .button-container {
     display: flex;
@@ -249,3 +260,143 @@ td {
 .button-container button:hover::after {
     opacity: 1;
 }
+.cancel-btn:hover {
+    background-color: #c9302c;
+}
+.confirm-btn:hover {
+    background-color: #2cf803;
+}
+#error {
+    font-size: 20px;
+    color: #f70b02;
+}
+/* (النهاية)أنماط الصفحة الرئيسية appointments*/
+
+/*--------------------------------------------------------------------------------*/
+
+/* (البداية)أنماط الصفحة الرئيسية chat*/
+.chat-container {
+    width: 80%;
+    max-width: 500px;
+    margin: 50px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+#start {
+    font-size: 20px;
+    margin-right: 160px;
+}
+.chat-box {
+    height: 300px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background: #fff;
+    margin-bottom: 10px;
+}
+.message {
+    padding: 8px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    max-width: 75%;
+    word-wrap: break-word;
+}
+.sent {
+    background: #007bff;
+    color: white;
+    text-align: right;
+    float: right;
+    clear: both;
+}
+.received {
+    background: #e9ecef;
+    text-align: left;
+    float: left;
+    clear: both;
+}
+.message-form {
+    display: flex;
+    width: 100%;
+    border-radius: 5px;
+    border: 0px solid #ccc;
+}
+textarea {
+    flex: 1;
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    resize: none;
+    text-align: right;
+    font-size: 16px;
+    margin-left: 80px;
+}
+#send {
+    font-size: 27px;
+    margin-left: 0px;
+    margin-right: -20px;
+    background-color:white;
+    color: #63E6BE;
+}
+/* زر "+" لإظهار خيارات الملفات */
+.file-upload {
+    width: 0px;
+    position: relative;
+    display: inline-block;
+}
+#toggle-btn {
+    background-color:#fff;
+    color: #4ecdc4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    right: -80px;
+}
+.file-buttons {
+    display: none;
+    flex-direction: row;
+    gap: 5px;
+    position: absolute;
+    bottom: 50px;
+    left: 0;
+    background: white;
+    padding: 5px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+.file-upload:hover .file-buttons {
+    display: flex;
+}
+.custom-btn {
+    background: #4ecdc4;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: white;
+    transition: 0.3s;
+    position: relative;
+}
+.custom-btn::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none;
+}
+.custom-btn:hover::after {
+    opacity: 1;
+}
+/* (النهاية)أنماط الصفحة الرئيسية chat*/
+
+/*--------------------------------------------------------------------------------*/

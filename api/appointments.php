@@ -12,7 +12,7 @@
         <h2><i class="fa-solid fa-stethoscope"></i> Rezadok</h2>
             <!--الرةابط-->
         <nav>
-            <a href="appointments_dashboard.php" class="icon-btn"data-text="الرئيسية">
+            <a href="appointments.php" class="icon-btn"data-text="الرئيسية">
                 <i class="fa-solid fa-house"></i>
             </a>
             <a href="discussions.php" class="icon-btn" data-text="الرسائل">

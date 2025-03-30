@@ -21,9 +21,8 @@
             <a href="appointments.php" class="icon-btn" data-text="مواعيدي">
                 <i class="fa-solid fa-calendar-days"></i>
             </a>
-            
-            <a href="#" class="icon-btn" data-text="إضافة منشور">
-                <i class="fa-solid fa-plus"></i>
+            <a href="#" class="icon-btn" data-text="البحث عن طبيب">
+                <i class="fa-solid fa-magnifying-glass"></i>
             </a>
             <!-- القائمة -->
             <div class="dropdown">

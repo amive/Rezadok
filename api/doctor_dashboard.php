@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <title>Rezadok | لوحة تحكم الطبيب</title>
-    <link rel="stylesheet" href="/Design/index.css">
+    <link rel="stylesheet" href="css.css">
 </head>
 <body>
     <header>
@@ -36,6 +36,6 @@
         </nav>
     </header>
     <!-- المنشورات -->
-    <h2> المنشورات <i class="fa-solid fa-newspaper" style="color: #63E6BE;"></i></h2>
+    <h2 id="h2-post"> المنشورات <i class="fa-solid fa-newspaper" style="color: #63E6BE;"></i></h2>
 </body>
 </html>

@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: rezadok-api
+    env: php
+    plan: free
+    buildCommand: ""
+    startCommand: ""
+    branch: main
+    repo: https://github.com/amive/Rezadok

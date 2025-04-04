@@ -4,7 +4,7 @@ $user = "rezadok_user";
 $pass = "QSuIUPpwpqpCW5wZ3OxibvwbWL3qWEsQ";
 $dbname = "rezadok";
 
-$conn = new mysqli($host, $usern, $pass, $dbname);
+$conn = new mysqli($host, $user, $pass, $dbname);
 
 if ($conn->connect_error) {
     die("فشل الاتصال بقاعدة البيانات: " . $conn->connect_error);

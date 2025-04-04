@@ -1,3 +1,76 @@
+<?php
+require_once("db.php");
+
+$registerError = "";
+$registerSuccess = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
+    $name       = $_POST['name'];
+    $email      = $_POST['email'];
+    $password   = $_POST['password'];
+    $phone      = $_POST['phone'];
+    $role       = $_POST['role'];
+    $specialty  = $_POST['specialty'] ?? '';
+    $bio        = $_POST['bio'] ?? '';
+
+    if (!preg_match('/^0(5|6|7)\d{8}$/', $phone)) {
+        $registerError = "رقم الهاتف غير صالح.";
+    } else {
+        $stmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $stmt->store_result();
+
+        if ($stmt->num_rows > 0) {
+            $registerError = "البريد الإلكتروني مستخدم من قبل.";
+        } else {
+
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+            $stmt = $conn->prepare("INSERT INTO users (name, email, password, phone, role, specialty, bio) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("sssssss", $name, $email, $hashedPassword, $phone, $role, $specialty, $bio);
+
+            if ($stmt->execute()) {
+                $registerSuccess = "تم إنشاء الحساب بنجاح!";
+            } else {
+                $registerError = "حدث خطأ أثناء إنشاء الحساب.";
+            }
+        }
+        $stmt->close();
+    }
+}
+
+$loginError = "";
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['email']) && isset($_POST['password'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $stmt = $conn->prepare("SELECT id, password FROM users WHERE email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $stmt->store_result();
+
+    if ($stmt->num_rows > 0) {
+
+        $stmt->bind_result($id, $hashedPassword);
+        $stmt->fetch();
+        
+        if (password_verify($password, $hashedPassword)) {
+            session_start();
+            $_SESSION['user_id'] = $id;
+            header("Location: dashboard.php"); // Redirect to dashboard or home page
+            exit();
+        } else {
+            $loginError = "كلمة المرور غير صحيحة.";
+        }
+    } else {
+        $loginError = "البريد الإلكتروني غير موجود.";
+    }
+    $stmt->close();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="ar">
 <head>
@@ -30,19 +103,28 @@
         </div>
     </div>
 <!-- تسجيل الدخول -->
-    <div class="container hidden" id="login-form">
+ <div class="container hidden" id="login-form">
+<form method="POST" action="">
         <h3><i class="fa-solid fa-sign-in-alt"></i> تسجيل الدخول</h3>
         <input type="email" name="email" placeholder="البريد الإلكتروني" required>
         <input type="password" name="password" placeholder="كلمة المرور" required>
         <button type="submit" class="btn-login-register">تسجيل الدخول</button>
-    </div>
+    </form>
+    <?php
+if (!empty($loginError)) {
+    echo "<p style='color:red;'>$loginError</p>";
+}
+?>
+
+ </div>
 <!-- إنشاء حساب -->
-    <div class="container hidden" id="register-form">
+    <div class="container hidden" id="register-form"></div>
+    <form method="POST" action="">
         <h3><i class="fa-solid fa-user-plus"></i> إنشاء حساب</h3>
         <input type="text" name="name" placeholder="الاسم الكامل" required>
         <input type="email" name="email" placeholder="البريد الإلكتروني" required>
         <input type="password" name="password" placeholder="كلمة المرور" required>
-        <input type="text" name="phone" placeholder="رقم الهاتف" required>
+        <input type="text" name="phone" pattern="^\0(5|6|7)\d{8}$" required placeholder="رقم الهاتف" required>
         <select name="role" id="role" required onchange="toggleDoctorFields()">
             <option value="">اختر دورك</option>
             <option value="doctor">طبيب(ة)</option>
@@ -53,7 +135,19 @@
             <textarea name="bio" placeholder="نبذة عنك"></textarea>
         </div>
         <button type="submit" id="btn-login-register">تسجيل</button>
+   </form>
+       <?php
+if (!empty($registerError)) {
+    echo "<p style='color:red;'>$registerError</p>";
+}
+if (!empty($registerSuccess)) {
+    echo "<p style='color:green;'>$registerSuccess</p>";
+}
+?>
     </div>
+
+
+ 
     <script src="/script/index.js"></script>
 </body>
 </html>

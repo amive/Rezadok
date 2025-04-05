@@ -1,19 +1,20 @@
-# Use the official PHP image from Docker Hub
 FROM php:8.0-apache
 
-# Install PostgreSQL extensions
-RUN docker-php-ext-install pdo pdo_pgsql pgsql
+# Install dependencies needed to build PostgreSQL extensions
+RUN apt-get update && apt-get install -y \
+    libpq-dev \
+    && docker-php-ext-install pdo pdo_pgsql pgsql
 
-# Enable mod_rewrite for Apache (if needed)
+# Enable mod_rewrite if needed
 RUN a2enmod rewrite
 
-# Copy your custom php.ini file into the container
+# Optional: Copy custom PHP config
 COPY php.ini /usr/local/etc/php/
 
-# Set the working directory inside the container
+# Set working directory
 WORKDIR /var/www/html
 
-# Copy the current directory (your code) to the container's working directory
+# Copy project files
 COPY . .
 
 # Expose port 80

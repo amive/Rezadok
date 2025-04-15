@@ -400,3 +400,86 @@ textarea {
 /* (النهاية)أنماط الصفحة الرئيسية chat*/
 
 /*--------------------------------------------------------------------------------*/
+
+/*--------------------------------------------------------------------------------*/
+/* (البداية)أنماط Responsive لتناسب الشاشات الصغيرة */
+
+@media (max-width: 768px) {
+    .container,
+    .container-index,
+    .container-appointments,
+    .chat-container {
+        width: 90%;
+        margin: 100px auto;
+        padding: 15px;
+    }
+
+    header h2 {
+        margin-right: 10px;
+        font-size: 18px;
+    }
+
+    nav a {
+        font-size: 16px;
+        margin-left: 10px;
+    }
+
+    button,
+    #btn-login-register,
+    .toggle-buttons button,
+    #login-form .btn-login-register {
+        width: 100%;
+        margin-right: 0;
+        font-size: 16px;
+        padding: 12px 20px;
+    }
+
+    .button-container {
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+        gap: 10px;
+    }
+
+    .icon-btn {
+        padding: 20px;
+        font-size: 20px;
+    }
+
+    .icon-btn::after {
+        font-size: 14px;
+        top: 80px;
+        left: 0;
+    }
+
+    input, select, textarea {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    #start {
+        margin-right: 20px;
+        font-size: 18px;
+    }
+
+    textarea {
+        margin-left: 0;
+    }
+
+    .file-upload {
+        right: -30px;
+    }
+
+    .file-buttons {
+        bottom: 40px;
+        left: -50px;
+    }
+
+    th, td {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
+
+/* (النهاية)أنماط Responsive لتناسب الشاشات الصغيرة */
+/*--------------------------------------------------------------------------------*/

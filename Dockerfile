@@ -19,5 +19,8 @@ ENV APACHE_DOCUMENT_ROOT=/var/www/html/api
 RUN sed -i "s|DocumentRoot /var/www/html|DocumentRoot ${APACHE_DOCUMENT_ROOT}|g" /etc/apache2/sites-available/000-default.conf
 RUN sed -i "s|<Directory /var/www/html>|<Directory ${APACHE_DOCUMENT_ROOT}>|g" /etc/apache2/apache2.conf
 
+# Restart Apache to apply changes
+RUN service apache2 restart
+
 # Expose port 80
 EXPOSE 80

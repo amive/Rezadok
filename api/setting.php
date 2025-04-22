@@ -1,0 +1,81 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit();
+}
+
+include('config.php'); // ربط قاعدة البيانات
+
+// استرجاع بيانات المستخدم من قاعدة البيانات
+$user_id = $_SESSION['user_id'];
+$sql = "SELECT * FROM users WHERE id = :id"; // استخدام :id للربط مع المعاملات
+$stmt = $conn->prepare($sql);
+$stmt->bindParam(':id', $user_id, PDO::PARAM_INT); // ربط المعامل باستخدام bindParam
+$stmt->execute();
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    if (!empty($password)) {
+        $password = password_hash($password, PASSWORD_DEFAULT); // تشفير كلمة المرور
+        $update_sql = "UPDATE users SET name = :name, email = :email, password = :password WHERE id = :id";
+        $stmt = $conn->prepare($update_sql);
+        // ربط المعاملات مع PDO
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':password', $password);
+        $stmt->bindParam(':id', $user_id, PDO::PARAM_INT);
+    } else {
+        $update_sql = "UPDATE users SET name = :name, email = :email WHERE id = :id";
+        $stmt = $conn->prepare($update_sql);
+        // ربط المعاملات مع PDO
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':id', $user_id, PDO::PARAM_INT);
+    }
+
+    if ($stmt->execute()) {
+        $success_message = "تم تحديث البيانات بنجاح!";
+    } else {
+        $error_message = "حدث خطأ أثناء تحديث البيانات.";
+    }
+}
+
+?>
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css.css">
+    <title>إعدادات الحساب</title>
+</head>
+<body>
+    <h1>إعدادات الحساب</h1>
+
+    <?php if (isset($success_message)): ?>
+        <p style="color: green;"><?php echo $success_message; ?></p>
+    <?php elseif (isset($error_message)): ?>
+        <p style="color: red;"><?php echo $error_message; ?></p>
+    <?php endif; ?>
+
+    <form method="post">
+        <label for="name">الاسم:</label>
+        <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($user['name']); ?>" required>
+        <br>
+        <label for="email">البريد الإلكتروني:</label>
+        <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($user['email']); ?>" required>
+        <br>
+        <label for="password">كلمة المرور الجديدة:</label>
+        <input type="password" id="password" name="password">
+        <br>
+        <button type="submit">تحديث البيانات</button>
+    </form>
+    <a href="logout.php">تسجيل الخروج</a>
+</body>
+</html>

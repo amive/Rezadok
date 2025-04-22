@@ -13,14 +13,11 @@ RUN a2enmod rewrite
 COPY . /var/www/html/
 
 # Set the Apache document root to the directory containing index.php
-ENV APACHE_DOCUMENT_ROOT /var/www/html/api
+ENV APACHE_DOCUMENT_ROOT=/var/www/html/api
 
 # Update the Apache configuration to use the new document root
-RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
-RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
-
-# Restart Apache to apply changes
-RUN service apache2 restart
+RUN sed -i "s|DocumentRoot /var/www/html|DocumentRoot ${APACHE_DOCUMENT_ROOT}|g" /etc/apache2/sites-available/000-default.conf
+RUN sed -i "s|<Directory /var/www/html>|<Directory ${APACHE_DOCUMENT_ROOT}>|g" /etc/apache2/apache2.conf
 
 # Expose port 80
 EXPOSE 80

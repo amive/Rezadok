@@ -1,9 +1,9 @@
 <?php
-$host = getenv('DB_HOST'); // Replace with your environment variable for the host
-$dbname = getenv('DB_NAME'); // Replace with your environment variable for the database name
-$username = getenv('DB_USER'); // Replace with your environment variable for the username
-$password = getenv('DB_PASS'); // Replace with your environment variable for the password
-$port = getenv('DB_PORT'); // Replace with your environment variable for the port
+$host = $_ENV['DB_HOST']; // Use $_ENV to fetch environment variables
+$dbname = $_ENV['DB_NAME'];
+$username = $_ENV['DB_USER'];
+$password = $_ENV['DB_PASS'];
+$port = $_ENV['DB_PORT'];
 
 // إنشاء اتصال باستخدام PDO
 try {

@@ -1,14 +1,14 @@
 <?php
-session_start();
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
+// التحقق من تسجيل الدخول باستخدام الكوكيز
+if (!isset($_COOKIE['user_id'])) {
+    header("Location: index.php");
     exit();
 }
 
 include('config.php'); // ربط قاعدة البيانات
 
 // استرجاع بيانات المستخدم من قاعدة البيانات
-$user_id = $_SESSION['user_id'];
+$user_id = $_COOKIE['user_id']; // استخدام الـ cookie بدلاً من الـ session
 $sql = "SELECT * FROM users WHERE id = :id"; // استخدام :id للربط مع المعاملات
 $stmt = $conn->prepare($sql);
 $stmt->bindParam(':id', $user_id, PDO::PARAM_INT); // ربط المعامل باستخدام bindParam

@@ -1,7 +1,9 @@
 <?php
-session_start(); // بدء الجلسة
-session_unset(); // إلغاء جميع متغيرات الجلسة
-session_destroy(); // تدمير الجلسة
-header("Location: index.php"); // إعادة توجيه المستخدم إلى الصفحة الرئيسية
+// إلغاء الكوكيز عن طريق تعيين وقت انتهاء في الماضي
+setcookie('user_id', '', time() - 3600, '/'); // حذف cookie الخاص بـ user_id
+setcookie('role', '', time() - 3600, '/'); // حذف cookie الخاص بـ role
+
+// إعادة توجيه المستخدم إلى الصفحة الرئيسية
+header("Location: index.php");
 exit(); // إنهاء السكربت
 ?>

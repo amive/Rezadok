@@ -1,14 +1,14 @@
 <?php
-session_start();
 include 'config.php';
 
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
+// التحقق من وجود الكوكيز بدلاً من الجلسة
+if (!isset($_COOKIE['user_id'])) {
+    header("Location: index.php");
     exit();
 }
 
-$user_id = $_SESSION['user_id'];
-$role = $_SESSION['role'];
+$user_id = $_COOKIE['user_id']; // استخدام الكوكيز للحصول على user_id
+$role = $_COOKIE['role']; // استخدام الكوكيز للحصول على الدور
 
 if ($role == 'patient') {
     $stmt = $conn->prepare("SELECT id, name FROM users WHERE role = 'doctor'");

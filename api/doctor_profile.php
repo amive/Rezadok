@@ -1,6 +1,14 @@
 <?php
 include 'config.php';
 
+// التحقق من وجود الكوكيز
+if (!isset($_COOKIE['user_id'])) {
+    echo "لم يتم تسجيل الدخول.";
+    exit;
+}
+
+$user_id = $_COOKIE['user_id']; // استخدام الكوكيز للحصول على user_id
+
 // التحقق من وجود معرف الطبيب
 if (!isset($_GET['id'])) {
     echo "لم يتم تحديد الطبيب.";

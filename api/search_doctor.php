@@ -1,14 +1,11 @@
 <?php
-session_start();
-include 'config.php';
-
-// التحقق من تسجيل الدخول كمريض
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] != 'patient') {
+// التحقق من تسجيل الدخول باستخدام الكوكيز
+if (!isset($_COOKIE['user_id']) || $_COOKIE['role'] != 'patient') {
     header("Location: index.php");
     exit();
 }
 
-$patient_id = $_SESSION['user_id'];
+$patient_id = $_COOKIE['user_id']; // استخدام الـ cookie بدلاً من الـ session
 ?>
 <!DOCTYPE html>
 <html lang="ar">

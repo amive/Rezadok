@@ -1,15 +1,15 @@
 <?php
-session_start();
+// Start your PHP logic (no session_start(), using cookies instead)
 include 'config.php';
 
-// التحقق من تسجيل الدخول
-if (!isset($_SESSION['role'])) {
-    header("Location: login.php");
+// التحقق من تسجيل الدخول عبر الكوكيز
+if (!isset($_COOKIE['role'])) {
+    header("Location: index.php");
     exit();
 }
 
-$role = $_SESSION['role'];
-$user_id = $_SESSION['user_id'];
+$role = $_COOKIE['role'];
+$user_id = $_COOKIE['user_id'];
 
 // معالجة تأكيد أو إلغاء الموعد
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'], $_POST['appointment_id'])) {
@@ -26,25 +26,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'], $_POST['appo
                 
                 if ($action === 'confirm') {
                     if ($appointment['status'] === 'confirmed') {
-                        $_SESSION['error'] = "❌ لا يمكن تأكيد الموعد لأنه مؤكد مسبقاً";
+                        setcookie('error', "❌ لا يمكن تأكيد الموعد لأنه مؤكد مسبقاً", time() + 3600, "/");
                     } else {
                         $stmt = $conn->prepare("UPDATE appointments SET status = 'confirmed' WHERE id = ?");
                         $stmt->execute([$appointment_id]);
-                        $_SESSION['success'] = "✅ تم تأكيد الموعد بنجاح";
+                        setcookie('success', "✅ تم تأكيد الموعد بنجاح", time() + 3600, "/");
                     }
                 } elseif ($action === 'cancel') {
                     $stmt = $conn->prepare("UPDATE appointments SET status = 'canceled' WHERE id = ?");
                     $stmt->execute([$appointment_id]);
-                    $_SESSION['success'] = "🚫 تم إلغاء الموعد بنجاح";
+                    setcookie('success', "🚫 تم إلغاء الموعد بنجاح", time() + 3600, "/");
                 }
             } else {
-                $_SESSION['error'] = "⚠️ لا تملك صلاحية تعديل هذا الموعد";
+                setcookie('error', "⚠️ لا تملك صلاحية تعديل هذا الموعد", time() + 3600, "/");
             }
         } catch (PDOException $e) {
-            $_SESSION['error'] = "حدث خطأ: " . $e->getMessage();
+            setcookie('error', "حدث خطأ: " . $e->getMessage(), time() + 3600, "/");
         }
     } else {
-        $_SESSION['error'] = "صلاحيات غير كافية";
+        setcookie('error', "صلاحيات غير كافية", time() + 3600, "/");
     }
 
     header("Location: appointments.php");
@@ -237,14 +237,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'], $_POST['appo
     <div class="container-appointments">
         <h2><i class="fa-solid fa-calendar-check"></i> قائمة المواعيد</h2>
 
-        <?php if (isset($_SESSION['success'])): ?>
-            <div class="alert success"><?= $_SESSION['success'] ?></div>
-            <?php unset($_SESSION['success']); ?>
+        <!-- Success/Error Messages -->
+        <?php if (isset($_COOKIE['success'])): ?>
+            <div class="alert success"><?= $_COOKIE['success'] ?></div>
+            <?php setcookie('success', '', time() - 3600, '/'); ?>
         <?php endif; ?>
 
-        <?php if (isset($_SESSION['error'])): ?>
-            <div class="alert error"><?= $_SESSION['error'] ?></div>
-            <?php unset($_SESSION['error']); ?>
+        <?php if (isset($_COOKIE['error'])): ?>
+            <div class="alert error"><?= $_COOKIE['error'] ?></div>
+            <?php setcookie('error', '', time() - 3600, '/'); ?>
         <?php endif; ?>
 
         <?php
@@ -273,8 +274,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'], $_POST['appo
                         </thead>
                         <tbody>
                             <?php 
-                         
-
                             foreach ($appointments as $appointment): ?>
                                 <tr>
                                     <td><?= htmlspecialchars($appointment['patient_name']) ?></td>
@@ -304,7 +303,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'], $_POST['appo
                 <?php else: ?>
                     <p class="no-data">لا توجد مواعيد مسجلة</p>
                 <?php endif;
-
             } elseif ($role === 'patient') {
                 $stmt = $conn->prepare("
                     SELECT a.*, u.name AS doctor_name, u.specialty 
@@ -330,7 +328,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'], $_POST['appo
                         </thead>
                         <tbody>
                             <?php 
-                               $counter = 1; // يبدأ من 1
+                            $counter = 1; // يبدأ من 1
                             foreach ($appointments as $appointment): 
                                 $appointmentDate = $appointment['appointment_date'];
                             ?>
@@ -339,63 +337,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'], $_POST['appo
                                     <td><?= htmlspecialchars($appointment['doctor_name']) ?></td>
                                     <td><?= htmlspecialchars($appointment['specialty']) ?></td>
                                     <td><?= date("Y-m-d H:i", strtotime($appointmentDate)) ?></td>
+                                    <td><?= htmlspecialchars($appointment['status']) ?></td>
                                     <td>
-                                        <span class="status-badge <?= $appointment['status'] ?>">
-                                            <?= htmlspecialchars($appointment['status']) ?>
-                                        </span>
+                                        <?php 
+                                        $remaining_time = (strtotime($appointmentDate) - time()) / 60; // minutes left
+                                        if ($remaining_time > 0) {
+                                            echo round($remaining_time) . ' دقيقة';
+                                        } else {
+                                            echo 'انتهى الموعد';
+                                        }
+                                        ?>
                                     </td>
-                                    <td>
-    <?php if ($appointment['status'] === 'confirmed'): ?>
-        <span class="countdown" 
-              data-datetime="<?= date('Y-m-d\TH:i:s', strtotime($appointmentDate)) ?>">
-        </span>
-    <?php elseif ($appointment['status'] === 'pending'): ?>
-        <span style="color: #999;">في انتظار التأكيد</span>
-    <?php else: ?>
-        <span style="color: red;"> ملغى</span>
-    <?php endif; ?>
-</td>
-
                                 </tr>
-                                
                             <?php 
-                         $counter++; // نزيد واحد في كل دورة
-                       endforeach; ?>
-                        </tbody>
-                    </table>
-                <?php else: ?>
-                    <p class="no-data">لا توجد مواعيد مسجلة</p>
-                <?php endif;
-            }
-        } catch (PDOException $e) {
-            echo '<p class="error">حدث خطأ في جلب البيانات: ' . $e->getMessage() . '</p>';
-        }
-        ?>
-    </div>
-
-    <!-- نافذة التأكيد المنبثقة -->
-    <div id="confirmationModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>تأكيد الإجراء</h3>
-                <span class="close-btn">&times;</span>
+                                $counter++;
+                            endforeach;
+                        endif;
+                    } else {
+                        ?>
+                            <p>لا توجد مواعيد حالياً</p>
+                        <?php 
+                    }
+                }
+                ?>
+                </tbody>
+                </table>
             </div>
-            <div class="modal-body">
-                <p id="modalMessage">هل أنت متأكد من تنفيذ هذا الإجراء؟</p>
-            </div>
-            <div class="modal-footer">
-                <button id="modalConfirmBtn" class="modal-btn confirm-btn">تأكيد</button>
-                <button id="modalCancelBtn" class="modal-btn cancel-btn">إلغاء</button>
-            </div>
-        </div>
-    </div>
-    <div id="notificationModal" class="modal">
-        <div class="modal-content">
-
-            <p>موعدك في غضون ساعة!</p>
-            <button id="okButton">موافق</button>
-        </div>
-    </div>
     <script>
     // عناصر النافذة المنبثقة
     const modal = document.getElementById('confirmationModal');

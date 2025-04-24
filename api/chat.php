@@ -75,7 +75,7 @@ if ($receiver_id) {
 <head>
     <meta charset="UTF-8">
     <title>الدردشة - Rezadok</title>
-    <link rel="stylesheet" href="css.css">
+    <link rel="stylesheet" href="Design/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         #chat-box {

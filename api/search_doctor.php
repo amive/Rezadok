@@ -14,7 +14,7 @@ $patient_id = $_COOKIE['user_id']; // استخدام الـ cookie بدلاً م
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>البحث عن طبيب</title>
-    <link rel="stylesheet" href="css.css">
+    <link rel="stylesheet" href="Design/index.css">
 </head>
 <body>
     <header>

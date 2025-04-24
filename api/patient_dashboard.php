@@ -125,7 +125,7 @@ $posts = $stmt_posts->fetchAll(PDO::FETCH_ASSOC);
             </button>
             <div class="dropdown-content">
                 <a href="#"><i class="fa-solid fa-user"></i> حسابي</a>
-                <a href="setting.php"><i class="fa-solid fa-gear"></i> الإعدادات</a>
+                <a href="settings.php"><i class="fa-solid fa-gear"></i> الإعدادات</a>
                 <a href="logout.php"><i class="fa-solid fa-right-from-bracket"></i> تسجيل الخروج</a>
             </div>
         </div>

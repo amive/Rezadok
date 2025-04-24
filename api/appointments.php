@@ -303,7 +303,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'], $_POST['appo
                 <?php else: ?>
                     <p class="no-data">لا توجد مواعيد مسجلة</p>
                 <?php endif;
-            } elseif ($role === 'patient') {
+            }
+        } catch (PDOException $e) {
+            // Handle the exception
+            echo "<p class='error'>حدث خطأ أثناء استرجاع البيانات: " . htmlspecialchars($e->getMessage()) . "</p>";
+        } 
+        if ($role === 'patient') {
                 $stmt = $conn->prepare("
                     SELECT a.*, u.name AS doctor_name, u.specialty 
                     FROM appointments a
@@ -313,7 +318,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'], $_POST['appo
                 ");
                 $stmt->execute([$user_id]);
                 $appointments = $stmt->fetchAll();
-
+        
                 if (count($appointments) > 0): ?>
                     <table>
                         <thead>
@@ -358,7 +363,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'], $_POST['appo
                             <p>لا توجد مواعيد حالياً</p>
                         <?php 
                     }
-                }
                 ?>
                 </tbody>
                 </table>

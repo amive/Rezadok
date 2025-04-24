@@ -1,4 +1,6 @@
 <?php
+// Include the database configuration file
+include('config.php');
 // التحقق من تسجيل الدخول باستخدام الكوكيز
 if (!isset($_COOKIE['user_id']) || $_COOKIE['role'] != 'patient') {
     header("Location: index.php");
@@ -32,7 +34,7 @@ $patient_id = $_COOKIE['user_id']; // استخدام الـ cookie بدلاً م
                 </button>
                 <div class="dropdown-content">
                     <a href="#"><i class="fa-solid fa-user"></i> حسابي</a>
-                    <a href="#"><i class="fa-solid fa-cog"></i> الإعدادات</a>
+                    <a href="settings.php"><i class="fa-solid fa-cog"></i> الإعدادات</a>
                     <a href="logout.php"><i class="fa-solid fa-sign-out-alt"></i> تسجيل الخروج</a>
                 </div>
             </div>

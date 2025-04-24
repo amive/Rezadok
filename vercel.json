@@ -9,6 +9,8 @@
     { "src": "/Design/(.*)", "dest": "/public/Design/$1" },
     { "src": "/script/(.*)", "dest": "/public/script/$1" },
     { "src": "/assets/(.*)", "dest": "/public/assets/$1" },
+    { "src": "/doctor_dashboard", "dest": "/api/doctor_dashboard.php" },
+    { "src": "/patient_dashboard", "dest": "/api/patient_dashboard.php" },
     { "src": "/index.php", "dest": "/api/index.php" },
     { "src": "/(.*)", "dest": "/api/$1" }
   ]

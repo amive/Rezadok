@@ -1,18 +1,14 @@
 <?php
-session_start();
-
-// التحقق من تسجيل الدخول
-error_log("Session Data in doctor_dashboard.php: " . print_r($_SESSION, true));
-if (!isset($_SESSION['user_id']) || strtolower(trim($_SESSION['role'])) !== 'DOCTOR') {
+// التحقق من تسجيل الدخول باستخدام الكوكيز
+if (!isset($_COOKIE['user_id']) || strtolower(trim($_COOKIE['role'])) !== 'doctor') {
     error_log("DOCTOR user_id/Role check false. role: ");
     header("Location: /index.php");
     exit();
 }
 
-
 include('config.php'); // الاتصال بقاعدة البيانات
 
-$doctor_id = $_SESSION['user_id'];
+$doctor_id = $_COOKIE['user_id']; // استخدام الـ cookie بدلاً من الـ session
 
 // استرجاع المنشورات الخاصة بالطبيب
 $sql_posts = "SELECT * FROM posts WHERE doctor_id = :doctor_id ORDER BY created_at DESC";

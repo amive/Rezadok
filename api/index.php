@@ -1,60 +1,55 @@
 <?php
-// تفعيل عرض الأخطاء (لبيئة التطوير فقط)
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// تعطيل التخزين المؤقت
 header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache");
 
-// بدء الجلسة
-session_start();
-error_log("Request URI: " . $_SERVER['REQUEST_URI']);
-error_log("Session Data: " . print_r($_SESSION, true));
 include __DIR__ . '/config.php';
-// معالجة رفع الصورة
+
+function set_flash_cookie($name, $value) {
+    setcookie($name, $value, time() + 10, "/");
+}
+
+function get_flash_cookie($name) {
+    if (isset($_COOKIE[$name])) {
+        $val = $_COOKIE[$name];
+        setcookie($name, '', time() - 3600, "/");
+        return $val;
+    }
+    return "";
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES['profile_picture'])) {
     $image = $_FILES['profile_picture'];
-
-    // اسم الصورة المرفوعة
     $imageName = time() . "_" . basename($image['name']);
     $imagePath = 'uploads/' . $imageName;
-
-    // التأكد من أن الصورة هي صورة فعلية وليست ملفًا ضارًا
     $imageFileType = strtolower(pathinfo($imagePath, PATHINFO_EXTENSION));
     $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
 
     if (!in_array($imageFileType, $allowedTypes)) {
-       
-    } elseif ($image['size'] > 5000000) { // الحد الأقصى لحجم الصورة 5 ميجابايت
-        $_SESSION['error_message'] = "⚠️ يجب أن تكون الصورة أقل من 5 ميجابايت!";
+        // No action, just skip
+    } elseif ($image['size'] > 5000000) {
+        set_flash_cookie("error_message", "⚠️ يجب أن تكون الصورة أقل من 5 ميجابايت!");
     } else {
-        // نقل الصورة إلى المجلد
         if (move_uploaded_file($image['tmp_name'], $imagePath)) {
-            $_SESSION['image_path'] = $imagePath;
+            setcookie("image_path", $imagePath, time() + 300, "/");
         } else {
-            $_SESSION['error_message'] = "⚠️ فشل في رفع الصورة، يرجى المحاولة مرة أخرى!";
+            set_flash_cookie("error_message", "⚠️ فشل في رفع الصورة، يرجى المحاولة مرة أخرى!");
         }
     }
 } else {
-    // إذا لم يتم رفع صورة، استخدم الصورة الافتراضية
-    $_SESSION['image_path'] = 'uploads/default_avatar.jpg';
+    setcookie("image_path", 'uploads/default_avatar.jpg', time() + 300, "/");
 }
 
-
-// التحقق من إعادة التوجيه
-$is_redirected = isset($_SESSION['redirected']);
-unset($_SESSION['redirected']);
-
-// معالجة طلبات POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $action = $_POST['action'];
-    $_SESSION['form_data'] = $_POST;
+
+    setcookie("form_data", json_encode($_POST), time() + 300, "/");
 
     if ($action == "login") {
-        // معالجة تسجيل الدخول
         $email = $_POST['email'];
         $password = $_POST['password'];
 
@@ -64,34 +59,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($user && password_verify($password, $user['password'])) {
-                $_SESSION['user_id'] = $user['id'];
-                $_SESSION['role'] = $user['role'];
+                setcookie("user_id", $user['id'], time() + 3600, "/");
+                setcookie("role", $user['role'], time() + 3600, "/");
+
                 if ($user['role'] === 'doctor') {
-                    error_log("User logged in as doctor.AAAAAA");
                     header("Location: /doctor_dashboard");
                     exit();
                 } elseif ($user['role'] === 'patient') {
-                    error_log("User logged in as patient.AAAAAAAAS");
                     header("Location: /patient_dashboard");
                     exit();
                 }
-             } else {
-                error_log("Login failed: Incorrect email or password.");
-                $_SESSION['error_message'] = "البريد الإلكتروني أو كلمة المرور غير صحيحة!";
-                $_SESSION['redirected'] = true;
+            } else {
+                set_flash_cookie("error_message", "البريد الإلكتروني أو كلمة المرور غير صحيحة!");
                 header("Location: ".$_SERVER['PHP_SELF']);
                 exit();
             }
         } catch (PDOException $e) {
-            $_SESSION['error_message'] = "حدث خطأ في النظام، يرجى المحاولة لاحقاً";
-            error_log("Login error: " . $e->getMessage());
+            set_flash_cookie("error_message", "حدث خطأ في النظام، يرجى المحاولة لاحقاً");
             header("Location: ".$_SERVER['PHP_SELF']);
             exit();
         }
 
     } elseif ($action == "register") {
-        error_log("Registration process started.");
-        // معالجة التسجيل
         $name = $_POST['name'];
         $email = $_POST['email'];
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
@@ -99,21 +88,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $role = $_POST['role'];
         $specialty = ($role == "doctor") ? $_POST['specialty'] : NULL;
         $bio = ($role == "doctor") ? $_POST['bio'] : NULL;
-        $photo =  $_SESSION['image_path'];
+        $photo = $_COOKIE['image_path'] ?? 'uploads/default_avatar.jpg';
 
         try {
-            // التحقق من البريد الإلكتروني
             $checkEmail = $conn->prepare("SELECT id FROM users WHERE email = ?");
             $checkEmail->execute([$email]);
 
             if ($checkEmail->rowCount() > 0) {
-                $_SESSION['error_message'] = "⚠️ البريد الإلكتروني مستخدم من قبل!";
+                set_flash_cookie("error_message", "⚠️ البريد الإلكتروني مستخدم من قبل!");
             } else {
-                // التحقق من صحة البيانات
                 if (strlen($_POST['password']) < 8) {
-                    $_SESSION['error_message'] = "⚠️ كلمة المرور يجب أن تكون 8 أحرف على الأقل!";
+                    set_flash_cookie("error_message", "⚠️ كلمة المرور يجب أن تكون 8 أحرف على الأقل!");
                 } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                    $_SESSION['error_message'] = "⚠️ البريد الإلكتروني غير صالح!";
+                    set_flash_cookie("error_message", "⚠️ البريد الإلكتروني غير صالح!");
                 } else {
                     if ($role == 'doctor') {
                         $stmt = $conn->prepare("INSERT INTO users (name, email, password, phone, role, specialty, bio, profile_picture) 
@@ -125,37 +112,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $stmt->execute([$name, $email, $password, $phone, $role, $photo]);
                     }
                     if ($stmt->rowCount() > 0) {
-                        $_SESSION['success_message'] = "✅ تم التسجيل بنجاح! يمكنك تسجيل الدخول الآن.";
-                        unset($_SESSION['form_data']);
+                        set_flash_cookie("success_message", "✅ تم التسجيل بنجاح! يمكنك تسجيل الدخول الآن.");
+                        setcookie("form_data", "", time() - 3600, "/");
                     } else {
-                        $_SESSION['error_message'] = "⚠️ فشل في إنشاء الحساب، يرجى المحاولة مرة أخرى.";
+                        set_flash_cookie("error_message", "⚠️ فشل في إنشاء الحساب، يرجى المحاولة مرة أخرى.");
                     }
                 }
             }
         } catch (PDOException $e) {
-            $_SESSION['error_message'] = "⚠️ حدث خطأ في النظام، يرجى المحاولة لاحقاً";
-            error_log("Registration error: " . $e->getMessage());
+            set_flash_cookie("error_message", "⚠️ حدث خطأ في النظام، يرجى المحاولة لاحقاً");
         }
-        
-        $_SESSION['redirected'] = true;
+
         header("Location: ".$_SERVER['PHP_SELF']);
         exit();
     }
 }
 
-// إعداد رسائل النظام
-if ($is_redirected) {
-    $success_message = $_SESSION['success_message'] ?? "";
-    $error_message = $_SESSION['error_message'] ?? "";
-    $form_data = $_SESSION['form_data'] ?? [];
-    unset($_SESSION['success_message'], $_SESSION['error_message']);
-} else {
-    $success_message = "";
-    $error_message = "";
-    $form_data = [];
-    unset($_SESSION['form_data']);
-}
+$success_message = get_flash_cookie("success_message");
+$error_message = get_flash_cookie("error_message");
+$form_data = isset($_COOKIE['form_data']) ? json_decode($_COOKIE['form_data'], true) : [];
 ?>
+
 
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">

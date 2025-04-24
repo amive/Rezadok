@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } catch (PDOException $e) {
             $_SESSION['error_message'] = "حدث خطأ في النظام، يرجى المحاولة لاحقاً";
             error_log("Login error: " . $e->getMessage());
-            header("Location: ".$_SERVER['PHP_SELF']);
+            // header("Location: ".$_SERVER['PHP_SELF']);
             exit();
         }
 

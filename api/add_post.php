@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (in_array($file_ext, $allowed_exts)) {
             $image_name = uniqid() . '.' . $file_ext;
-            move_uploaded_file($_FILES['image']['tmp_name'], '../uploads/' . $image_name);
+            move_uploaded_file($_FILES['image']['tmp_name'], 'uploads/postIMG' . $image_name);
         } else {
             setcookie('error_message', "❌ نوع الصورة غير مدعوم!", time() + 3600, "/");
             header("Location: add_post.php");

@@ -100,7 +100,7 @@ if ($receiver_id) {
         <div class="dropdown">
             <button><i class="fa-solid fa-user-circle"></i></button>
             <div class="dropdown-content">
-                <a href="#"><i class="fa-solid fa-user"></i> حسابي</a>
+                <a href="#"><i class="fa-solid fa-user"></i>حسابي</a>
                 <a href="#"><i class="fa-solid fa-cog"></i> الإعدادات</a>
                 <a href="logout.php"><i class="fa-solid fa-sign-out-alt"></i> تسجيل الخروج</a>
             </div>

@@ -68,9 +68,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['role'] = $user['role'];
 
                 if ($user['role'] == 'doctor') {
-                    header("Location: /doctor_dashboard.php");
+                    header("Location: api/doctor_dashboard.php");
                 } elseif ($user['role'] == 'patient') {
-                    header("Location: /patient_dashboard.php");
+                    header("Location: api/patient_dashboard.php");
                 }
                 exit();
              } //else {

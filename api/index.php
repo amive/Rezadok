@@ -66,13 +66,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($user && password_verify($password, $user['password'])) {
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['role'] = $user['role'];
-                header("Location: /doctor_dashboard");
                 if ($user['role'] === 'doctor') {
-                    error_log("User logged in as doctor.");
+                    error_log("User logged in as doctor.AAAAAA");
                     header("Location: /doctor_dashboard");
                     exit();
                 } elseif ($user['role'] === 'patient') {
-                    error_log("User logged in as patient.");
+                    error_log("User logged in as patient.AAAAAAAAS");
                     header("Location: /patient_dashboard");
                     exit();
                 }
@@ -353,8 +352,6 @@ if ($is_redirected) {
                 window.history.replaceState(null, null, window.location.href);
             }
         };
-    </script>
-    <script>
     function toggleDoctorFields() {
         var role = document.getElementById("role").value;
         var doctorFields = document.getElementById("doctorFields");

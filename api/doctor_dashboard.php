@@ -2,6 +2,7 @@
 session_start();
 
 // التحقق من تسجيل الدخول
+error_log("Session Data in doctor_dashboard.php: " . print_r($_SESSION, true));
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'doctor') {
     header("Location: /index.php");
     exit();

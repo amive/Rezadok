@@ -73,12 +73,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     header("Location: /patient_dashboard.php");
                 }
                 exit();
-            } else {
-                $_SESSION['error_message'] = "البريد الإلكتروني أو كلمة المرور غير صحيحة!";
-                $_SESSION['redirected'] = true;
-                header("Location: ".$_SERVER['PHP_SELF']);
-                exit();
-            }
+             } //else {
+            //     $_SESSION['error_message'] = "البريد الإلكتروني أو كلمة المرور غير صحيحة!";
+            //     $_SESSION['redirected'] = true;
+            //     header("Location: ".$_SERVER['PHP_SELF']);
+            //     exit();
+            // }
         } catch (PDOException $e) {
             $_SESSION['error_message'] = "حدث خطأ في النظام، يرجى المحاولة لاحقاً";
             error_log("Login error: " . $e->getMessage());

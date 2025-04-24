@@ -67,20 +67,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['role'] = $user['role'];
                 header("Location: /doctor_dashboard");
-            
-            //     if ($user['role'] === 'doctor') {
-            //         header("Location: /doctor_dashboard");
-            //         exit();
-            //     } elseif ($user['role'] === 'patient') {
-            //         header("Location: /patient_dashboard");
-            //         exit();
-            //     }
-            //  } else {
-            //     $_SESSION['error_message'] = "البريد الإلكتروني أو كلمة المرور غير صحيحة!";
-            //     $_SESSION['redirected'] = true;
-            //     header("Location: ".$_SERVER['PHP_SELF']);
-            //     exit();
-             }
+                if ($user['role'] === 'doctor') {
+                    echo "HIIIII DOCTOR";
+                    header("Location: /doctor_dashboard");
+                    exit();
+                } elseif ($user['role'] === 'patient') {
+                    echo"HIIIII PATIENT";
+                    header("Location: /patient_dashboard");
+                    exit();
+                }
+             } else {
+                echo "hhhh";
+                $_SESSION['error_message'] = "البريد الإلكتروني أو كلمة المرور غير صحيحة!";
+                $_SESSION['redirected'] = true;
+                header("Location: ".$_SERVER['PHP_SELF']);
+                exit();
+            }
         } catch (PDOException $e) {
             $_SESSION['error_message'] = "حدث خطأ في النظام، يرجى المحاولة لاحقاً";
             error_log("Login error: " . $e->getMessage());
@@ -89,6 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
     } elseif ($action == "register") {
+        echo "HIHIHIHIH";
         // معالجة التسجيل
         $name = $_POST['name'];
         $email = $_POST['email'];

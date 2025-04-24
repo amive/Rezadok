@@ -68,16 +68,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['role'] = $user['role'];
                 header("Location: /doctor_dashboard");
                 if ($user['role'] === 'doctor') {
-                    echo "HIIIII DOCTOR";
+                    echo "<script>console.log('HIIIII DOCTOR');</script>";
                     header("Location: /doctor_dashboard");
                     exit();
                 } elseif ($user['role'] === 'patient') {
-                    echo"HIIIII PATIENT";
+                    echo "<script>console.log('HIIIII PATIENT');</script>";
                     header("Location: /patient_dashboard");
                     exit();
                 }
              } else {
-                echo "hhhh";
+                echo "<script>console.log('INCORRECT PASSw');</script>";
                 $_SESSION['error_message'] = "البريد الإلكتروني أو كلمة المرور غير صحيحة!";
                 $_SESSION['redirected'] = true;
                 header("Location: ".$_SERVER['PHP_SELF']);
@@ -91,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
     } elseif ($action == "register") {
-        echo "HIHIHIHIH";
+        echo "<script>console.log('HIHIHI WTF');</script>";
         // معالجة التسجيل
         $name = $_POST['name'];
         $email = $_POST['email'];

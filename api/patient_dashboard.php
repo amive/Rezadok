@@ -3,7 +3,7 @@ session_start();
 
 // التحقق من تسجيل الدخول
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] != 'patient') {
-    header("Location: index.php");
+    header("Location: /index.php");
     exit();
 }
 

@@ -33,10 +33,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $receiver_id) {
         $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
 
         if (in_array($file_ext, ['jpg', 'jpeg', 'png', 'gif'])) {
-            $target_dir = "uploads/images/";
+            $target_dir = "../uploads/images/";
             $file_type = "image";
         } else {
-            $target_dir = "uploads/files/";
+            $target_dir = "../uploads/files/";
             $file_type = "file";
         }
 

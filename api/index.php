@@ -11,6 +11,8 @@ header("Pragma: no-cache");
 
 // بدء الجلسة
 session_start();
+error_log("Request URI: " . $_SERVER['REQUEST_URI']);
+error_log("Session Data: " . print_r($_SESSION, true));
 include 'config.php';
 // معالجة رفع الصورة
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES['profile_picture'])) {

@@ -13,7 +13,7 @@ header("Pragma: no-cache");
 session_start();
 error_log("Request URI: " . $_SERVER['REQUEST_URI']);
 error_log("Session Data: " . print_r($_SESSION, true));
-include 'config.php';
+include __DIR__ . '/config.php';
 // معالجة رفع الصورة
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES['profile_picture'])) {
     $image = $_FILES['profile_picture'];
@@ -67,12 +67,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['role'] = $user['role'];
 
-                if ($user['role'] == 'doctor') {
+                if ($user['role'] === 'doctor') {
                     header("Location: /doctor_dashboard");
-                } elseif ($user['role'] == 'patient') {
+                    exit();
+                } elseif ($user['role'] === 'patient') {
                     header("Location: /patient_dashboard");
+                    exit();
                 }
-                exit();
              } else {
                 $_SESSION['error_message'] = "البريد الإلكتروني أو كلمة المرور غير صحيحة!";
                 $_SESSION['redirected'] = true;
@@ -163,7 +164,7 @@ if ($is_redirected) {
     <link rel="stylesheet" href="/Design/index.css">
     <style>
         .success-message, .error-message {
-            position: fixed;
+    <link rel="stylesheet" href="./Design/index.css">
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
@@ -348,7 +349,7 @@ if ($is_redirected) {
                 window.history.replaceState(null, null, window.location.href);
             }
         };
-    </script>-->
+    </script>
     <script>
     function toggleDoctorFields() {
         var role = document.getElementById("role").value;

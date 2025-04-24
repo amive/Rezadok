@@ -3,11 +3,12 @@ session_start();
 
 // التحقق من تسجيل الدخول
 error_log("Session Data in doctor_dashboard.php: " . print_r($_SESSION, true));
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'doctor') {
-    error_log("DOCTOR user_id/Role check false");
+if (!isset($_SESSION['user_id']) || strtolower(trim($_SESSION['role'])) !== 'DOCTOR') {
+    error_log("DOCTOR user_id/Role check false. role: ");
     header("Location: /index.php");
     exit();
 }
+
 
 include('config.php'); // الاتصال بقاعدة البيانات
 

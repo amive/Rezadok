@@ -3,8 +3,8 @@ session_start();
 
 // التحقق من تسجيل الدخول
 error_log("Session Data in patient_dashboard.php: " . print_r($_SESSION, true));
-if (!isset($_SESSION['user_id']) || strtolower(trim($_SESSION['role'])) !== 'doctor') {
-    error_log("DOCTOR user_id/Role check false. role: " . $_SESSION['role']);
+if (!isset($_SESSION['user_id']) || strtolower(trim($_SESSION['role'])) !== 'patient') {
+    error_log("PATIENT user_id/Role check false.");
     header("Location: /index.php");
     exit();
 }

@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // إدخال المنشور في قاعدة البيانات
     $stmt = $conn->prepare("INSERT INTO posts (doctor_id, title, content, image, created_at) VALUES (?, ?, ?, ?, NOW())");
-    if ($stmt->execute([$doctor_id, $title, $content, $image_name])) {
+    if ($stmt->execute([$doctor_id, $title, $content, $image_url])) {
         setcookie('success_message', "✅ تم نشر المنشور بنجاح!", time() + 3600, "/");
         header("Location: doctor_dashboard.php");
         exit();
@@ -89,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>إضافة منشور</title>
-    <link rel="stylesheet" href="css.css">   
+    <link rel="stylesheet" href="Design/index.css">   
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>

@@ -262,16 +262,6 @@ document.addEventListener("DOMContentLoaded", function () {
         xhr.send();
     }, 3000); // Update every 3 seconds
 });
-        document.addEventListener("DOMContentLoaded", function () {
-        // Add click event listener to all images in the chat box
-        const chatBox = document.getElementById("chat-box");
-        chatBox.addEventListener("click", function (event) {
-            if (event.target.tagName === "IMG") {
-                const img = event.target;
-                img.classList.toggle("enlarged"); // Toggle the 'enlarged' class
-            }
-        });
-    });
 </script>
 
 </body>

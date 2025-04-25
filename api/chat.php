@@ -55,11 +55,15 @@ if (isset($_FILES['attachment']) && $_FILES['attachment']['error'] === UPLOAD_ER
 
     try {
         // Upload file to Cloudinary
-        $uploadResult = $cloudinary->uploadApi()->upload($file_tmp, [
-            'folder' => $file_type === "image" ? "chat/images" : "chat/files",
-            'public_id' => pathinfo($file_name, PATHINFO_FILENAME),
-            'resource_type' => $file_type === "image" ? "image" : "auto",
-        ]);
+        $$originalName = pathinfo($file_name, PATHINFO_FILENAME);
+        $sanitizedName = preg_replace('/[^A-Za-z0-9_\-]/', '_', $originalName); // استبدال الرموز غير المسموحة بـ _
+
+        $uploadResult = (new UploadApi())->upload($file_tmp, [
+    'folder' => $file_type === "image" ? "chat/images" : "chat/files",
+    'public_id' => $sanitizedName,
+    'resource_type' => $file_type === "image" ? "image" : "auto",
+]);
+ ]);
         
 
         $file_path = $uploadResult['secure_url']; // Get the secure URL of the uploaded file

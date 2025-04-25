@@ -203,48 +203,65 @@ if ($receiver_id) {
 </div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const chatBox = document.getElementById("chat-box");
-        const receiverId = <?= json_encode($receiver_id); ?>;  // استبدلها بالقيمة المناسبة في الكود PHP
-        const userId = <?= json_encode($user_id); ?>;  // استبدلها بالقيمة المناسبة في الكود PHP
+document.addEventListener("DOMContentLoaded", function () {
+    const chatBox = document.getElementById("chat-box");
+    const receiverId = <?= json_encode($receiver_id); ?>;
+    const userId = <?= json_encode($user_id); ?>;
 
-        // التمرير لأسفل عند تحميل الصفحة أو عندما تظهر الرسائل
-        chatBox.scrollTop = chatBox.scrollHeight;
+    // Function to add the click event listener for enlarging images
+    function addImageClickListener() {
+        chatBox.querySelectorAll("img").forEach((img) => {
+            img.addEventListener("click", function () {
+                img.classList.toggle("enlarged"); // Toggle the 'enlarged' class
+            });
+        });
+    }
 
-        // تحديث الرسائل كل 3 ثواني
-        setInterval(function() {
-            var xhr = new XMLHttpRequest();
-            xhr.open("GET", "get_messages.php?receiver_id=" + receiverId, true);
-            xhr.onload = function() {
-                if (xhr.status == 200) {
-                    var response = JSON.parse(xhr.responseText);
-                    if (response.messages.length > 0) {
-                        chatBox.innerHTML = ''; // امسح الرسائل السابقة
-                        response.messages.forEach(function(msg) {
-                            var messageDiv = document.createElement('div');
-                            messageDiv.classList.add(msg.sender_id == userId ? 'sent' : 'received');
-                            messageDiv.innerHTML = `<p>${msg.message}</p><small>${msg.created_at}</small>`;
+    // Initial call to add the event listener
+    addImageClickListener();
 
-                            // إضافة الصورة أو الملف المرفق
-                            if (msg.file_path) {
-                                if (msg.file_type == 'image') {
-                                    messageDiv.innerHTML += `<img src="${msg.file_path}" alt="مرفق" style="max-width:200px;">`;
-                                } else {
-                                    messageDiv.innerHTML += `<a href="${msg.file_path}" target="_blank">📎 تحميل الملف</a>`;
-                                }
+    // Scroll to the bottom of the chat box on page load
+    chatBox.scrollTop = chatBox.scrollHeight;
+
+    // Update chat messages every 3 seconds
+    setInterval(function () {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "get_messages.php?receiver_id=" + receiverId, true);
+        xhr.onload = function () {
+            if (xhr.status == 200) {
+                var response = JSON.parse(xhr.responseText);
+                if (response.messages.length > 0) {
+                    chatBox.innerHTML = ""; // Clear previous messages
+                    response.messages.forEach(function (msg) {
+                        var messageDiv = document.createElement("div");
+                        messageDiv.classList.add(
+                            msg.sender_id == userId ? "sent" : "received"
+                        );
+                        messageDiv.innerHTML = `<p>${msg.message}</p><small>${msg.created_at}</small>`;
+
+                        // Add image or file attachment
+                        if (msg.file_path) {
+                            if (msg.file_type == "image") {
+                                messageDiv.innerHTML += `<img src="${msg.file_path}" alt="مرفق" style="max-width:200px;">`;
+                            } else {
+                                messageDiv.innerHTML += `<a href="${msg.file_path}" target="_blank">📎 تحميل الملف</a>`;
                             }
+                        }
 
-                            chatBox.appendChild(messageDiv);
-                        });
+                        chatBox.appendChild(messageDiv);
+                    });
 
-                        // التمرير لأسفل بعد إضافة الرسائل الجديدة
-                        chatBox.scrollTop = chatBox.scrollHeight;
-                    }
+                    // Reapply the image click listener after updating the chat box
+                    addImageClickListener();
+
+                    // Scroll to the bottom of the chat box
+                    chatBox.scrollTop = chatBox.scrollHeight;
                 }
-            };
-            xhr.send();
-        }, 3000); // التحديث كل 3 ثواني
-    });
+            }
+        };
+        xhr.send();
+    }, 3000); // Update every 3 seconds
+});
         document.addEventListener("DOMContentLoaded", function () {
         // Add click event listener to all images in the chat box
         const chatBox = document.getElementById("chat-box");

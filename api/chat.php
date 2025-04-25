@@ -126,7 +126,10 @@ if ($receiver_id) {
             max-height: 90%;
             z-index: 1000;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: white; /* Optional: Add a background color for better visibility */
             cursor: zoom-out;
+            width: auto; /* Ensure the image scales properly */
+            height: auto; /* Ensure the image scales properly */
         }
     </style>
 </head>

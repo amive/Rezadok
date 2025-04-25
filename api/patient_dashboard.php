@@ -141,8 +141,8 @@ $posts = $stmt_posts->fetchAll(PDO::FETCH_ASSOC);
                 <p><strong> الطبيب: <?= htmlspecialchars($post['doctor_name']) ?></strong></p>
                 <h3><?= htmlspecialchars($post['title']) ?></h3>
                 <p><?= htmlspecialchars($post['content']) ?></p>
-                <?php if ($post['image']): ?>
-                    <img src="uploads/<?= htmlspecialchars($post['image']) ?>" alt="Post Image">
+                <?php if (!empty($post['image'])): ?>
+                <img src="<?= htmlspecialchars($post['image']) ?>" alt="Post Image" style="max-width: 100%; height: auto; margin-top: 10px;">
                 <?php endif; ?>
                 <p><small>تاريخ المنشور: <?= date('d-m-Y H:i', strtotime($post['created_at'])) ?></small></p>
             </div>

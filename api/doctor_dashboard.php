@@ -63,6 +63,11 @@ $posts = $stmt_posts->fetchAll(PDO::FETCH_ASSOC);
                     <h3><?= htmlspecialchars($post['title']) ?></h3>
                     <p><?= htmlspecialchars($post['content']) ?></p>
 
+                     <!-- Display the image if it exists -->
+                <?php if (!empty($post['image'])): ?>
+                    <img src="<?= htmlspecialchars($post['image']) ?>" alt="Post Image" style="max-width: 100%; height: auto; margin-top: 10px;">
+                <?php endif; ?>
+                
                     <p><small>تاريخ المنشور: <?= date('d/m/Y H:i', strtotime($post['created_at'])) ?></small></p>
                     <a href="view_post.php?id=<?= $post['id'] ?>">عرض التفاصيل</a>
                 </div>

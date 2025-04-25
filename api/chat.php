@@ -60,7 +60,7 @@ if (isset($_FILES['attachment']) && $_FILES['attachment']['error'] === UPLOAD_ER
         $sanitizedName = preg_replace('/[^A-Za-z0-9_\-]/', '_', $originalName);
 
         // رفع الملف إلى Cloudinary
-        $uploadResult = (new UploadApi())->upload($file_tmp, [
+        $uploadResult = $cloudinary->uploadApi()->upload($file_tmp, [
             'folder' => $file_type === "image" ? "chat/images" : "chat/files",
             'public_id' => $sanitizedName . '_' . time(), // إضافة الوقت لتفادي التكرار
             'resource_type' => $file_type === "image" ? "image" : "auto",

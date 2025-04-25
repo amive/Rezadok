@@ -40,7 +40,7 @@ $cloudinary = new Cloudinary([
         'api_secret' => '6swgUqDkfTRe4Lyu52OHZHt0eJ8', // Replace with your Cloudinary API secret
     ],
 ]);
-var_dump($cloudinary);
+//var_dump($cloudinary);
 
 if (isset($_FILES['attachment']) && $_FILES['attachment']['error'] === UPLOAD_ERR_OK) {
     $file_tmp = $_FILES['attachment']['tmp_name'];

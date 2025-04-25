@@ -1,6 +1,6 @@
 <?php
 include 'config.php';
-require 'vendor/autoload.php'; // Include the Cloudinary SDK
+require '/vendor/autoload.php'; // Include the Cloudinary SDK
 
 use Cloudinary\Cloudinary;
 use Cloudinary\Api\Upload\UploadApi;

@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             try {
                 // رفع الصورة إلى Cloudinary
                 $uploadApi = new UploadApi();
-                $uploadResult = $cloudinary->uploadApi()->upload($file_tmp, [
+                $uploadResult = $cloudinary->uploadApi()->upload($_FILES['image']['tmp_name'], [
                     'folder' => 'posts/images',
                     'public_id' => uniqid(),
                     'resource_type' => 'image',

@@ -1,5 +1,9 @@
 <?php
 include 'config.php';
+require 'vendor/autoload.php'; // Include the Cloudinary SDK
+
+use Cloudinary\Cloudinary;
+use Cloudinary\Api\Upload\UploadApi;
 
 // التحقق من وجود الكوكيز بدلاً من الجلسة
 if (!isset($_COOKIE['user_id'])) {
@@ -19,7 +23,6 @@ $stmt->execute();
 $contacts = $stmt->fetchAll();
 
 $receiver_id = isset($_GET['receiver_id']) ? $_GET['receiver_id'] : null;
-
 // إرسال رسالة
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && $receiver_id) {
     $message = isset($_POST['message']) ? trim($_POST['message']) : '';
@@ -27,26 +30,41 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $receiver_id) {
     $file_type = null;
 
     // معالجة الملفات المرفقة
-    if (isset($_FILES['attachment']) && $_FILES['attachment']['error'] === UPLOAD_ERR_OK) {
-        $file_name = $_FILES['attachment']['name'];
-        $file_tmp = $_FILES['attachment']['tmp_name'];
-        $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
 
-        if (in_array($file_ext, ['jpg', 'jpeg', 'png', 'gif', 'jfif'])) {
-            $target_dir = "uploads/images/";
-            $file_type = "image";
-        } else {
-            $target_dir = "uploads/files/";
-            $file_type = "file";
-        }
 
-        $unique_name = uniqid() . '_' . basename($file_name);
-        $destination = $target_dir . $unique_name;
+// Cloudinary Configuration
+$cloudinary = new Cloudinary([
+    'cloud' => [
+        'cloud_name' => 'dkxmhw89v', // Replace with your Cloudinary cloud name
+        'api_key' => '856592243673251',       // Replace with your Cloudinary API key
+        'api_secret' => '6swgUqDkfTRe4Lyu52OHZHt0eJ8', // Replace with your Cloudinary API secret
+    ],
+]);
 
-        if (move_uploaded_file($file_tmp, $destination)) {
-            $file_path = $destination;
-        }
+if (isset($_FILES['attachment']) && $_FILES['attachment']['error'] === UPLOAD_ERR_OK) {
+    $file_tmp = $_FILES['attachment']['tmp_name'];
+    $file_name = $_FILES['attachment']['name'];
+    $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+
+    if (in_array($file_ext, ['jpg', 'jpeg', 'png', 'gif', 'jfif'])) {
+        $file_type = "image";
+    } else {
+        $file_type = "file";
     }
+
+    try {
+        // Upload file to Cloudinary
+        $uploadResult = (new UploadApi())->upload($file_tmp, [
+            'folder' => $file_type === "image" ? "chat/images" : "chat/files", // Organize files in folders
+            'public_id' => pathinfo($file_name, PATHINFO_FILENAME), // Use the original file name
+            'resource_type' => $file_type === "image" ? "image" : "auto",
+        ]);
+
+        $file_path = $uploadResult['secure_url']; // Get the secure URL of the uploaded file
+    } catch (Exception $e) {
+        die("Error uploading file to Cloudinary: " . $e->getMessage());
+    }
+}
 
 if (!empty($message) || !empty($file_path)) {
     $stmt = $conn->prepare("INSERT INTO messages (sender_id, receiver_id, message, file_path, file_type)

@@ -116,20 +116,32 @@ if ($receiver_id) {
         #chat-box::-webkit-scrollbar {
             display: none; /* Chrome, Safari and Edge */
         }
+        /* Enlarged image styling */
+        .enlarged {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 90%;
+            max-height: 90%;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            cursor: zoom-out;
+        }
     </style>
 </head>
 
 <body>
 <header>
-    <h2><i class="fa-solid fa-stethoscope"></i> Rezadok</h2>
+    <h2><a href="index.php"><i class="fa-solid fa-stethoscope"></i></a>Rezadok</h2>
     <nav>
-        <a href="chat.php" class="icon-btn" data-text="الرئيسية"><i class="fa-solid fa-house"></i></a>
+        <a href="index.php" class="icon-btn" data-text="الرئيسية"><i class="fa-solid fa-house"></i></a>
         <a href="appointments.php" class="icon-btn" data-text="مواعيدي"><i class="fa-solid fa-calendar-days"></i></a>
         <div class="dropdown">
             <button><i class="fa-solid fa-user-circle"></i></button>
             <div class="dropdown-content">
                 <a href="#"><i class="fa-solid fa-user"></i>حسابي</a>
-                <a href="#"><i class="fa-solid fa-cog"></i> الإعدادات</a>
+                <a href="settings.php"><i class="fa-solid fa-cog"></i> الإعدادات</a>
                 <a href="logout.php"><i class="fa-solid fa-sign-out-alt"></i> تسجيل الخروج</a>
             </div>
         </div>
@@ -229,6 +241,16 @@ if ($receiver_id) {
             };
             xhr.send();
         }, 3000); // التحديث كل 3 ثواني
+    });
+        document.addEventListener("DOMContentLoaded", function () {
+        // Add click event listener to all images in the chat box
+        const chatBox = document.getElementById("chat-box");
+        chatBox.addEventListener("click", function (event) {
+            if (event.target.tagName === "IMG") {
+                const img = event.target;
+                img.classList.toggle("enlarged"); // Toggle the 'enlarged' class
+            }
+        });
     });
 </script>
 

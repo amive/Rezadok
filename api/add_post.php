@@ -1,6 +1,9 @@
 <?php
 include 'config.php';
+require __DIR__ . '/../vendor/autoload.php'; // Include the Cloudinary SDK
 
+use Cloudinary\Cloudinary;
+use Cloudinary\Api\Upload\UploadApi;
 // التحقق مما إذا كان المستخدم طبيبًا باستخدام الكوكيز
 if (!isset($_COOKIE['user_id']) || $_COOKIE['role'] != 'doctor') {
     header("Location: index.php");
@@ -14,15 +17,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $title = $_POST['title'];
     $content = $_POST['content'];
 
+
+    $cloudinary = new Cloudinary([
+        'cloud' => [
+            'cloud_name' => 'dkxmhw89v',
+            'api_key'    => '856592243673251',
+            'api_secret' => '6swgUqDkfTRe4Lyu52OHZHt0eJ8',
+        ],
+    ]);
     // معالجة رفع الصورة
-    $image_name = null;
+    $image_url = null;
     if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
         $allowed_exts = ['jpg', 'jpeg', 'png', 'gif'];
         $file_ext = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
 
         if (in_array($file_ext, $allowed_exts)) {
-            $image_name = uniqid() . '.' . $file_ext;
-            move_uploaded_file($_FILES['image']['tmp_name'], 'uploads/postIMG' . $image_name);
+            try {
+                // رفع الصورة إلى Cloudinary
+                $uploadApi = new UploadApi();
+                $uploadResult = $uploadApi->upload($_FILES['image']['tmp_name'], [
+                    'folder' => 'posts/images',
+                    'public_id' => uniqid(),
+                    'resource_type' => 'image',
+                ]);
+
+                $image_url = $uploadResult['secure_url']; // رابط الصورة
+            } catch (Exception $e) {
+                setcookie('error_message', "❌ حدث خطأ أثناء رفع الصورة: " . $e->getMessage(), time() + 3600, "/");
+                header("Location: add_post.php");
+                exit();
+            }
         } else {
             setcookie('error_message', "❌ نوع الصورة غير مدعوم!", time() + 3600, "/");
             header("Location: add_post.php");

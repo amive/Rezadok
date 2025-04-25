@@ -199,7 +199,7 @@ $form_data = isset($_COOKIE['form_data']) ? json_decode($_COOKIE['form_data'], t
 </head>
 <body>
     <header>
-        <h2><i class="fa-solid fa-stethoscope"></i> Rezadok</h2>
+        <h2><a href="index.php"><i class="fa-solid fa-stethoscope"></i></a>Rezadok</h2>
         <nav>
             <a href="index.php" class="icon-btn" data-text="الرئيسية"><i class="fa-solid fa-house"></i></a>
             <a href="#" class="icon-btn" data-text="الخدمات"><i class="fa-solid fa-user-doctor"></i></a>

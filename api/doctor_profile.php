@@ -1,4 +1,4 @@
-<?php
+<a?php
 include 'config.php';
 
 // التحقق من وجود الكوكيز
@@ -43,7 +43,7 @@ $posts = $posts_stmt->fetchAll();
 </head>
 <body>
     <header>
-        <h2><i class="fa-solid fa-stethoscope"></i> Rezadok</h2>
+        <h2><a href="index.php"><i class="fa-solid fa-stethoscope"></i></a>Rezadok</h2>
         <h1><i class="fa-solid fa-user-doctor"></i> ملف الطبيب</h1>
         <nav>
             <a href="patient_dashboard.php" class="icon-btn" data-text="الرئيسية">

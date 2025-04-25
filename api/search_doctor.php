@@ -20,7 +20,7 @@ $patient_id = $_COOKIE['user_id']; // استخدام الـ cookie بدلاً م
 </head>
 <body>
     <header>
-        <h2><i class="fa-solid fa-stethoscope"></i> Rezadok</h2>
+        <h2><a href="index.php"><i class="fa-solid fa-stethoscope"></i></a>Rezadok</h2>
         <nav> 
             <a href="patient_dashboard.php" class="icon-btn" data-text="الرئيسية">
                 <i class="fa-solid fa-house"></i>

@@ -29,7 +29,7 @@ $posts = $stmt_posts->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
     <header>
-        <h2><i class="fa-solid fa-stethoscope"></i> Rezadok</h2>
+        <h2><a href="index.php"><i class="fa-solid fa-stethoscope"></i></a>Rezadok</h2>
         <nav>
             <a href="chat.php" class="icon-btn" data-text="الرسائل">
                 <i class="fa-solid fa-comments"></i>

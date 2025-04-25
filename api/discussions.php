@@ -8,7 +8,7 @@
 </head>
 <body>
     <header>
-        <h2><i class="fa-solid fa-stethoscope"></i> Rezadok</h2>
+        <h2><a href="index.php"><i class="fa-solid fa-stethoscope"></i></a>Rezadok</h2>
             <!--الرةابط-->
         <nav> 
            <a href="discussion.php" class="icon-btn"data-text="الرئيسية">

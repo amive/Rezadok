@@ -48,11 +48,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $receiver_id) {
         }
     }
 
+if (!empty($message) || !empty($file_path)) {
     $stmt = $conn->prepare("INSERT INTO messages (sender_id, receiver_id, message, file_path, file_type)
                             VALUES (?, ?, ?, ?, ?)");
     $stmt->execute([$user_id, $receiver_id, $message, $file_path, $file_type]);
-    header("Location: chat.php?receiver_id=$receiver_id");
-    exit();
+}
+
+header("Location: chat.php?receiver_id=$receiver_id");
+exit();
 }
 
 // جلب الرسائل

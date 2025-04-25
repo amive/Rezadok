@@ -40,6 +40,7 @@ $cloudinary = new Cloudinary([
         'api_secret' => '6swgUqDkfTRe4Lyu52OHZHt0eJ8', // Replace with your Cloudinary API secret
     ],
 ]);
+var_dump($cloudinary);
 
 if (isset($_FILES['attachment']) && $_FILES['attachment']['error'] === UPLOAD_ERR_OK) {
     $file_tmp = $_FILES['attachment']['tmp_name'];
@@ -54,11 +55,12 @@ if (isset($_FILES['attachment']) && $_FILES['attachment']['error'] === UPLOAD_ER
 
     try {
         // Upload file to Cloudinary
-        $uploadResult = (new UploadApi())->upload($file_tmp, [
-            'folder' => $file_type === "image" ? "chat/images" : "chat/files", // Organize files in folders
-            'public_id' => pathinfo($file_name, PATHINFO_FILENAME), // Use the original file name
+        $uploadResult = $cloudinary->uploadApi()->upload($file_tmp, [
+            'folder' => $file_type === "image" ? "chat/images" : "chat/files",
+            'public_id' => pathinfo($file_name, PATHINFO_FILENAME),
             'resource_type' => $file_type === "image" ? "image" : "auto",
         ]);
+        
 
         $file_path = $uploadResult['secure_url']; // Get the secure URL of the uploaded file
     } catch (Exception $e) {

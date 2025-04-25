@@ -12,6 +12,21 @@ if (!isset($_COOKIE['user_id']) || $_COOKIE['role'] != 'doctor') {
 
 $doctor_id = $_COOKIE['user_id'];
 
+// قراءة رسائل الكوكيز وتخزينها في متغيرات مؤقتة
+$successMessage = null;
+$errorMessage = null;
+
+if (isset($_COOKIE['success_message'])) {
+    $successMessage = $_COOKIE['success_message'];
+    setcookie('success_message', '', time() - 3600, '/');
+}
+
+if (isset($_COOKIE['error_message'])) {
+    $errorMessage = $_COOKIE['error_message'];
+    setcookie('error_message', '', time() - 3600, '/');
+}
+
+
 // عند إرسال النموذج
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $title = $_POST['title'];
@@ -35,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             try {
                 // رفع الصورة إلى Cloudinary
                 $uploadApi = new UploadApi();
-                $uploadResult = $uploadApi->upload($_FILES['image']['tmp_name'], [
+                $uploadResult = $cloudinary->uploadApi()->upload($file_tmp, [
                     'folder' => 'posts/images',
                     'public_id' => uniqid(),
                     'resource_type' => 'image',
@@ -104,14 +119,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <div class="container">
     <h2><i class="fa-solid fa-pen-to-square"></i> إضافة منشور جديد</h2>
     
-    <?php if (isset($_COOKIE['success_message'])): ?>
-        <div class="success-message"><?= $_COOKIE['success_message']; ?></div>
-        <?php setcookie('success_message', '', time() - 3600, '/'); ?>
+    <?php if ($successMessage): ?>
+        <div class="success-message"><?= $successMessage; ?></div>
     <?php endif; ?>
 
-    <?php if (isset($_COOKIE['error_message'])): ?>
-        <div class="error-message"><?= $_COOKIE['error_message']; ?></div>
-        <?php setcookie('error_message', '', time() - 3600, '/'); ?>
+    <?php if ($errorMessage): ?>
+        <div class="error-message"><?= $errorMessage; ?></div>
     <?php endif; ?>
 
     <form action="" method="POST" enctype="multipart/form-data">

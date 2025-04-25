@@ -54,7 +54,7 @@ if (isset($_FILES['attachment']) && $_FILES['attachment']['error'] === UPLOAD_ER
     }
 
     try {
-        // Upload file to Cloudinary
+        // Upload file to Cloudinary-
         $$originalName = pathinfo($file_name, PATHINFO_FILENAME);
         $sanitizedName = preg_replace('/[^A-Za-z0-9_\-]/', '_', $originalName); // استبدال الرموز غير المسموحة بـ _
 
@@ -62,9 +62,7 @@ if (isset($_FILES['attachment']) && $_FILES['attachment']['error'] === UPLOAD_ER
     'folder' => $file_type === "image" ? "chat/images" : "chat/files",
     'public_id' => $sanitizedName,
     'resource_type' => $file_type === "image" ? "image" : "auto",
-]);
- ]);
-        
+]); 
 
         $file_path = $uploadResult['secure_url']; // Get the secure URL of the uploaded file
     } catch (Exception $e) {

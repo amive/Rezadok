@@ -35,12 +35,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $receiver_id) {
 // Cloudinary Configuration
 $cloudinary = new Cloudinary([
     'cloud' => [
-        'cloud_name' => 'dkxmhw89v', // Replace with your Cloudinary cloud name
-        'api_key' => '856592243673251',       // Replace with your Cloudinary API key
-        'api_secret' => '6swgUqDkfTRe4Lyu52OHZHt0eJ8', // Replace with your Cloudinary API secret
+        'cloud_name' => 'dkxmhw89v',
+        'api_key'    => '856592243673251',
+        'api_secret' => '6swgUqDkfTRe4Lyu52OHZHt0eJ8',
     ],
 ]);
-//var_dump($cloudinary);
 
 if (isset($_FILES['attachment']) && $_FILES['attachment']['error'] === UPLOAD_ERR_OK) {
     $file_tmp = $_FILES['attachment']['tmp_name'];
@@ -54,21 +53,25 @@ if (isset($_FILES['attachment']) && $_FILES['attachment']['error'] === UPLOAD_ER
     }
 
     try {
-        // Upload file to Cloudinary-
-        $$originalName = pathinfo($file_name, PATHINFO_FILENAME);
-        $sanitizedName = preg_replace('/[^A-Za-z0-9_\-]/', '_', $originalName); // استبدال الرموز غير المسموحة بـ _
+        // اسم الملف بدون الامتداد
+        $originalName = pathinfo($file_name, PATHINFO_FILENAME);
 
+        // إزالة أي رموز خاصة من الاسم
+        $sanitizedName = preg_replace('/[^A-Za-z0-9_\-]/', '_', $originalName);
+
+        // رفع الملف إلى Cloudinary
         $uploadResult = (new UploadApi())->upload($file_tmp, [
-    'folder' => $file_type === "image" ? "chat/images" : "chat/files",
-    'public_id' => $sanitizedName,
-    'resource_type' => $file_type === "image" ? "image" : "auto",
-]); 
+            'folder' => $file_type === "image" ? "chat/images" : "chat/files",
+            'public_id' => $sanitizedName . '_' . time(), // إضافة الوقت لتفادي التكرار
+            'resource_type' => $file_type === "image" ? "image" : "auto",
+        ]);
 
-        $file_path = $uploadResult['secure_url']; // Get the secure URL of the uploaded file
+        $file_path = $uploadResult['secure_url'];
     } catch (Exception $e) {
         die("Error uploading file to Cloudinary: " . $e->getMessage());
     }
 }
+
 
 if (!empty($message) || !empty($file_path)) {
     $stmt = $conn->prepare("INSERT INTO messages (sender_id, receiver_id, message, file_path, file_type)

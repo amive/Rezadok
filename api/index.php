@@ -86,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             'api_secret' => '6swgUqDkfTRe4Lyu52OHZHt0eJ8',
                         ],
                     ]);
-                    $uploadResult = $cloudinary->uploadApi()->upload($file_tmp, [
+                    $uploadResult = $cloudinary->uploadApi()->upload($image['tmp_name'], [
                         'folder' => 'profile_pictures',
                         'public_id' => time() . '_doctorpfp',
                         'resource_type' => 'image',

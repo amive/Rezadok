@@ -356,7 +356,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'], $_POST['appo
 
                                             echo sprintf('%d يوم %02dساعات ', $days, $hours);
                                         } else {
-                                            echo 'حان الموعد';
+                                            echo 'حان الموعد، راسل الطبيب';
                                         }
                                     } elseif ($appointment['status'] === 'canceled') {
                                         echo 'مرفوض';

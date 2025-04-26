@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (strtotime($appointment_date) < time()) {
         setcookie('error', "<i class='fa-solid fa-calendar-xmark'></i> لا يمكنك حجز موعد في تاريخ ووقت قديمين!", time() + 3600, "/");
-        header("Location: book_appointment.php?doctor_id=$doctor_id");
+        header("Location: book_appointments.php?doctor_id=$doctor_id");
         exit();
     } else {
         // التحقق من عدم وجود حجز سابق لنفس الطبيب والمريض في نفس التاريخ

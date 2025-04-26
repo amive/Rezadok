@@ -25,7 +25,7 @@ function get_flash_cookie($name) {
     return "";
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] === UPLOAD_ERR_OK) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES['profile_picture']) && !empty($_FILES['profile_picture']['name']) && $_FILES['profile_picture']['error'] === UPLOAD_ERR_OK) {
     $image = $_FILES['profile_picture'];
     $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
 
@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES['profile_picture']) &&
 } else {
     setcookie("image_path", 'assets/default-doctor.jpg', time() + 300, "/");
 }
-
+    
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $action = $_POST['action'];
 

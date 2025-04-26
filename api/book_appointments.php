@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 setcookie('error', "<i class='fa-solid fa-circle-xmark'></i> حدث خطأ أثناء الحجز!", time() + 3600, "/");
             }
         }
-        header("Location: book_appointment.php?doctor_id=$doctor_id");
+        header("Location: book_appointments.php?doctor_id=$doctor_id");
         exit();
     }
 }

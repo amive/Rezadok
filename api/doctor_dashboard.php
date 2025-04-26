@@ -74,7 +74,7 @@ $posts = $stmt_posts->fetchAll(PDO::FETCH_ASSOC);
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
-            <p>لا توجد منشورات لعرضها.</p>
+            <p>.لم تقم بنشر شيء بعد</p>
         <?php endif; ?>
     </div>
 </body>

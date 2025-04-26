@@ -8,7 +8,10 @@ header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache");
 
 include __DIR__ . '/config.php';
+require __DIR__ . '/../vendor/autoload.php'; // Include the Cloudinary SDK
 
+use Cloudinary\Cloudinary;
+use Cloudinary\Api\Upload\UploadApi;
 function set_flash_cookie($name, $value) {
     setcookie($name, $value, time() + 10, "/");
 }
@@ -24,44 +27,43 @@ function get_flash_cookie($name) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES['profile_picture'])) {
     $image = $_FILES['profile_picture'];
-    $imageName = time() . "_" . basename($image['name']);
-    $imagePath = 'uploads/' . $imageName;
-    $imageFileType = strtolower(pathinfo($imagePath, PATHINFO_EXTENSION));
     $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
 
+    $imageFileType = strtolower(pathinfo($image['name'], PATHINFO_EXTENSION));
+
     if (!in_array($imageFileType, $allowedTypes)) {
-        // No action, just skip
+        set_flash_cookie("error_message", "⚠️ يجب أن تكون الصورة بصيغة مدعومة (JPG, PNG, GIF)!");
     } elseif ($image['size'] > 5000000) {
         set_flash_cookie("error_message", "⚠️ يجب أن تكون الصورة أقل من 5 ميجابايت!");
     } else {
-        if (move_uploaded_file($image['tmp_name'], $imagePath)) {
-            setcookie("image_path", $imagePath, time() + 300, "/");
-        } else {
-            set_flash_cookie("error_message", "⚠️ فشل في رفع الصورة، يرجى المحاولة مرة أخرى!");
+        try {
+            // Configure Cloudinary
+            $cloudinary = new Cloudinary([
+                'cloud' => [
+                    'cloud_name' => 'your-cloud-name', // Replace with your Cloudinary cloud name
+                    'api_key'    => 'your-api-key',    // Replace with your Cloudinary API key
+                    'api_secret' => 'your-api-secret', // Replace with your Cloudinary API secret
+                ],
+            ]);
+
+            // Upload the image to Cloudinary
+            $uploadResult = (new UploadApi())->upload($image['tmp_name'], [
+                'folder' => 'profile_pictures', // Optional: Organize images in a folder
+                'public_id' => time() . '_doctorpfp', // Optional: Generate a unique public ID
+                'resource_type' => 'image',
+            ]);
+
+            // Get the secure URL of the uploaded image
+            $imageUrl = $uploadResult['secure_url'];
+
+            // Store the image URL in a cookie
+            setcookie("image_path", $imageUrl, time() + 300, "/");
+        } catch (Exception $e) {
+            set_flash_cookie("error_message", "⚠️ حدث خطأ أثناء رفع الصورة: " . $e->getMessage());
         }
     }
 } else {
-    if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] === UPLOAD_ERR_OK) {
-        $image = $_FILES['profile_picture'];
-        $imageName = time() . "_" . basename($image['name']);
-        $imagePath = 'uploads/' . $imageName;
-        $imageFileType = strtolower(pathinfo($imagePath, PATHINFO_EXTENSION));
-        $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
-    
-        if (in_array($imageFileType, $allowedTypes) && $image['size'] <= 5000000) {
-            if (move_uploaded_file($image['tmp_name'], $imagePath)) {
-                setcookie("image_path", $imagePath, time() + 300, "/");
-            } else {
-                set_flash_cookie("error_message", "⚠️ فشل في رفع الصورة، يرجى المحاولة مرة أخرى!");
-                setcookie("image_path", 'assets/default-doctor.jpg', time() + 300, "/");
-            }
-        } else {
-            set_flash_cookie("error_message", "⚠️ يجب أن تكون الصورة أقل من 5 ميجابايت وبصيغة مدعومة!");
-            setcookie("image_path", 'assets/default-doctor.jpg', time() + 300, "/");
-        }
-    } else {
-        setcookie("image_path", 'assets/default-doctor.jpg', time() + 300, "/");
-    }
+    setcookie("image_path", 'assets/default-doctor.jpg', time() + 300, "/");
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

@@ -41,7 +41,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES['profile_picture'])) {
         }
     }
 } else {
-    setcookie("image_path", 'uploads/default_avatar.jpg', time() + 300, "/");
+    if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] === UPLOAD_ERR_OK) {
+        $image = $_FILES['profile_picture'];
+        $imageName = time() . "_" . basename($image['name']);
+        $imagePath = 'uploads/' . $imageName;
+        $imageFileType = strtolower(pathinfo($imagePath, PATHINFO_EXTENSION));
+        $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
+    
+        if (in_array($imageFileType, $allowedTypes) && $image['size'] <= 5000000) {
+            if (move_uploaded_file($image['tmp_name'], $imagePath)) {
+                setcookie("image_path", $imagePath, time() + 300, "/");
+            } else {
+                set_flash_cookie("error_message", "⚠️ فشل في رفع الصورة، يرجى المحاولة مرة أخرى!");
+                setcookie("image_path", 'assets/default-doctor.jpg', time() + 300, "/");
+            }
+        } else {
+            set_flash_cookie("error_message", "⚠️ يجب أن تكون الصورة أقل من 5 ميجابايت وبصيغة مدعومة!");
+            setcookie("image_path", 'assets/default-doctor.jpg', time() + 300, "/");
+        }
+    } else {
+        setcookie("image_path", 'assets/default-doctor.jpg', time() + 300, "/");
+    }
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -88,7 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $role = $_POST['role'];
         $specialty = ($role == "doctor") ? $_POST['specialty'] : NULL;
         $bio = ($role == "doctor") ? $_POST['bio'] : NULL;
-        $photo = $_COOKIE['image_path'] ?? 'uploads/default_avatar.jpg';
+        $photo = $_COOKIE['image_path'] ?? 'assets/default-doctor.jpg';
 
         try {
             $checkEmail = $conn->prepare("SELECT id FROM users WHERE email = ?");

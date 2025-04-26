@@ -5,6 +5,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <title> Rezadok | الدردشة </title>
     <link rel="stylesheet" href="/Design/index.css">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+
 </head>
 <body>
     <header>

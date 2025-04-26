@@ -43,6 +43,8 @@ $posts = $posts_stmt->fetchAll();
     <title>ملف الطبيب</title>
     <link rel="stylesheet" href="Design/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+
 </head>
 <body>
     <header>
@@ -60,7 +62,9 @@ $posts = $posts_stmt->fetchAll();
     <div class="container">
          <!-- معلومات الطبيب -->
          <div class="doctor-info">
-            <img src="<?php echo htmlspecialchars($doctor['profile_picture']); ?>" alt="profile_picture" style="max-width: 200px; height: auto;">
+         <img src="<?php echo !empty($doctor['profile_picture']) ? htmlspecialchars($doctor['profile_picture']) : 'assets/default-doctor.jpg'; ?>" 
+     alt="profile_picture" 
+     style="max-width: 200px; height: auto;">
             <h2>د. <?php echo htmlspecialchars($doctor['name']); ?></h2>
             <p><strong>التخصص:</strong> <?php echo htmlspecialchars($doctor['specialty']); ?></p>
             <p><strong>البريد الإلكتروني:</strong> <?php echo htmlspecialchars($doctor['email']); ?></p>

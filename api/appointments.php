@@ -14,7 +14,7 @@ $user_id = $_COOKIE['user_id'];
 // معالجة تأكيد أو إلغاء الموعد
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'], $_POST['appointment_id'])) {
     $appointment_id = filter_var($_POST['appointment_id'], FILTER_SANITIZE_NUMBER_INT);
-    $action = filter_var($_POST['action'], FILTER_SANITIZE_STRING);
+    $action = filter_var($_POST['action'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
     if ($role === 'doctor') {
         try {
@@ -58,6 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'], $_POST['appo
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rezadok | إدارة المواعيد</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     <link rel="stylesheet" href="Design/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>

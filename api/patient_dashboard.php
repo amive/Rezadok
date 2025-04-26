@@ -37,6 +37,8 @@ $posts = $stmt_posts->fetchAll(PDO::FETCH_ASSOC);
     <title>Rezadok | منشورات الأطباء</title>
     <link rel="stylesheet" href="Design/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+
     <style>
         /* [نفس التنسيقات بدون تغيير] */
         body {

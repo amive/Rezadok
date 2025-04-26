@@ -69,7 +69,6 @@ $posts = $stmt_posts->fetchAll(PDO::FETCH_ASSOC);
                 <?php endif; ?>
                 
                     <p><small>تاريخ المنشور: <?= date('d/m/Y H:i', strtotime($post['created_at'])) ?></small></p>
-                    <a href="view_post.php?id=<?= $post['id'] ?>">عرض التفاصيل</a>
                 </div>
             <?php endforeach; ?>
         <?php else: ?>

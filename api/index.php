@@ -24,47 +24,6 @@ function get_flash_cookie($name) {
     }
     return "";
 }
-
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES['profile_picture']) && !empty($_FILES['profile_picture']['name']) && $_FILES['profile_picture']['error'] === UPLOAD_ERR_OK) {
-    $image = $_FILES['profile_picture'];
-    $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
-
-    $imageFileType = strtolower(pathinfo($image['name'], PATHINFO_EXTENSION));
-
-    if (!in_array($imageFileType, $allowedTypes)) {
-        set_flash_cookie("error_message", "⚠️ يجب أن تكون الصورة بصيغة مدعومة (JPG, PNG, GIF)!");
-    } elseif ($image['size'] > 5000000) {
-        set_flash_cookie("error_message", "⚠️ يجب أن تكون الصورة أقل من 5 ميجابايت!");
-    } else {
-        try {
-            // Configure Cloudinary
-            $cloudinary = new Cloudinary([
-                'cloud' => [
-                    'cloud_name' => 'dkxmhw89v',
-                    'api_key'    => '856592243673251',
-                    'api_secret' => '6swgUqDkfTRe4Lyu52OHZHt0eJ8',
-                ],
-            ]);
-
-            // Upload the image to Cloudinary
-            $uploadResult = (new UploadApi())->upload($image['tmp_name'], [
-                'folder' => 'profile_pictures', // Optional: Organize images in a folder
-                'public_id' => time() . '_doctorpfp', // Optional: Generate a unique public ID
-                'resource_type' => 'image',
-            ]);
-
-            // Get the secure URL of the uploaded image
-            $imageUrl = $uploadResult['secure_url'];
-
-            // Store the image URL in a cookie
-            setcookie("image_path", $imageUrl, time() + 300, "/");
-        } catch (Exception $e) {
-            set_flash_cookie("error_message", "⚠️ حدث خطأ أثناء رفع الصورة: " . $e->getMessage());
-        }
-    }
-} else {
-    setcookie("image_path", 'assets/default-doctor.jpg', time() + 300, "/");
-}
     
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $action = $_POST['action'];
@@ -101,8 +60,50 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: ".$_SERVER['PHP_SELF']);
             exit();
         }
-
     } elseif ($action == "register") {
+        $photo = 'assets/default-doctor.jpg'; // default photo initially
+
+        if (isset($_FILES['profile_picture']) && !empty($_FILES['profile_picture']['name']) && $_FILES['profile_picture']['error'] === UPLOAD_ERR_OK) {
+            $image = $_FILES['profile_picture'];
+            $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
+
+            $imageFileType = strtolower(pathinfo($image['name'], PATHINFO_EXTENSION));
+
+            if (!in_array($imageFileType, $allowedTypes)) {
+                set_flash_cookie("error_message", "⚠️ يجب أن تكون الصورة بصيغة مدعومة (JPG, PNG, GIF)!");
+                header("Location: ".$_SERVER['PHP_SELF']);
+                exit();
+            } elseif ($image['size'] > 5000000) {
+                set_flash_cookie("error_message", "⚠️ يجب أن تكون الصورة أقل من 5 ميجابايت!");
+                header("Location: ".$_SERVER['PHP_SELF']);
+                exit();
+            } else {
+                try {
+                    $cloudinary = new Cloudinary([
+                        'cloud' => [
+                            'cloud_name' => 'dkxmhw89v',
+                            'api_key'    => '856592243673251',
+                            'api_secret' => '6swgUqDkfTRe4Lyu52OHZHt0eJ8',
+                        ],
+                    ]);
+
+                    $uploadResult = (new UploadApi())->upload($image['tmp_name'], [
+                        'folder' => 'profile_pictures',
+                        'public_id' => time() . '_doctorpfp',
+                        'resource_type' => 'image',
+                    ]);
+
+                    $photo = $uploadResult['secure_url']; // set uploaded photo URL
+                } catch (Exception $e) {
+                    set_flash_cookie("error_message", "⚠️ حدث خطأ أثناء رفع الصورة: " . $e->getMessage());
+                    header("Location: ".$_SERVER['PHP_SELF']);
+                    exit();
+                }
+            }
+        }
+
+        // now you continue registration normally using $photo
+
         $name = $_POST['name'];
         $email = $_POST['email'];
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
@@ -110,7 +111,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $role = $_POST['role'];
         $specialty = ($role == "doctor") ? $_POST['specialty'] : NULL;
         $bio = ($role == "doctor") ? $_POST['bio'] : NULL;
-        $photo = $_COOKIE['image_path'] ?? 'assets/default-doctor.jpg';
 
         try {
             $checkEmail = $conn->prepare("SELECT id FROM users WHERE email = ?");
@@ -149,6 +149,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 }
+
 
 $success_message = get_flash_cookie("success_message");
 $error_message = get_flash_cookie("error_message");

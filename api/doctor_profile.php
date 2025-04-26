@@ -89,6 +89,7 @@ $posts = $posts_stmt->fetchAll();
                         <?php endif; ?>
                         <p><?php echo nl2br(htmlspecialchars($post['content'])); ?></p>
                         <small>بتاريخ: <?php echo htmlspecialchars($post['created_at']); ?></small>
+                        <hr style="border: 1px solid #ccc; margin: 20px 0;">
                     </div>
                 <?php endforeach; ?>
             <?php else: ?>

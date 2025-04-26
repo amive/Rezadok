@@ -64,7 +64,7 @@ $posts = $posts_stmt->fetchAll();
          <div class="doctor-info">
          <img src="<?php echo !empty($doctor['profile_picture']) ? htmlspecialchars($doctor['profile_picture']) : 'assets/default-doctor.jpg'; ?>" 
      alt="profile_picture" 
-     style="max-width: 200px; height: auto;">
+     style="max-width: 200px;">
             <h2>د. <?php echo htmlspecialchars($doctor['name']); ?></h2>
             <p><strong>التخصص:</strong> <?php echo htmlspecialchars($doctor['specialty']); ?></p>
             <p><strong>البريد الإلكتروني:</strong> <?php echo htmlspecialchars($doctor['email']); ?></p>

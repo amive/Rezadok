@@ -367,6 +367,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'], $_POST['appo
                 </tbody>
                 </table>
             </div>
+            <!-- نافذة التأكيد -->
+<div id="confirmationModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); text-align:center;">
+    <div style="background:#fff; padding:20px; border-radius:10px; display:inline-block; margin-top:100px; position:relative;">
+        <span class="close-btn" style="position:absolute; top:10px; right:10px; cursor:pointer;">&times;</span>
+        <p id="modalMessage" style="margin-bottom:20px;">هل أنت متأكد؟</p>
+        <button id="modalConfirmBtn" style="background-color:green; color:white; padding:10px; border:none; border-radius:5px;">تأكيد</button>
+        <button id="modalCancelBtn" style="background-color:red; color:white; padding:10px; border:none; border-radius:5px;">إلغاء</button>
+    </div>
+</div>
+
     <script>
     // عناصر النافذة المنبثقة
     const modal = document.getElementById('confirmationModal');

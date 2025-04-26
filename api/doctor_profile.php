@@ -1,6 +1,9 @@
 <?php
 include 'config.php';
+require __DIR__ . '/../vendor/autoload.php'; // Include the Cloudinary SDK
 
+use Cloudinary\Cloudinary;
+use Cloudinary\Api\Upload\UploadApi;
 // التحقق من وجود الكوكيز
 if (!isset($_COOKIE['user_id'])) {
     echo "لم يتم تسجيل الدخول.";
@@ -55,9 +58,9 @@ $posts = $posts_stmt->fetchAll();
         </nav>
     </header>
     <div class="container">
-        <!-- معلومات الطبيب -->
-        <div class="doctor-info">
-            <img src="<?php echo htmlspecialchars($doctor['profile_picture']); ?>" alt="profile_picture">
+         <!-- معلومات الطبيب -->
+         <div class="doctor-info">
+            <img src="<?php echo htmlspecialchars($doctor['profile_picture']); ?>" alt="profile_picture" style="max-width: 200px; height: auto;">
             <h2>د. <?php echo htmlspecialchars($doctor['name']); ?></h2>
             <p><strong>التخصص:</strong> <?php echo htmlspecialchars($doctor['specialty']); ?></p>
             <p><strong>البريد الإلكتروني:</strong> <?php echo htmlspecialchars($doctor['email']); ?></p>
@@ -78,7 +81,7 @@ $posts = $posts_stmt->fetchAll();
                 <?php foreach ($posts as $post): ?>
                     <div class="post">
                         <?php if (!empty($post['image'])): ?>
-                            <img src="uploads/<?php echo htmlspecialchars($post['image']); ?>" alt="صورة المنشور" style="max-width: 200px;">
+                            <img src="<?php echo htmlspecialchars($post['image']); ?>" alt="صورة المنشور" style="max-width: 200px; height: auto;">
                         <?php endif; ?>
                         <p><?php echo nl2br(htmlspecialchars($post['content'])); ?></p>
                         <small>بتاريخ: <?php echo htmlspecialchars($post['created_at']); ?></small>

@@ -1,4 +1,14 @@
 <?php
+// Redirect logged-in users to their respective dashboards
+if (isset($_COOKIE['user_id']) && isset($_COOKIE['role'])) {
+    if ($_COOKIE['role'] === 'doctor') {
+        header("Location: /doctor_dashboard");
+        exit();
+    } elseif ($_COOKIE['role'] === 'patient') {
+        header("Location: /patient_dashboard");
+        exit();
+    }
+}
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);

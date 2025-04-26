@@ -354,7 +354,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'], $_POST['appo
                                             $minutes = floor(($remaining_seconds % (60 * 60)) / 60); // Calculate minutes
                                             $seconds = $remaining_seconds % 60; // Calculate seconds
 
-                                            echo sprintf('%d يوم %02dساعات ', $days, $hours);
+                                            echo sprintf('%d يوم %02d ساعة', $days, $hours);
                                         } else {
                                             echo 'حان الموعد، راسل الطبيب';
                                         }

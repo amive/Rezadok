@@ -56,7 +56,7 @@ $posts = $stmt_posts->fetchAll(PDO::FETCH_ASSOC);
     </header>
 
     <!-- المنشورات -->
-    <h2 id="h2-post"> المنشورات <i class="fa-solid fa-newspaper" style="color: #63E6BE;"></i></h2>
+    <h2 id="h2-post"> منشوراتك <i class="fa-solid fa-newspaper" style="color: #63E6BE;"></i></h2>
 
     <div class="posts">
         <?php if (count($posts) > 0): ?>

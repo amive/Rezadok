@@ -48,10 +48,10 @@ $patient_id = $_COOKIE['user_id']; // استخدام الـ cookie بدلاً م
             <h2>البحث عن طريق : </h2>
             <div id="method_search">
                 <label>
-                    <input type="radio" name="searchOption" value="name" id="searchByName"> بالاسم
+                    <input type="radio" name="searchOption" value="name" id="searchByName"> الاسم
                 </label>
                 <label>
-                    <input type="radio" name="searchOption" value="specialty" id="searchBySpecialty"> بالتخصص
+                    <input type="radio" name="searchOption" value="specialty" id="searchBySpecialty"> التخصص
                 </label>
             </div>
             <input type="text" id="searchName" placeholder="اسم الطبيب..." disabled onkeyup="searchDoctors()">

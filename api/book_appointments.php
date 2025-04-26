@@ -165,7 +165,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <form method="POST">
             <label for="appointment_date">تاريخ ووقت الموعد:</label>
-            <input type="datetime-local" name="appointment_date" id="appointment_date" required>
+            <input type="date" name="appointment_date" id="appointment_date" required>
 
             <button type="submit"><i class="fa-solid fa-check"></i> تأكيد الحجز</button>
         </form>

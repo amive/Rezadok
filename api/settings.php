@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     <title>إعدادات الحساب</title>
 </head>
-<body>
+<body class="settings-body">
     <h1>إعدادات الحساب</h1>
 
     <?php if (isset($success_message)): ?>

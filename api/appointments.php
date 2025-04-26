@@ -1,5 +1,5 @@
 <?php
-// Start your PHP logic (no session_start(), using cookies instead)
+ob_start();
 include 'config.php';
 
 // التحقق من تسجيل الدخول عبر الكوكيز
@@ -342,7 +342,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'], $_POST['appo
                                 <td><?= $counter ?></td>
                                 <td><?= htmlspecialchars($appointment['doctor_name']) ?></td>
                                 <td><?= htmlspecialchars($appointment['specialty']) ?></td>
-                                <td><?= date("Y-m-d H:i", strtotime($appointmentDate)) ?></td>
+                                <td><?= date("Y-m-d", strtotime($appointmentDate)) ?></td>
                                 <td><?= htmlspecialchars($appointment['status']) ?></td>
                                 <td>
                                     <?php 
@@ -354,7 +354,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'], $_POST['appo
                                             $minutes = floor(($remaining_seconds % (60 * 60)) / 60); // Calculate minutes
                                             $seconds = $remaining_seconds % 60; // Calculate seconds
 
-                                            echo sprintf('%d يوم %02d:%02d:%02d', $days, $hours, $minutes, $seconds);
+                                            echo sprintf('%d يوم %02dساعات ', $days, $hours);
                                         } else {
                                             echo 'حان الموعد';
                                         }
@@ -451,117 +451,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'], $_POST['appo
     
 </script>
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    const countdownElements = document.querySelectorAll('.countdown');
-
-    countdownElements.forEach(elem => {
-        const targetDate = new Date(elem.getAttribute('data-datetime'));
-        updateCountdown();
-
-        const interval = setInterval(updateCountdown, 1000);
-
-        function updateCountdown() {
-            const now = new Date();
-            const diff = targetDate - now;
-
-            if (diff <= 0) {
-                elem.textContent = "🕒 حان الوقت";
-                clearInterval(interval);
-
-                // عرض التنبيه إن بقي أقل من ساعة
-                const modal = document.getElementById("notificationModal");
-                modal.style.display = "block";
-
-                const okBtn = document.getElementById("okButton");
-                okBtn.addEventListener("click", () => {
-                    modal.style.display = "none";
-                });
-
-                return;
-            }
-
-            const hours = Math.floor(diff / 1000 / 60 / 60);
-            const minutes = Math.floor((diff / 1000 / 60) % 60);
-            const seconds = Math.floor((diff / 1000) % 60);
-
-            elem.textContent = `${hours} س ${minutes} د ${seconds} ث`;
-
-            // عرض النافذة إذا كان الموعد في أقل من ساعة
-            if (diff < 3600000 && !modalDisplayed) {
-                modalDisplayed = true;
-                const modal = document.getElementById("notificationModal");
-                modal.style.display = "block";
-
-                const okBtn = document.getElementById("okButton");
-                okBtn.addEventListener("click", () => {
-                    modal.style.display = "none";
-                });
-            }
-        }
-    });
-
-    let modalDisplayed = false;
-});
-document.addEventListener("DOMContentLoaded", () => {
-    const countdownElements = document.querySelectorAll(".countdown");
-
-    countdownElements.forEach(el => {
-        const datetime = el.getAttribute("data-datetime");
-        const targetDate = new Date(datetime).getTime();
-
-        const interval = setInterval(() => {
-            const now = new Date().getTime();
-            const distance = targetDate - now;
-
-            if (distance <= 0) {
-                const elapsed = now - targetDate;
-
-                // إذا فات على الموعد أكثر من ساعة (3600000 ملي ثانية)
-                if (elapsed > 60 * 60 * 1000) {
-                    el.textContent = "⏰ فات موعدك";
-                    el.style.color = "#999";
-                    clearInterval(interval);
-                    return;
-                }
-
-                // الموعد حان للتو → أظهر التنبيه
-                el.textContent = "📅 حان موعدك الآن!";
-                el.style.color = "#e74c3c";
-                clearInterval(interval);
-                
-                const popup = document.createElement("div");
-                popup.style.position = "fixed";
-                popup.style.top = "50%";
-                popup.style.left = "50%";
-                popup.style.transform = "translate(-50%, -50%)";
-                popup.style.background = "#fff";
-                popup.style.border = "2px solid #27ae60";
-                popup.style.padding = "25px";
-                popup.style.zIndex = "9999";
-                popup.style.borderRadius = "10px";
-                popup.style.boxShadow = "0 0 10px rgba(0,0,0,0.2)";
-                popup.style.textAlign = "center";
-                popup.innerHTML = `
-                    <h3>⏰ تنبيه</h3>
-                    <p>لقد حان موعدك الآن! يرجى الاستعداد.</p>
-                    <button style="padding: 10px 20px; background: #27ae60; color: white; border: none; border-radius: 6px; cursor: pointer;" onclick="this.parentElement.remove()">حسنًا</button>
-                `;
-                document.body.appendChild(popup);
-
-                return;
-            }
-
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            el.textContent = `${hours}س ${minutes}د ${seconds}ث`;
-        }, 1000);
-    });
-});
-
-</script>
-<script>
 document.addEventListener("DOMContentLoaded", () => {
     // دالة لحساب الفارق الزمني بين الآن وموعد الموعد
     function checkCountdowns() {
@@ -650,3 +539,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+<?php
+ob_end_flush(); // Send the buffered output to the browser
+?>

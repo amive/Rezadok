@@ -333,31 +333,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'], $_POST['appo
                             </tr>
                         </thead>
                         <tbody>
-                            <?php 
-                            $counter = 1; // يبدأ من 1
-                            foreach ($appointments as $appointment): 
-                                $appointmentDate = $appointment['appointment_date'];
-                            ?>
-                                <tr>
-                                    <td><?= $counter ?></td>
-                                    <td><?= htmlspecialchars($appointment['doctor_name']) ?></td>
-                                    <td><?= htmlspecialchars($appointment['specialty']) ?></td>
-                                    <td><?= date("Y-m-d H:i", strtotime($appointmentDate)) ?></td>
-                                    <td><?= htmlspecialchars($appointment['status']) ?></td>
-                                    <td>
-                                        <?php 
-                                        $remaining_time = (strtotime($appointmentDate) - time()) / 60; // minutes left
-                                        if ($remaining_time > 0) {
-                                            echo round($remaining_time) . ' دقيقة';
+                        <?php 
+                        $counter = 1; // يبدأ من 1
+                        foreach ($appointments as $appointment): 
+                            $appointmentDate = $appointment['appointment_date'];
+                        ?>
+                            <tr>
+                                <td><?= $counter ?></td>
+                                <td><?= htmlspecialchars($appointment['doctor_name']) ?></td>
+                                <td><?= htmlspecialchars($appointment['specialty']) ?></td>
+                                <td><?= date("Y-m-d H:i", strtotime($appointmentDate)) ?></td>
+                                <td><?= htmlspecialchars($appointment['status']) ?></td>
+                                <td>
+                                    <?php 
+                                    if ($appointment['status'] === 'confirmed') {
+                                        $remaining_seconds = strtotime($appointmentDate) - time(); // Total seconds left
+                                        if ($remaining_seconds > 0) {
+                                            $days = floor($remaining_seconds / (60 * 60 * 24)); // Calculate days
+                                            $hours = floor(($remaining_seconds % (60 * 60 * 24)) / (60 * 60)); // Calculate hours
+                                            $minutes = floor(($remaining_seconds % (60 * 60)) / 60); // Calculate minutes
+                                            $seconds = $remaining_seconds % 60; // Calculate seconds
+
+                                            echo sprintf('%d يوم %02d:%02d:%02d', $days, $hours, $minutes, $seconds);
                                         } else {
-                                            echo 'انتهى الموعد';
+                                            echo 'حان الموعد';
                                         }
-                                        ?>
-                                    </td>
-                                </tr>
-                            <?php 
-                                $counter++;
-                            endforeach;
+                                    } elseif ($appointment['status'] === 'canceled') {
+                                        echo 'مرفوض';
+                                    } else {
+                                        echo 'في انتظار التأكيد';
+                                    }
+                                    ?>
+                                </td>
+                            </tr>
+                        <?php 
+                            $counter++;
+                        endforeach;
                         endif;
                     } else {
                         ?>
@@ -437,35 +448,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'], $_POST['appo
         notificationModal.style.display = 'none';
     }
 
-    // تشغيل العد التنازلي لكل موعد
-    document.querySelectorAll('.countdown').forEach(function (el) {
-        const dateTimeStr = el.dataset.datetime;
-        const appointmentTime = new Date(dateTimeStr).getTime();
-
-        const timer = setInterval(function () {
-            const now = new Date().getTime();
-            const distance = appointmentTime - now;
-
-            if (distance <= 0) {
-                el.textContent = "تم مرور الموعد";
-                clearInterval(timer);
-                return;
-            }
-
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            el.textContent = `${hours} س ${minutes} د ${seconds} ث`;
-
-            // إذا بقي أقل من ساعة وأول مرة يظهر فيها
-            if (distance <= 3600000 && !el.classList.contains('notified')) {
-                el.classList.add('notified');
-                notificationModal.style.display = 'block';
-            }
-
-        }, 1000);
-    });
+    
 </script>
 <script>
 document.addEventListener("DOMContentLoaded", function() {

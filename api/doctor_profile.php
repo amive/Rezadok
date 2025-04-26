@@ -1,4 +1,4 @@
-<a?php
+<?php
 include 'config.php';
 
 // التحقق من وجود الكوكيز

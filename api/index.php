@@ -25,7 +25,7 @@ function get_flash_cookie($name) {
     return "";
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES['profile_picture'])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] === UPLOAD_ERR_OK) {
     $image = $_FILES['profile_picture'];
     $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
 
@@ -40,9 +40,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES['profile_picture'])) {
             // Configure Cloudinary
             $cloudinary = new Cloudinary([
                 'cloud' => [
-                    'cloud_name' => 'your-cloud-name', // Replace with your Cloudinary cloud name
-                    'api_key'    => 'your-api-key',    // Replace with your Cloudinary API key
-                    'api_secret' => 'your-api-secret', // Replace with your Cloudinary API secret
+                    'cloud_name' => 'dkxmhw89v',
+                    'api_key'    => '856592243673251',
+                    'api_secret' => '6swgUqDkfTRe4Lyu52OHZHt0eJ8',
                 ],
             ]);
 

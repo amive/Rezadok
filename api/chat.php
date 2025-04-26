@@ -131,6 +131,11 @@ if ($receiver_id) {
             width: auto; /* Ensure the image scales properly */
             height: auto; /* Ensure the image scales properly */
         }
+        /* Blurred background styling */
+        .blurred {
+            filter: blur(5px);
+            pointer-events: none; /* Prevent interactions with blurred content */
+        }
     </style>
 </head>
 
@@ -213,6 +218,11 @@ document.addEventListener("DOMContentLoaded", function () {
         chatBox.querySelectorAll("img").forEach((img) => {
             img.addEventListener("click", function () {
                 img.classList.toggle("enlarged"); // Toggle the 'enlarged' class
+                 if (img.classList.contains("enlarged")) {
+                    body.classList.add("blurred");
+                } else {
+                    body.classList.remove("blurred");
+                }
             });
         });
     }

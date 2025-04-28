@@ -215,22 +215,27 @@ document.addEventListener("DOMContentLoaded", function () {
     const receiverId = <?= json_encode($receiver_id); ?>;
     const userId = <?= json_encode($user_id); ?>;
 
+    let enlargedImageSrc = null; // Track the currently enlarged image
+
     // Function to add the click event listener for enlarging images
     function addImageClickListener() {
         chatBox.querySelectorAll("img").forEach((img) => {
             img.addEventListener("click", function () {
-                img.classList.toggle("enlarged"); // Toggle the 'enlarged' class
-                 if (img.classList.contains("enlarged")) {
-                    body.classList.add("blurred");
+                if (img.classList.contains("enlarged")) {
+                    img.classList.remove("enlarged");
+                    enlargedImageSrc = null; // Clear the enlarged state
                 } else {
-                    body.classList.remove("blurred");
+                    // Remove the 'enlarged' class from any previously enlarged image
+                    chatBox.querySelectorAll(".enlarged").forEach((enlargedImg) => {
+                        enlargedImg.classList.remove("enlarged");
+                    });
+
+                    img.classList.add("enlarged");
+                    enlargedImageSrc = img.src; // Save the enlarged image's source
                 }
             });
         });
     }
-
-    // Initial call to add the event listener
-    addImageClickListener();
 
     // Scroll to the bottom of the chat box on page load
     chatBox.scrollTop = chatBox.scrollHeight;
@@ -254,7 +259,17 @@ document.addEventListener("DOMContentLoaded", function () {
                         // Add image or file attachment
                         if (msg.file_path) {
                             if (msg.file_type == "image") {
-                                messageDiv.innerHTML += `<img src="${msg.file_path}" alt="مرفق" style="max-width:200px;">`;
+                                const imgElement = document.createElement("img");
+                                imgElement.src = msg.file_path;
+                                imgElement.alt = "مرفق";
+                                imgElement.style.maxWidth = "200px";
+
+                                // Reapply the 'enlarged' class if this image was enlarged
+                                if (msg.file_path === enlargedImageSrc) {
+                                    imgElement.classList.add("enlarged");
+                                }
+
+                                messageDiv.appendChild(imgElement);
                             } else {
                                 messageDiv.innerHTML += `<a href="${msg.file_path}" target="_blank">📎 تحميل الملف</a>`;
                             }

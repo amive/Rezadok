@@ -111,7 +111,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
 
-        // now you continue registration normally using $photo
 
         $name = $_POST['name'];
         $email = $_POST['email'];
@@ -143,7 +142,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $stmt->execute([$name, $email, $password, $phone, $role, $photo]);
                     }
                     if ($stmt->rowCount() > 0) {
-                        set_flash_cookie("success_message", "✅ تم التسجيل بنجاح! يمكنك تسجيل الدخول الآن.");
+                        // Retrieve the newly created user's information
+                        $newUserStmt = $conn->prepare("SELECT id, role FROM users WHERE email = ?");
+                        $newUserStmt->execute([$email]);
+                        $newUser = $newUserStmt->fetch(PDO::FETCH_ASSOC);
+                    
+                        if ($newUser) {
+                            // Set cookies to log the user in
+                            setcookie("user_id", $newUser['id'], time() + 3600, "/");
+                            setcookie("role", $newUser['role'], time() + 3600, "/");
+                    
+                            // Redirect based on the user's role
+                            if ($newUser['role'] === 'doctor') {
+                                header("Location: /doctor_dashboard");
+                                exit();
+                            } elseif ($newUser['role'] === 'patient') {
+                                header("Location: /patient_dashboard");
+                                exit();
+                            }
+                        }
                         setcookie("form_data", "", time() - 3600, "/");
                     } else {
                         set_flash_cookie("error_message", "⚠️ فشل في إنشاء الحساب، يرجى المحاولة مرة أخرى.");

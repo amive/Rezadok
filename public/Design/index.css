@@ -140,12 +140,12 @@ textarea:focus {
 
 /* (البداية)أنماط الصفحة الرئيسية index*/
 .container-index {
-  background: white;
   padding: 20px;
   margin: 130px auto;
   width: 50%;
   border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: grid;
+  justify-content: center;
 }
 .container-index h2 {
   text-align: center;

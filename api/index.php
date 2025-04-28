@@ -80,12 +80,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $imageFileType = strtolower(pathinfo($image['name'], PATHINFO_EXTENSION));
 
             if (!in_array($imageFileType, $allowedTypes)) {
-                set_flash_cookie("error_message", "⚠️ يجب أن تكون الصورة بصيغة مدعومة (JPG, PNG, GIF)!");
-                header("Location: ".$_SERVER['PHP_SELF']);
+                set_flash_cookie("error_message", "⚠️ يجب أن تكون الصورة بصيغة مدعومة (JPG, JPEG,PNG, GIF)!");
                 exit();
             } elseif ($image['size'] > 5000000) {
                 set_flash_cookie("error_message", "⚠️ يجب أن تكون الصورة أقل من 5 ميجابايت!");
-                header("Location: ".$_SERVER['PHP_SELF']);
                 exit();
             } else {
                 try {

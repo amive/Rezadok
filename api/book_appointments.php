@@ -1,4 +1,5 @@
 <?php
+ob_start();
 include 'config.php';
 
 // التحقق من أن المستخدم مريض باستخدام الكوكيز
@@ -182,3 +183,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </script>
 </body>
 </html>
+<?php ob_end_flush(); ?>

@@ -321,7 +321,7 @@ button.btn-login-register {
 
 /* Hidden class */
 .hidden {
-  display: none !important;
+  display: none;
 }
 
 /* Doctor fields */

@@ -430,6 +430,9 @@ $form_data = isset($_COOKIE['form_data']) ? json_decode($_COOKIE['form_data'], t
             window.onload = function() {
                 toggleDoctorFields();
             };
+            document.querySelector(".burger").addEventListener("click", function () {
+            document.querySelector("nav.nav-links").classList.toggle("active");
+            });
         </script>
 
     </body>

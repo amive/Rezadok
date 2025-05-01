@@ -331,7 +331,7 @@ button.btn-login-register {
 /* Desktop */
 nav.nav-links {
   display: flex;
-  gap: 15px;
+  gap: 106px;
 }
 
 /* Burger button - hidden on desktop */

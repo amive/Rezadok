@@ -279,8 +279,7 @@ $form_data = isset($_COOKIE['form_data']) ? json_decode($_COOKIE['form_data'], t
                 </div>
             </div>
         </section>
-        <span id="contact">,</span>
-        <div class="contact" id="cont">
+        <div class="contact" id="contact">
             <section>
                 <h2>تواصل معنا</h2>
                 <p>لديك سؤال أو استفسار؟ راسلنا مباشرة!</p>
@@ -394,9 +393,6 @@ $form_data = isset($_COOKIE['form_data']) ? json_decode($_COOKIE['form_data'], t
     }
 
     window.onload = function () {
-        // إخفاء الفورمات عند بداية الصفحة
-        document.getElementById("login-form").style.display = "none";
-        document.getElementById("register-form").style.display = "none";
 
         // إظهار حقول الطبيب إذا كان الدور المختار هو طبيب
         toggleDoctorFields();

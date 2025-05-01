@@ -182,10 +182,12 @@ button:hover {
   display: flex;
   flex-wrap: wrap;
   gap: 2%;
+  margin-top: 120px;
 }
 .main-section p {
   flex: 1 1 45%;
-  margin-top: 100px;
+  margin-top: 56.9px;
+  font-size: 18px;
 }
 .avatar-main {
   flex: 1 1 45%;
@@ -319,7 +321,7 @@ button.btn-login-register {
 
 /* Hidden class */
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 /* Doctor fields */

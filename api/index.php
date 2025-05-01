@@ -228,8 +228,6 @@ $form_data = isset($_COOKIE['form_data']) ? json_decode($_COOKIE['form_data'], t
                 <p>
                     نحن في <strong>Rezadok</strong> نسعى لتسهيل عملية حجز المواعيد الطبية بكل سهولة وسرعة.
                     هدفنا هو تقديم حلول مبتكرة تضمن راحة المرضى وسهولة الوصول إلى الأطباء المختصين.
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia, ipsam? Beatae, veniam! Tenetur a id expedita blanditiis accusamus, praesentium itaque nemo obcaecati, vero aliquam natus temporibus porro minima ducimus. Laborum libero sed molestias ratione doloribus error tempora aperiam autem magni, ex quae labore possimus illum, architecto culpa enim. Temporibus, eligendi.
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus veniam quidem, ullam error quaerat reprehenderit accusamus tempora maxime totam optio, corrupti a natus architecto id nisi laboriosam quasi ipsam. Repudiandae harum iusto voluptatibus a. Maiores fuga earum accusantium totam impedit tempore repellendus, hic modi. At quis iste id vel saepe quas impedit suscipit nihil et tempore eligendi, atque accusantium culpa in eveniet neque, aperiam, ab ducimus voluptatum totam fugiat autem.
                 </p>
             </section>
             <div class="avatar-about">
@@ -362,78 +360,76 @@ $form_data = isset($_COOKIE['form_data']) ? json_decode($_COOKIE['form_data'], t
             </div>
         </div>
         <script>
-            function showForm(formType) {
-                document.getElementById("main-section").style.display = "none";
-                document.getElementById("aboutt").style.display = "none";
-                document.getElementById("services").style.display = "none";
-                document.getElementById("cont").style.display = "none";
-                document.getElementById("login-form").style.display = "none";
-                document.getElementById("register-form").style.display = "none";
+    function showForm(formType) {
+        document.getElementById("main-section").style.display = "none";
+        document.getElementById("aboutt").style.display = "none";
+        document.getElementById("services").style.display = "none";
+        document.getElementById("cont").style.display = "none";
+        document.getElementById("login-form").style.display = "none";
+        document.getElementById("register-form").style.display = "none";
 
-                if (formType === "login") {
-                    document.getElementById("login-form").style.display = "flex";
-                } else if (formType === "register") {
-                    document.getElementById("register-form").style.display = "flex";
-                } else {
-                    document.getElementById("main-section").style.display = "none";
-                    document.getElementById("aboutt").style.display = "block";
-                    document.getElementById("services").style.display = "block";
-                    document.getElementById("cont").style.display = "block";
-                }
-            }
+        if (formType === "login") {
+            document.getElementById("login-form").style.display = "flex";
+        } else if (formType === "register") {
+            document.getElementById("register-form").style.display = "flex";
+        } else {
+            document.getElementById("main-section").style.display = "none";
+            document.getElementById("aboutt").style.display = "block";
+            document.getElementById("services").style.display = "block";
+            document.getElementById("cont").style.display = "block";
+        }
+    }
 
-            function toggleDoctorFields() {
-                const role = document.getElementById("role").value;
-                const doctorFields = document.getElementById("doctorFields");
-                
-                if (role === "doctor") {
-                    doctorFields.style.display = "block";
-                    doctorFields.querySelectorAll("select, textarea").forEach(el => el.required = true);
-                } else {
-                    doctorFields.style.display = "none";
-                    doctorFields.querySelectorAll("select, textarea").forEach(el => el.required = false);
-                }
-            }
+    function toggleDoctorFields() {
+        const role = document.getElementById("role").value;
+        const doctorFields = document.getElementById("doctorFields");
 
-            window.onload = function() {
-                // إظهار حقول الطبيب إذا كان الدور المختار هو طبيب
-                if (document.getElementById("role").value === "doctor") {
-                    document.getElementById("doctorFields").style.display = "block";
-                }
+        if (role === "doctor") {
+            doctorFields.style.display = "block";
+            doctorFields.querySelectorAll("select, textarea").forEach(el => el.required = true);
+        } else {
+            doctorFields.style.display = "none";
+            doctorFields.querySelectorAll("select, textarea").forEach(el => el.required = false);
+        }
+    }
 
-                // إخفاء رسائل التنبيه بعد 5 ثواني
-                setTimeout(() => {
-                    const successMsg = document.getElementById("success-message");
-                    const errorMsg = document.getElementById("error-message");
-                    if (successMsg) successMsg.style.display = "none";
-                    if (errorMsg) errorMsg.style.display = "none";
-                }, 5000);
+    window.onload = function () {
+        // إخفاء الفورمات عند بداية الصفحة
+        document.getElementById("login-form").style.display = "none";
+        document.getElementById("register-form").style.display = "none";
 
-                // منع إعادة إرسال النموذج عند تحديث الصفحة
-                if (window.history.replaceState) {
-                    window.history.replaceState(null, null, window.location.href);
-                }
-            };
-                // تأخير الأنيميشن بعد تحميل الصفحة
-            window.onload = function() {
-            setTimeout(function() {
-                document.querySelector('.animated').classList.add('show');
-            }, 2000); // تأخير 2 ثانية
-            };
-            function toggleDoctorFields() {
-                var role = document.getElementById("role").value;
-                var doctorFields = document.getElementById("doctorFields");
-                doctorFields.style.display = (role === "doctor") ? "block" : "none";
-            }
+        // إظهار حقول الطبيب إذا كان الدور المختار هو طبيب
+        toggleDoctorFields();
 
-            // لإعادة إظهار الحقول بعد إعادة تحميل الصفحة إذا تم اختيار "doctor"
-            window.onload = function() {
-                toggleDoctorFields();
-            };
-            document.querySelector(".burger").addEventListener("click", function () {
-            document.querySelector("nav.nav-links").classList.toggle("active");
+        // إخفاء رسائل التنبيه بعد 5 ثواني
+        setTimeout(() => {
+            const successMsg = document.getElementById("success-message");
+            const errorMsg = document.getElementById("error-message");
+            if (successMsg) successMsg.style.display = "none";
+            if (errorMsg) errorMsg.style.display = "none";
+        }, 5000);
+
+        // تأخير الأنيميشن
+        setTimeout(() => {
+            const animated = document.querySelector('.animated');
+            if (animated) animated.classList.add('show');
+        }, 2000);
+
+        // منع إعادة إرسال النموذج عند التحديث
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
+
+        // burger menu
+        const burger = document.querySelector(".burger");
+        if (burger) {
+            burger.addEventListener("click", function () {
+                document.querySelector("nav.nav-links").classList.toggle("active");
             });
-        </script>
+        }
+    };
+</script>
+
 
     </body>
 </html>

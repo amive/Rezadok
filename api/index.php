@@ -188,6 +188,7 @@ $form_data = isset($_COOKIE['form_data']) ? json_decode($_COOKIE['form_data'], t
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
         <title>Rezadok | الصفحة الرئيسية</title>
         <link rel="stylesheet" href="/Design/indexnew.css">
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
         <style>
 
         </style>
@@ -363,7 +364,7 @@ $form_data = isset($_COOKIE['form_data']) ? json_decode($_COOKIE['form_data'], t
         document.getElementById("main-section").style.display = "none";
         document.getElementById("aboutt").style.display = "none";
         document.getElementById("services").style.display = "none";
-        document.getElementById("cont").style.display = "none";
+        document.getElementById("contact").style.display = "none";
         document.getElementById("login-form").style.display = "none";
         document.getElementById("register-form").style.display = "none";
 
@@ -375,7 +376,7 @@ $form_data = isset($_COOKIE['form_data']) ? json_decode($_COOKIE['form_data'], t
             document.getElementById("main-section").style.display = "none";
             document.getElementById("aboutt").style.display = "block";
             document.getElementById("services").style.display = "block";
-            document.getElementById("cont").style.display = "block";
+            document.getElementById("contact").style.display = "block";
         }
     }
 

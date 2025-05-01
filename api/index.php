@@ -325,7 +325,7 @@ $form_data = isset($_COOKIE['form_data']) ? json_decode($_COOKIE['form_data'], t
                 <input type="email" name="email" placeholder="البريد الإلكتروني" 
                 value="<?php echo htmlspecialchars($form_data['email'] ?? ''); ?>" required>
                 <input type="password" name="password" placeholder="كلمة المرور" minlength="8" required>
-                <input type="tel" name="phone" placeholder="رقم الهاتف" 
+                <input type="text" name="phone" pattern="^0(5|6|7)\d{8}$" required placeholder="رقم الهاتف" required> 
                 value="<?php echo htmlspecialchars($form_data['phone'] ?? ''); ?>"  minlength="8" maxlength="14" dir="rtl" required>
                 <input type="file" name="profile_picture" id="profile_picture" accept="image/*" >
                 <select name="role" id="role" required onchange="toggleDoctorFields()">
@@ -361,57 +361,30 @@ $form_data = isset($_COOKIE['form_data']) ? json_decode($_COOKIE['form_data'], t
         <script>
 
 function showForm(formType) {
+    const loginForm = document.getElementById("login-form");
+    const registerForm = document.getElementById("register-form");
+    const mainSection = document.getElementById("main-section");
+    const about = document.getElementById("aboutt");
+    const services = document.getElementById("services");
+    const contact = document.getElementById("cont");
 
+    // إخفاء جميع الأقسام
+    [mainSection, about, services, contact, loginForm, registerForm].forEach(el => {
+        if (el) el.classList.add("hidden");
+    });
 
-    document.getElementById("main-section").style.display = "none";
-
-
-    document.getElementById("aboutt").style.display = "none";
-
-
-    document.getElementById("services").style.display = "none";
-
-
-    document.getElementById("cont").style.display = "none";
-
-
-    document.getElementById("login-form").style.display = "none";
-
-
-    document.getElementById("register-form").style.display = "none";
-
-
-
-
-
+    // عرض النموذج المطلوب
     if (formType === "login") {
-
-
-        document.getElementById("login-form").style.display = "block";
-
-
+        loginForm.classList.remove("hidden");
     } else if (formType === "register") {
-
-
-        document.getElementById("register-form").style.display = "block";
-
-
+        registerForm.classList.remove("hidden");
     } else {
-
-
-        document.getElementById("main-section").style.display = "none";
-
-
-        document.getElementById("aboutt").style.display = "block";
-
-
-        document.getElementById("services").style.display = "block";
-
-
-        document.getElementById("cont").style.display = "block";
-
-
+        [about, services, contact].forEach(el => {
+            if (el) el.classList.remove("hidden");
+        });
     }
+}
+
 
     function toggleDoctorFields() {
         const role = document.getElementById("role").value;

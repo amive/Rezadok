@@ -327,8 +327,8 @@ $form_data = isset($_COOKIE['form_data']) ? json_decode($_COOKIE['form_data'], t
                 <input type="email" name="email" placeholder="البريد الإلكتروني" 
                 value="<?php echo htmlspecialchars($form_data['email'] ?? ''); ?>" required>
                 <input type="password" name="password" placeholder="كلمة المرور" minlength="8" required>
-                <input type="text" name="phone" pattern="^0(5|6|7)\d{8}$" required placeholder="رقم الهاتف" required> 
-                value="<?php echo htmlspecialchars($form_data['phone'] ?? ''); ?>"  minlength="8" maxlength="14" dir="rtl" required>
+                <input type="text" name="phone" pattern="^0(5|6|7)\d{8}$" required placeholder="رقم الهاتف" 
+                value="<?php echo htmlspecialchars($form_data['phone'] ?? ''); ?>" required> 
                 <input type="file" name="profile_picture" id="profile_picture" accept="image/*" >
                 <select name="role" id="role" required onchange="toggleDoctorFields()">
                     <option value="">اختر دورك</option>

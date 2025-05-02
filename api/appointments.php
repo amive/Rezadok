@@ -372,7 +372,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'], $_POST['appo
                         endif;
                     } else {
                         ?>
-                            <p>لا توجد مواعيد حالياً</p>
+                            <p>----</p>
                         <?php 
                     }
                 ?>

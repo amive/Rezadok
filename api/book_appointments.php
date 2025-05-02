@@ -11,7 +11,7 @@ if (!isset($_COOKIE['user_id']) || $_COOKIE['role'] != 'patient') {
 // التأكد من تحديد الطبيب في الرابط
 if (!isset($_GET['doctor_id'])) {
     setcookie('error', "<i class='fa-solid fa-triangle-exclamation'></i> لم يتم تحديد الطبيب.", time() + 3600, "/");
-    header("Location: patient_dashboard.php");
+    header("Location: patient_dashboard");
     exit();
 }
 
@@ -142,10 +142,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <header>
         <h2><a href=""><i class="fa-solid fa-stethoscope"></i></a>Rezadok</h2>
         <nav>
-            <a href="patient_dashboard.php" class="icon-btn" data-text="الرئيسية">
+            <a href="patient_dashboard" class="icon-btn" data-text="الرئيسية">
                 <i class="fa-solid fa-house"></i>
             </a>
-            <a href="appointments.php" class="icon-btn" data-text="مواعيدي">
+            <a href="appointments" class="icon-btn" data-text="مواعيدي">
                 <i class="fa-solid fa-calendar-days"></i>
             </a>
         </nav>
@@ -172,7 +172,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </form>
 
         <br>
-        <a href="patient_dashboard.php"><i class="fa-solid fa-arrow-left"></i> العودة إلى لوحة التحكم</a>
+        <a href="patient_dashboard"><i class="fa-solid fa-arrow-left"></i> العودة إلى لوحة التحكم</a>
     </div>
 
     <script>

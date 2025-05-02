@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'], $_POST['appo
         setcookie('error', "صلاحيات غير كافية", time() + 3600, "/");
     }
 
-    header("Location: appointments.php");
+    header("Location: appointments");
     exit();
 }
 ?>
@@ -226,10 +226,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'], $_POST['appo
     <header>
         <h2><a href=""><i class="fa-solid fa-stethoscope"></i></a>Rezadok</h2>
         <nav>
-            <a href="<?= ($role == 'doctor') ? 'doctor_dashboard.php' : 'patient_dashboard.php' ?>" class="icon-btn" data-text="الرئيسية">
+            <a href="/" class="icon-btn" data-text="الرئيسية">
                 <i class="fa-solid fa-house"></i>
             </a>
-            <a href="chat.php" class="icon-btn" data-text="الرسائل">
+            <a href="chat" class="icon-btn" data-text="الرسائل">
                 <i class="fa-solid fa-comments"></i>
             </a>
         </nav>

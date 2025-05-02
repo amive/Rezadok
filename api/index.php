@@ -201,7 +201,7 @@ $form_data = isset($_COOKIE['form_data']) ? json_decode($_COOKIE['form_data'], t
                 ☰
             </button>
             <nav class="nav-links">
-                <a href="" class="icon-btn" data-text="الرئيسية"><i class="fa-solid fa-house"></i></a>
+                <a href="/" class="icon-btn" data-text="الرئيسية"><i class="fa-solid fa-house"></i></a>
                 <a href="#about" class="icon-btn" data-text="من نحن"><i class="fa-solid fa-circle-info"></i></a>
                 <a href="#services" class="icon-btn" data-text="الخدمات"><i class="fa-solid fa-user-doctor"></i></a>
                 <a href="#contact" class="icon-btn" data-text="اتصل بنا"><i class="fa-solid fa-phone"></i></a>

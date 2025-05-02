@@ -32,6 +32,8 @@ section {
   margin-bottom: 30px;
   padding-top: 70px;
   width: 100%;
+  /*! display: flex; */
+  /*! flex-wrap: wrap; */
 }
 
 /* File input */
@@ -197,7 +199,7 @@ button:hover {
 /* About */
 .about {
   display: flex;
-  flex-wrap: wrap;
+  /*! flex-wrap: wrap; */
   gap: 1em;
   margin-top: 50px;
   margin-bottom: 55px;
@@ -259,10 +261,11 @@ section#services {
 /* Contact */
 .contact {
   display: flex;
-  flex-wrap: wrap;
+  /*! flex-wrap: wrap; */
   align-items: center;
   gap: 2em;
   padding: 2em 0;
+  /*! width: 50%; */
 }
 form.contact {
   flex: 1 1 45%;

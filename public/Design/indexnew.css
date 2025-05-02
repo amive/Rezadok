@@ -280,6 +280,11 @@ button.envoyer {
   max-width: 100%;
 }
 
+/* Hidden class */
+.hidden {
+  display: none;
+}
+
 /* Register & Login */
 #register-form.container.hidden,
 #login-form.container.hidden {
@@ -317,11 +322,6 @@ button.btn-login-register {
   flex: 1 1 45%;
   max-width: 100%;
   padding-top: 2em;
-}
-
-/* Hidden class */
-.hidden {
-  display: none;
 }
 
 /* Doctor fields */

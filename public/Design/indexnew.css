@@ -193,7 +193,7 @@ button:hover {
 }
 .avatar-main {
   flex: 1 1 45%;
-  margin-top: 35px;
+  margin-top: -150px;
 }
 
 /* About */

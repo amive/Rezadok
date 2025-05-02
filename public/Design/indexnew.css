@@ -414,4 +414,11 @@ nav.nav-links {
   nav.nav-links.active {
     transform: translateX(0);
   }
+  .contact {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2em;
+    padding: 2em 0;
+  }
 }

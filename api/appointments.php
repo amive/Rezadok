@@ -4,7 +4,7 @@ include 'config.php';
 
 // التحقق من تسجيل الدخول عبر الكوكيز
 if (!isset($_COOKIE['role'])) {
-    header("Location: index.php");
+    header("Location: ");
     exit();
 }
 
@@ -224,7 +224,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'], $_POST['appo
 </head>
 <body>
     <header>
-        <h2><a href="index.php"><i class="fa-solid fa-stethoscope"></i></a>Rezadok</h2>
+        <h2><a href=""><i class="fa-solid fa-stethoscope"></i></a>Rezadok</h2>
         <nav>
             <a href="<?= ($role == 'doctor') ? 'doctor_dashboard.php' : 'patient_dashboard.php' ?>" class="icon-btn" data-text="الرئيسية">
                 <i class="fa-solid fa-house"></i>

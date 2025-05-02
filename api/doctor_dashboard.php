@@ -2,7 +2,7 @@
 // التحقق من تسجيل الدخول باستخدام الكوكيز
 if (!isset($_COOKIE['user_id']) || strtolower(trim($_COOKIE['role'])) !== 'doctor') {
     error_log("DOCTOR user_id/Role check false. role: ");
-    header("Location: /index.php");
+    header("Location: ");
     exit();
 }
 
@@ -31,15 +31,15 @@ $posts = $stmt_posts->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
     <header>
-        <h2><a href="index.php"><i class="fa-solid fa-stethoscope"></i></a>Rezadok</h2>
+        <h2><a href=""><i class="fa-solid fa-stethoscope"></i></a>Rezadok</h2>
         <nav>
-            <a href="chat.php" class="icon-btn" data-text="الرسائل">
+            <a href="chat" class="icon-btn" data-text="الرسائل">
                 <i class="fa-solid fa-comments"></i>
             </a>
-            <a href="appointments.php" class="icon-btn" data-text="مواعيدي">
+            <a href="appointments" class="icon-btn" data-text="مواعيدي">
                 <i class="fa-solid fa-calendar-days"></i>
             </a>
-            <a href="add_post.php" class="icon-btn" data-text="إضافة منشور">
+            <a href="add_post" class="icon-btn" data-text="إضافة منشور">
                 <i class="fa-solid fa-plus"></i>
             </a>
             <div class="dropdown">
@@ -48,8 +48,8 @@ $posts = $stmt_posts->fetchAll(PDO::FETCH_ASSOC);
                 </button>
                 <div class="dropdown-content">
                     <a href="#"><i class="fa-solid fa-user"></i> حسابي</a>
-                    <a href="settings.php"><i class="fa-solid fa-gear"></i> الإعدادات</a>
-                    <a href="logout.php"><i class="fa-solid fa-sign-out-alt"></i> تسجيل الخروج</a>
+                    <a href="settings"><i class="fa-solid fa-gear"></i> الإعدادات</a>
+                    <a href="logout"><i class="fa-solid fa-sign-out-alt"></i> تسجيل الخروج</a>
                 </div>
             </div>
         </nav>

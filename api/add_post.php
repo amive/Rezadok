@@ -6,7 +6,7 @@ use Cloudinary\Cloudinary;
 use Cloudinary\Api\Upload\UploadApi;
 // التحقق مما إذا كان المستخدم طبيبًا باستخدام الكوكيز
 if (!isset($_COOKIE['user_id']) || $_COOKIE['role'] != 'doctor') {
-    header("Location: index.php");
+    header("Location: ");
     exit();
 }
 
@@ -99,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <header>
     <h2><i class="fa-solid fa-stethoscope"></i> Rezadok</h2>
     <nav>
-        <a href="index.php" class="icon-btn" data-text="الرئيسية">
+        <a href="" class="icon-btn" data-text="الرئيسية">
             <i class="fa-solid fa-house"></i>
         </a>
         <a href="appointments.php" class="icon-btn" data-text="مواعيدي">

@@ -7,7 +7,7 @@ use Cloudinary\Api\Upload\UploadApi;
 
 // التحقق من وجود الكوكيز بدلاً من الجلسة
 if (!isset($_COOKIE['user_id'])) {
-    header("Location: index.php");
+    header("Location: ");
     exit();
 }
 
@@ -143,9 +143,9 @@ if ($receiver_id) {
 
 <body>
 <header>
-    <h2><a href="index.php"><i class="fa-solid fa-stethoscope"></i></a>Rezadok</h2>
+    <h2><a href=""><i class="fa-solid fa-stethoscope"></i></a>Rezadok</h2>
     <nav>
-        <a href="index.php" class="icon-btn" data-text="الرئيسية"><i class="fa-solid fa-house"></i></a>
+        <a href="" class="icon-btn" data-text="الرئيسية"><i class="fa-solid fa-house"></i></a>
         <a href="appointments.php" class="icon-btn" data-text="مواعيدي"><i class="fa-solid fa-calendar-days"></i></a>
         <div class="dropdown">
             <button><i class="fa-solid fa-user-circle"></i></button>

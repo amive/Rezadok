@@ -41,14 +41,14 @@ $posts = $posts_stmt->fetchAll();
 <head>
     <meta charset="UTF-8">
     <title>ملف الطبيب</title>
-    <link rel="stylesheet" href="Design/index.css">
+    <link rel="stylesheet" href="Design/indexnew.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 
 </head>
 <body>
     <header>
-        <h2><a href="index.php"><i class="fa-solid fa-stethoscope"></i></a>Rezadok</h2>
+        <h2><a href=""><i class="fa-solid fa-stethoscope"></i></a>Rezadok</h2>
         <h1><i class="fa-solid fa-user-doctor"></i> ملف الطبيب</h1>
         <nav>
             <a href="patient_dashboard.php" class="icon-btn" data-text="الرئيسية">

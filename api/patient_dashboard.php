@@ -6,7 +6,7 @@ $role = strtolower(trim($_COOKIE['role'] ?? ''));
 // التحقق من تسجيل الدخول وصلاحية المريض
 if (!$user_id || $role !== 'patient') {
     error_log("PATIENT user_id/Role check false from cookies.");
-    header("Location: /index.php");
+    header("Location: ");
     exit();
 }
 
@@ -110,15 +110,15 @@ $posts = $stmt_posts->fetchAll(PDO::FETCH_ASSOC);
 <body>
 
 <header>
-    <h2><a href="index.php"><i class="fa-solid fa-stethoscope"></i></a>Rezadok</h2>
+    <h2><a href=""><i class="fa-solid fa-stethoscope"></i></a>Rezadok</h2>
     <nav>
-        <a href="patient_dashboard.php" class="icon-btn" data-text="الرئيسية">
+        <a href="patient_dashboard" class="icon-btn" data-text="الرئيسية">
             <i class="fa-solid fa-house"></i>
         </a>
-        <a href="appointments.php" class="icon-btn" data-text="مواعيدي">
+        <a href="appointments" class="icon-btn" data-text="مواعيدي">
             <i class="fa-solid fa-calendar-days"></i>
         </a>
-        <a href="search_doctor.php" class="icon-btn" data-text="البحث عن طبيب">
+        <a href="search_doctor" class="icon-btn" data-text="البحث عن طبيب">
             <i class="fa-solid fa-magnifying-glass"></i>
         </a>
         <div class="dropdown">
@@ -127,8 +127,8 @@ $posts = $stmt_posts->fetchAll(PDO::FETCH_ASSOC);
             </button>
             <div class="dropdown-content">
                 <a href="#"><i class="fa-solid fa-user"></i> حسابي</a>
-                <a href="settings.php"><i class="fa-solid fa-gear"></i> الإعدادات</a>
-                <a href="logout.php"><i class="fa-solid fa-right-from-bracket"></i> تسجيل الخروج</a>
+                <a href="settings"><i class="fa-solid fa-gear"></i> الإعدادات</a>
+                <a href="logout"><i class="fa-solid fa-right-from-bracket"></i> تسجيل الخروج</a>
             </div>
         </div>
     </nav>

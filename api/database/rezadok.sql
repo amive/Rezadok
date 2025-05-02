@@ -59,7 +59,7 @@ CREATE TABLE `messages` (
   `sender_id` int(11) NOT NULL,
   `receiver_id` int(11) NOT NULL,
   `message` text NOT NULL,
-  `created_at` datetime DEFAULT current_timestamp(),
+  `created_at` timestamp DEFAULT current_timestamp(),
   `file_path` varchar(255) DEFAULT NULL,
   `file_type` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -105,7 +105,7 @@ INSERT INTO `posts` (`id`, `doctor_id`, `title`, `content`, `created_at`, `image
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
+  `email` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
   `phone` varchar(20) NOT NULL,
   `role` enum('doctor','patient') NOT NULL,

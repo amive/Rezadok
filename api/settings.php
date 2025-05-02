@@ -1,7 +1,7 @@
 <?php
 // التحقق من تسجيل الدخول باستخدام الكوكيز
 if (!isset($_COOKIE['user_id'])) {
-    header("Location: index.php");
+    header("Location: ");
     exit();
 }
 

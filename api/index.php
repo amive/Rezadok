@@ -308,7 +308,7 @@ $form_data = isset($_COOKIE['form_data']) ? json_decode($_COOKIE['form_data'], t
         <?php endif; ?>
                     <!--Login-->
         <div class="container hidden" id="login-form">
-            <form action="index.php" method="POST" class="login">
+            <form action="" method="POST" class="login">
                 <input type="hidden" name="action" value="login">
                 <input type="email" name="email" placeholder="البريد الإلكتروني" 
                     value="<?php echo htmlspecialchars($form_data['email'] ?? ''); ?>" required>
@@ -321,7 +321,7 @@ $form_data = isset($_COOKIE['form_data']) ? json_decode($_COOKIE['form_data'], t
         </div>
                     <!--Register-->
         <div class="container hidden" id="register-form">
-            <form action="index.php" method="POST" enctype="multipart/form-data" class="register">
+            <form action="" method="POST" enctype="multipart/form-data" class="register">
                 <input type="hidden" name="action" value="register">
                 <input type="text" name="name" placeholder="الاسم الكامل" 
                 value="<?php echo htmlspecialchars($form_data['name'] ?? ''); ?>" required>

@@ -3,7 +3,7 @@
 include('config.php');
 // التحقق من تسجيل الدخول باستخدام الكوكيز
 if (!isset($_COOKIE['user_id']) || $_COOKIE['role'] != 'patient') {
-    header("Location: ");
+    header("Location: /");
     exit();
 }
 

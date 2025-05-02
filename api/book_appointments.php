@@ -4,7 +4,7 @@ include 'config.php';
 
 // التحقق من أن المستخدم مريض باستخدام الكوكيز
 if (!isset($_COOKIE['user_id']) || $_COOKIE['role'] != 'patient') {
-    header("Location: login.php");
+    header("Location: /");
     exit();
 }
 

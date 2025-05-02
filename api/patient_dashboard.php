@@ -6,7 +6,7 @@ $role = strtolower(trim($_COOKIE['role'] ?? ''));
 // التحقق من تسجيل الدخول وصلاحية المريض
 if (!$user_id || $role !== 'patient') {
     error_log("PATIENT user_id/Role check false from cookies.");
-    header("Location: ");
+    header("Location: /");
     exit();
 }
 

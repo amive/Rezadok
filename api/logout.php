@@ -4,6 +4,6 @@ setcookie('user_id', '', time() - 3600, '/'); // حذف cookie الخاص بـ u
 setcookie('role', '', time() - 3600, '/'); // حذف cookie الخاص بـ role
 
 // إعادة توجيه المستخدم إلى الصفحة الرئيسية
-header("Location: ");
+header("Location: /");
 exit(); // إنهاء السكربت
 ?>

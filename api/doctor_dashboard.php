@@ -2,7 +2,7 @@
 // التحقق من تسجيل الدخول باستخدام الكوكيز
 if (!isset($_COOKIE['user_id']) || strtolower(trim($_COOKIE['role'])) !== 'doctor') {
     error_log("DOCTOR user_id/Role check false. role: ");
-    header("Location: ");
+    header("Location: /");
     exit();
 }
 

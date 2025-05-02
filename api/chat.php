@@ -7,7 +7,7 @@ use Cloudinary\Api\Upload\UploadApi;
 
 // التحقق من وجود الكوكيز بدلاً من الجلسة
 if (!isset($_COOKIE['user_id'])) {
-    header("Location: ");
+    header("Location: /");
     exit();
 }
 

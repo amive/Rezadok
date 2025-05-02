@@ -6,7 +6,7 @@ use Cloudinary\Cloudinary;
 use Cloudinary\Api\Upload\UploadApi;
 // التحقق مما إذا كان المستخدم طبيبًا باستخدام الكوكيز
 if (!isset($_COOKIE['user_id']) || $_COOKIE['role'] != 'doctor') {
-    header("Location: ");
+    header("Location: /");
     exit();
 }
 

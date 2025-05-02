@@ -4,7 +4,7 @@ include 'config.php';
 
 // التحقق من تسجيل الدخول عبر الكوكيز
 if (!isset($_COOKIE['role'])) {
-    header("Location: ");
+    header("Location: /");
     exit();
 }
 

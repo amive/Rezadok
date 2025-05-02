@@ -1,6 +1,7 @@
 /* Global Styles */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@100..900&display=swap");
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Noto Sans Arabic", sans-serif;
   background-color: #f5f5f5;
   direction: rtl;
   padding: 0 20px;

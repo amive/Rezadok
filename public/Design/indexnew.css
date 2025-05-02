@@ -425,13 +425,21 @@ nav.nav-links {
     gap: 2em;
     padding: 2em 0;
   }
-  form.register,
-  form.login {
+  form.register {
     flex: 1 1 45%;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 75px;
+    height: 78vh;
+  }
+  form.login {
+    flex: 1 1 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 190px;
+    height: 63vh;
   }
   .avatar-login-register {
     flex: 1 1 45%;

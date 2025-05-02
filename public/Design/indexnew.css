@@ -399,21 +399,24 @@ nav.nav-links {
 
   nav.nav-links {
     position: fixed;
-    top: 136px;
-    right: 0;
+    top: 180px;
+    left: 0;
     height: 80vh;
-    width: 300px;
+    width: 250px;
     background-color: #2c3e50;
     flex-direction: column;
-    gap: 20px;
-    padding: 1em;
-    transform: translateX(100%);
+    gap: 1px;
+    padding: 0.5em;
+    transform: translateX(-100%);
     transition: transform 0.3s ease-in-out;
     z-index: 999;
   }
 
   nav.nav-links.active {
     transform: translateX(0);
+  }
+  .avatar-main {
+    margin-top: 0;
   }
   .contact {
     display: flex;

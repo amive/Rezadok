@@ -11,7 +11,7 @@
     { "src": "/Design/(.*)", "dest": "/public/Design/$1" },
     { "src": "/script/(.*)", "dest": "/public/script/$1" },
     { "src": "/assets/(.*)", "dest": "/public/assets/$1" },
-    { "src": "", "dest": "/api/index.php" },
+    { "src": "/", "dest": "/api/index.php" },
     { "src": "/(.*)", "dest": "/api/$1.php" }
   ]
 }

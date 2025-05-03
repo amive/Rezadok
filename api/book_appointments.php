@@ -49,138 +49,53 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="ar">
-<head>
-    <meta charset="UTF-8">
-    <title>حجز موعد - Rezadok</title>
-    <link rel="stylesheet" href="css.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <head>
+        <meta charset="UTF-8">
+        <title>حجز موعد - Rezadok</title>
+        <link rel="stylesheet" href="book_appointments.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    </head>
+    <body>
+        <header>
+            <h2><i class="fa-solid fa-stethoscope"></i> Rezadok</h2>
+            <nav>
+                <a href="patient_dashboard.php" class="icon-btn" data-text="الرئيسية">
+                    <i class="fa-solid fa-house"></i>
+                </a>
+            </nav>
+        </header>
 
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f6f6f6;
-            padding: 20px;
-            direction: rtl;
-            text-align: right;
-        }
+        <div class="appointment-container">
+            <h2>حجز موعد</h2>
 
-        .appointment-container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 12px;
-            max-width: 500px;
-            margin: auto;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
+            <?php if (isset($error)): ?>
+                <div class="error"><?php echo $error; ?></div>
+            <?php endif; ?>
 
-        label {
-            display: block;
-            margin-top: 10px;
-            margin-bottom: 5px;
-        }
+            <?php if (isset($success)): ?>
+                <div class="success"><?php echo $success; ?></div>
+            <?php endif; ?>
 
-        input {
-            width: 100%;
-            padding: 8px;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-        }
+            <form method="POST">
+                <label for="appointment_date">تاريخ ووقت الموعد:</label>
+                <input type="datetime-local" name="appointment_date" id="appointment_date" required>
 
-        button {
-            margin-top: 15px;
-            padding: 10px 20px;
-            background-color: #198754;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 16px;
-        }
+                <button type="submit"><i class="fa-solid fa-check"></i> تأكيد الحجز</button>
+            </form>
+        </div>
 
-        button:hover {
-            background-color: #157347;
-        }
-
-        a {
-            color: #0d6efd;
-            text-decoration: none;
-        }
-
-        .success {
-            color: green;
-            background-color: #d4edda;
-            padding: 10px;
-            margin-top: 10px;
-            border-radius: 6px;
-        }
-
-        .error {
-            color: red;
-            background-color: #f8d7da;
-            padding: 10px;
-            margin-top: 10px;
-            border-radius: 6px;
-        }
-
-        header {
-            margin-bottom: 30px;
-        }
-
-        header h2 {
-            display: inline-block;
-            margin: 0 10px;
-        }
-
-        nav a {
-            margin: 0 10px;
-            font-size: 18px;
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <h2><a href=""><i class="fa-solid fa-stethoscope"></i></a>Rezadok</h2>
-        <nav>
-            <a href="patient_dashboard" class="icon-btn" data-text="الرئيسية">
-                <i class="fa-solid fa-house"></i>
-            </a>
-            <a href="appointments" class="icon-btn" data-text="مواعيدي">
-                <i class="fa-solid fa-calendar-days"></i>
-            </a>
-        </nav>
-    </header>
-
-    <div class="appointment-container">
-        <h2>حجز موعد</h2>
-
-        <?php if (isset($_COOKIE['error'])): ?>
-            <div class="error"><?= $_COOKIE['error']; ?></div>
-            <?php setcookie('error', '', time() - 3600, '/'); ?>
-        <?php endif; ?>
-
-        <?php if (isset($_COOKIE['success'])): ?>
-            <div class="success"><?= $_COOKIE['success']; ?></div>
-            <?php setcookie('success', '', time() - 3600, '/'); ?>
-        <?php endif; ?>
-
-        <form method="POST">
-            <label for="appointment_date">تاريخ ووقت الموعد:</label>
-            <input type="date" name="appointment_date" id="appointment_date" required>
-
-            <button type="submit"><i class="fa-solid fa-check"></i> تأكيد الحجز</button>
-        </form>
-
-        <br>
-        <a href="patient_dashboard"><i class="fa-solid fa-arrow-left"></i> العودة إلى لوحة التحكم</a>
-    </div>
-
-    <script>
-        // تحديد أقل تاريخ ووقت مسموح به (الآن)
-        const now = new Date();
-        now.setMinutes(now.getMinutes() - now.getTimezoneOffset()); // لتفادي فرق التوقيت
-        document.getElementById("appointment_date").min = now.toISOString().slice(0,16);
-    </script>
-</body>
+        <script>
+            // تحديد أقل تاريخ ووقت مسموح به (الآن)
+            const now = new Date();
+            now.setMinutes(now.getMinutes() - now.getTimezoneOffset()); // لتفادي فرق التوقيت
+            document.getElementById("appointment_date").min = now.toISOString().slice(0,16);
+            // إضافة كود لتأكيد الحجز
+            document.querySelector('form').addEventListener('submit', function(event) {
+                if (!confirm('هل أنت متأكد من تأكيد الحجز؟')) {
+                    event.preventDefault();
+                }
+            });
+        </script>
+    </body>
 </html>
 <?php ob_end_flush(); ?>

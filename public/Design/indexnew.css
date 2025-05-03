@@ -31,8 +31,8 @@ textarea:focus {
 
 section {
   margin-bottom: 30px;
-  padding-top: 70px;
-  width: 100%;
+  padding-top: 121px;
+  width: 50%;
   /*! display: flex; */
   /*! flex-wrap: wrap; */
 }
@@ -164,7 +164,7 @@ button:hover {
 .icon-btn::after {
   content: attr(data-text);
   position: absolute;
-  top: 100%;
+  top: 70%;
   left: 0;
   transform: translateY(10px);
   background-color: #63e6be;
@@ -187,6 +187,9 @@ button:hover {
   gap: 2%;
   margin-top: 120px;
 }
+.main{
+    width: 45%;
+}
 .main-section p {
   flex: 1 1 45%;
   margin-top: 56.9px;
@@ -202,10 +205,10 @@ button:hover {
   display: flex;
   /*! flex-wrap: wrap; */
   gap: 1em;
-  margin-top: 50px;
-  margin-bottom: 55px;
+  margin-top: -213px;
+  margin-bottom: 220px;
   align-items: center;
-  padding-top: 0;
+  padding-top: 2px;
 }
 .about h2 {
   font-size: 2rem;
@@ -218,15 +221,19 @@ button:hover {
   margin: 10px 0;
 }
 .avatar-about {
-  flex: 1 1 50%;
-  max-width: 100%;
-  padding-top: 3em;
+    height: 266px;
+    flex: 1 1 54%;
+    max-width: 100%;
+    padding-top: 28em;
 }
 
 /* Services */
 section#services {
-  padding-top: 130px;
+  /* height: 470px; */
+  /* margin-top: 175px; */
+  padding-top: 23px;
   width: 100%;
+  margin-bottom: 64px;
 }
 #services h2 {
   text-align: center;
@@ -350,19 +357,40 @@ nav.nav-links {
 }
 /* Responsive tweaks */
 @media (max-width: 768px) {
-  .main-section {
-    padding-top: 120px;
-  }
-  header {
+    .main-section {
+        padding-right: 40px;
+    }
+    .about {
+        width: 100vw;  
+        box-sizing: border-box;
+        padding: 1em;
+        margin: 0;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    section#about{
+      width: 100%;
+    }
+    .avatar-about {
+        width: 100%;
+        margin-right: 0;
+        margin-top: -30em;
+        max-width: 100%;
+    }
+    header {
     /*! flex-direction: column; */
     height: 15vh;
     /*! padding: 1em; */
     text-align: center;
-  }
+    } 
 
+  .main,
   .main-section p,
   .avatar-main,
   .about,
+  section,
   .avatar-about,
   .avatar-contact,
   .form.login,
@@ -423,7 +451,7 @@ nav.nav-links {
     flex-wrap: wrap;
     align-items: center;
     gap: 2em;
-    padding: 2em 0;
+    padding: 2em 15px;
   }
   form.register {
     flex: 1 1 45%;

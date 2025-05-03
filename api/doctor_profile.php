@@ -6,7 +6,7 @@ use Cloudinary\Cloudinary;
 use Cloudinary\Api\Upload\UploadApi;
 // التحقق من وجود الكوكيز
 if (!isset($_COOKIE['user_id'])) {
-    echo "لم يتم تسجيل الدخول.";
+    header("Location: /");
     exit;
 }
 

@@ -102,7 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <a href="/" class="icon-btn" data-text="الرئيسية">
             <i class="fa-solid fa-house"></i>
         </a>
-        <a href="appointments.php" class="icon-btn" data-text="مواعيدي">
+        <a href="appointments" class="icon-btn" data-text="مواعيدي">
             <i class="fa-solid fa-calendar-days"></i>
         </a>
         <div class="dropdown">
@@ -111,8 +111,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </button>
             <div class="dropdown-content">
                 <a href="#"><i class="fa-solid fa-user"></i> حسابي</a>
-                <a href="#"><i class="fa-solid fa-cog"></i> الإعدادات</a>
-                <a href="logout.php"><i class="fa-solid fa-sign-out-alt"></i> تسجيل الخروج</a>
+                <a href="settings"><i class="fa-solid fa-cog"></i> الإعدادات</a>
+                <a href="logout"><i class="fa-solid fa-sign-out-alt"></i> تسجيل الخروج</a>
             </div>
         </div>
     </nav>

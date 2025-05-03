@@ -51,10 +51,10 @@ $posts = $posts_stmt->fetchAll();
         <h2><a href=""><i class="fa-solid fa-stethoscope"></i></a>Rezadok</h2>
         <h1><i class="fa-solid fa-user-doctor"></i> ملف الطبيب</h1>
         <nav>
-            <a href="patient_dashboard.php" class="icon-btn" data-text="الرئيسية">
+            <a href="patient_dashboard" class="icon-btn" data-text="الرئيسية">
                 <i class="fa-solid fa-house"></i>
             </a>
-            <a href="appointments.php" class="icon-btn" data-text="مواعيدي">
+            <a href="appointments" class="icon-btn" data-text="مواعيدي">
                 <i class="fa-solid fa-calendar-days"></i>
             </a>
         </nav>
@@ -75,7 +75,7 @@ $posts = $posts_stmt->fetchAll();
             <?php endif; ?>
 
             <!-- زر حجز موعد -->
-            <a href="book_appointments.php?doctor_id=<?php echo $doctor_id; ?>" class="btn-book">📅 احجز موعد</a>
+            <a href="book_appointments?doctor_id=<?php echo $doctor_id; ?>" class="btn-book">📅 احجز موعد</a>
         </div>
 
         <!-- المنشورات الخاصة بالطبيب -->

@@ -77,6 +77,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <br>
         <button type="submit">تحديث البيانات</button>
     </form>
-    <a href="logout.php">تسجيل الخروج</a>
+    <a href="logout">تسجيل الخروج</a>
 </body>
 </html>

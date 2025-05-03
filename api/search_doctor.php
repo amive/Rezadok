@@ -16,7 +16,7 @@ $patient_id = $_COOKIE['user_id']; // استخدام الـ cookie بدلاً م
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>البحث عن طبيب</title>
-    <link rel="stylesheet" href="Design/index.css">
+    <link rel="stylesheet" href="Design/indexnew.css">
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 
 </head>
@@ -24,10 +24,10 @@ $patient_id = $_COOKIE['user_id']; // استخدام الـ cookie بدلاً م
     <header>
         <h2><a href=""><i class="fa-solid fa-stethoscope"></i></a>Rezadok</h2>
         <nav> 
-            <a href="patient_dashboard.php" class="icon-btn" data-text="الرئيسية">
+            <a href="patient_dashboard" class="icon-btn" data-text="الرئيسية">
                 <i class="fa-solid fa-house"></i>
             </a>
-            <a href="appointments.php" class="icon-btn" data-text="مواعيدي">
+            <a href="appointments" class="icon-btn" data-text="مواعيدي">
                 <i class="fa-solid fa-calendar-days"></i>
             </a>
             <div class="dropdown">
@@ -36,8 +36,8 @@ $patient_id = $_COOKIE['user_id']; // استخدام الـ cookie بدلاً م
                 </button>
                 <div class="dropdown-content">
                     <a href="#"><i class="fa-solid fa-user"></i> حسابي</a>
-                    <a href="settings.php"><i class="fa-solid fa-cog"></i> الإعدادات</a>
-                    <a href="logout.php"><i class="fa-solid fa-sign-out-alt"></i> تسجيل الخروج</a>
+                    <a href="settings"><i class="fa-solid fa-cog"></i> الإعدادات</a>
+                    <a href="logout"><i class="fa-solid fa-sign-out-alt"></i> تسجيل الخروج</a>
                 </div>
             </div>
         </nav>
@@ -81,7 +81,7 @@ $patient_id = $_COOKIE['user_id']; // استخدام الـ cookie بدلاً م
         if (count($doctors) > 0):
             foreach ($doctors as $doctor): ?>
                 <li class="doctor-item">
-                    <a href="doctor_profile.php?id=<?php echo $doctor['id']; ?>">
+                    <a href="doctor_profile?id=<?php echo $doctor['id']; ?>">
                         👨‍⚕️ <?php echo htmlspecialchars($doctor['name']); ?> - <?php echo htmlspecialchars($doctor['specialty']); ?>
                     </a>
                 </li>

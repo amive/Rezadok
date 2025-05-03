@@ -142,6 +142,7 @@ button:hover {
   gap: 13px; /* Space between the buttons */
   align-items: center; /* Vertically center buttons */
   flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+  margin-top: -2em;
 }
 
 /* Individual button */

@@ -31,128 +31,69 @@ $posts = $stmt_posts->fetchAll(PDO::FETCH_ASSOC);
 
 <!DOCTYPE html>
 <html lang="ar">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rezadok | منشورات الأطباء</title>
-    <link rel="stylesheet" href="Design/index.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Rezadok | لوحة تحكم المريض</title>
+        <link rel="stylesheet" href="Design/patient_dashboard.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    </head>
+    <body>
+        <header>
+            <h2><a href=""><i class="fa-solid fa-stethoscope"></i></a>Rezadok</h2>
+            <button class="menu-toggle">&#9776;</button>
+            <nav class="nav-main">
+                <a href="patient_dashboard" class="icon-btn" data-text="الرئيسية">
+                    <i class="fa-solid fa-house"></i>
+                </a>
+                <a href="appointments" class="icon-btn" data-text="مواعيدي">
+                    <i class="fa-solid fa-calendar-days"></i>
+                </a>
+                <a href="search_doctor" class="icon-btn" data-text="البحث عن طبيب">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </a>
+                <div class="dropdown">
+                    <button>
+                        <i class="fa-solid fa-user-circle"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="#"><i class="fa-solid fa-user"></i> حسابي</a>
+                        <a href="settings"><i class="fa-solid fa-gear"></i> الإعدادات</a>
+                        <a href="logout"><i class="fa-solid fa-right-from-bracket"></i> تسجيل الخروج</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
 
-    <style>
-        /* [نفس التنسيقات بدون تغيير] */
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f7fc;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            width: 80%;
-            margin: 40px auto;
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .post {
-            background-color: #ffffff;
-            margin-bottom: 20px;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            margin-right: 180px;
-            width: 60%;
-        }
-
-        .post:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .post img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin-bottom: 15px;
-        }
-
-        .post h3 {
-            color: #333;
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-
-        .post p {
-            color: #555;
-            font-size: 16px;
-            line-height: 1.6;
-            margin-bottom: 10px;
-        }
-
-        .post small {
-            font-size: 12px;
-            color: #777;
-            display: block;
-            margin-top: 15px;
-        }
-
-        .container p {
-            text-align: center;
-            font-size: 18px;
-            color: #888;
-        }
-    </style>
-</head>
-<body>
-
-<header>
-    <h2><a href=""><i class="fa-solid fa-stethoscope"></i></a>Rezadok</h2>
-    <nav>
-        <a href="patient_dashboard" class="icon-btn" data-text="الرئيسية">
-            <i class="fa-solid fa-house"></i>
-        </a>
-        <a href="appointments" class="icon-btn" data-text="مواعيدي">
-            <i class="fa-solid fa-calendar-days"></i>
-        </a>
-        <a href="search_doctor" class="icon-btn" data-text="البحث عن طبيب">
-            <i class="fa-solid fa-magnifying-glass"></i>
-        </a>
-        <div class="dropdown">
-            <button>
-                <i class="fa-solid fa-user-circle"></i>
-            </button>
-            <div class="dropdown-content">
-                <a href="#"><i class="fa-solid fa-user"></i> حسابي</a>
-                <a href="settings"><i class="fa-solid fa-gear"></i> الإعدادات</a>
-                <a href="logout"><i class="fa-solid fa-right-from-bracket"></i> تسجيل الخروج</a>
-            </div>
+        <!-- المنشورات -->
+        <h2>منشورات الأطباء</h2>
+        <div class="posts">
+            <?php if (count($posts) > 0): ?>
+                <?php foreach ($posts as $post): ?>
+                    <div class="post"> 
+                    <p><strong> الطبيب: <?php echo htmlspecialchars($post['doctor_name']); ?></strong></p>
+                        <h3><?php echo htmlspecialchars($post['title']); ?></h3>
+                        <p><?php echo htmlspecialchars($post['content']); ?></p>
+                        <?php if ($post['image']): ?>
+                            <img src="uploads/<?php echo htmlspecialchars($post['image']); ?>" alt="Post Image">
+                        <?php endif; ?>                
+                        <p><small>تاريخ المنشور: <?php echo date('d-m-Y H:i', strtotime($post['created_at'])); ?></small></p>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p>لا توجد منشورات لعرضها.</p>
+            <?php endif; ?>
         </div>
-    </nav>
-</header>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const menuToggle = document.querySelector('.menu-toggle');
+                const nav = document.querySelector('nav');
+                menuToggle.addEventListener('click', () => {
+                    nav.classList.toggle('active');
+                });
+            });
+        </script>
 
-<!-- المنشورات -->
-<h2>منشورات الأطباء</h2>
-<div class="posts">
-    <?php if (count($posts) > 0): ?>
-        <?php foreach ($posts as $post): ?>
-            <div class="post">
-                <p><strong> الطبيب: <?= htmlspecialchars($post['doctor_name']) ?></strong></p>
-                <h3><?= htmlspecialchars($post['title']) ?></h3>
-                <p><?= htmlspecialchars($post['content']) ?></p>
-                <?php if (!empty($post['image'])): ?>
-                <img src="<?= htmlspecialchars($post['image']) ?>" alt="Post Image" style="max-width: 100%; height: auto; margin-top: 10px;">
-                <?php endif; ?>
-                <p><small>تاريخ المنشور: <?= date('d-m-Y H:i', strtotime($post['created_at'])) ?></small></p>
-            </div>
-        <?php endforeach; ?>
-    <?php else: ?>
-        <p>لا توجد منشورات لعرضها.</p>
-    <?php endif; ?>
-</div>
-
-</body>
+    </body>
 </html>

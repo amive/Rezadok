@@ -10,44 +10,101 @@ body, html {
     color: #333;
   }
   
-  /* الهيدر */
-  header {
-    background-color: #2c3e50;
-    color: white;
-    padding: 1em;
-    text-align: center;
-    position: relative;
-  }
-  
-  header h2 {
-    margin: 0;
-    font-size: 1.5em;
-  }
-  
-  header h2 a {
-    color: white;
-    text-decoration: none;
-    margin-left: 0.5em;
-  }
-  
-  header h1 {
-    margin-top: 0.5em;
-    font-size: 1.2em;
-  }
-  
-  nav {
-    position: absolute;
-    left: 1em;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  
-  nav a {
-    color: white;
-    margin-left: 1em;
-    font-size: 1.2em;
-    text-decoration: none;
-  }
+  /* Header */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 10vh;
+  background-color: #2c3e50;
+  color: white;
+  padding: 0 1em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+}
+header h2 {
+  margin: 40px;
+}
+nav {
+  display: flex;
+  gap: 105px;
+}
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+
+/* Buttons */
+button {
+  background-color: #63e6be;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 300px;
+  margin: 20px auto;
+  display: block;
+}
+button:hover {
+  background-color: #4ecaa0;
+}
+
+/* Buttons container */
+.toggle-buttons {
+  display: flex;
+  gap: 13px; /* Space between the buttons */
+  align-items: center; /* Vertically center buttons */
+  flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+}
+
+/* Individual button */
+.toggle-buttons button {
+  padding: 0.5em;
+  font-size: 18px;
+  border-radius: 15px;
+  flex: 1 1 auto; /* Allow buttons to grow and shrink as needed */
+  max-width: 200px; /* Limit the width to prevent overflow */
+  width: auto; /* Remove the full width to prevent overflow */
+}
+
+.toggle-buttons button:hover {
+  background-color: #4ecaa0;
+}
+
+/* Icons */
+.icon-btn {
+  position: relative;
+  text-decoration: none;
+  font-size: 1.5rem;
+  color: #63e6be;
+  padding: 2em;
+}
+.icon-btn::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 70%;
+  left: 0;
+  transform: translateY(10px);
+  background-color: #63e6be;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 1rem;
+  opacity: 0;
+  transition: opacity 0.3s;
+  white-space: nowrap;
+}
+.icon-btn:hover::after {
+  opacity: 1;
+}
+
   
   /* الحاوية الرئيسية */
   .container {

@@ -148,12 +148,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </form>
 </div>
 
-<script>
-    document.getElementById("file-upload").addEventListener("change", function() {
-        var fileName = this.files.length > 0 ? this.files[0].name : "لم يتم اختيار أي ملف";
-        document.getElementById("file-name").textContent = fileName;
-    });
-</script>
+<script src="script/add_post.js"></script>
 
 </body>
 </html>

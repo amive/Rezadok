@@ -41,22 +41,28 @@ $posts = $posts_stmt->fetchAll();
 <head>
     <meta charset="UTF-8">
     <title>ملف الطبيب</title>
-    <link rel="stylesheet" href="Design/indexnew.css">
+    <link rel="stylesheet" href="Design/doctor_profile.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 
 </head>
 <body>
-    <header>
-        <h2><a href=""><i class="fa-solid fa-stethoscope"></i></a>Rezadok</h2>
-        <h1><i class="fa-solid fa-user-doctor"></i> ملف الطبيب</h1>
-        <nav>
-            <a href="patient_dashboard" class="icon-btn" data-text="الرئيسية">
+<header>
+        <h2><i class="fa-solid fa-stethoscope"></i> Rezadok</h2>
+        <nav> 
+            <a href="patient_dashboard.php" class="icon-btn" data-text="الرئيسية">
                 <i class="fa-solid fa-house"></i>
             </a>
-            <a href="appointments" class="icon-btn" data-text="مواعيدي">
-                <i class="fa-solid fa-calendar-days"></i>
-            </a>
+            <div class="dropdown">
+                <button>
+                    <i class="fa-solid fa-user-circle"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="#"><i class="fa-solid fa-user"></i> حسابي</a>
+                    <a href="#"><i class="fa-solid fa-cog"></i> الإعدادات</a>
+                    <a href="logout.php"><i class="fa-solid fa-sign-out-alt"></i> تسجيل الخروج</a>
+                </div>
+            </div>
         </nav>
     </header>
     <div class="container">

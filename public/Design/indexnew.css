@@ -16,7 +16,7 @@ textarea {
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 1rem;
-  width: 100%;
+  width: 50%;
   max-width: 100%;
   box-sizing: border-box;
 }
@@ -29,6 +29,9 @@ textarea:focus {
   box-shadow: 0 0 5px rgba(99, 230, 190, 0.5);
 }
 
+#usercircle {
+  margin-left: 100px;
+}
 section {
   margin-bottom: 30px;
   padding-top: 121px;
@@ -122,10 +125,12 @@ button {
   border-radius: 8px;
   cursor: pointer;
   font-size: 1rem;
-  width: 100%;
+  width: 35%;
   max-width: 300px;
   margin: 20px auto;
+  margin-top: 20px;
   display: block;
+  margin-top: 3.29em;
 }
 button:hover {
   background-color: #4ecaa0;
@@ -187,8 +192,8 @@ button:hover {
   gap: 2%;
   margin-top: 120px;
 }
-.main{
-    width: 45%;
+.main {
+  width: 45%;
 }
 .main-section p {
   flex: 1 1 45%;
@@ -221,12 +226,15 @@ button:hover {
   margin: 10px 0;
 }
 .avatar-about {
-    height: 266px;
-    flex: 1 1 54%;
-    max-width: 100%;
-    padding-top: 28em;
+  height: 266px;
+  flex: 1 1 54%;
+  max-width: 100%;
+  padding-top: 28em;
 }
 
+#method_search {
+  width: 15%;
+}
 /* Services */
 section#services {
   /* height: 470px; */
@@ -295,7 +303,32 @@ button.envoyer {
 .hidden {
   display: none;
 }
-
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  z-index: 1;
+  right: 0;
+}
+.dropdown-content a {
+  color: black;
+  padding: 10px 12px;
+  text-decoration: none;
+  display: block;
+}
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 /* Register & Login */
 #register-form.container.hidden,
 #login-form.container.hidden {
@@ -318,7 +351,15 @@ form.login {
 form.login {
   margin-top: 12em;
 }
-
+#doctor-list {
+  background: #e6e6e673;
+  border-radius: 10px;
+}
+.doctor-item {
+  max-width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
 #doctorFields textarea,
 #doctorFields select {
   width: 100%;
@@ -335,7 +376,10 @@ button.btn-login-register {
   max-width: 100%;
   padding-top: 2em;
 }
-
+.searchbtn {
+  max-width: fit-content;
+  margin-left: 100%;
+}
 /* Doctor fields */
 #doctorFields {
   display: none;
@@ -357,34 +401,34 @@ nav.nav-links {
 }
 /* Responsive tweaks */
 @media (max-width: 768px) {
-    .main-section {
-        padding-right: 40px;
-    }
-    .about {
-        width: 100vw;  
-        box-sizing: border-box;
-        padding: 1em;
-        margin: 0;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-    }
-    section#about{
-      width: 100%;
-    }
-    .avatar-about {
-        width: 100%;
-        margin-right: 0;
-        margin-top: -30em;
-        max-width: 100%;
-    }
-    header {
+  .main-section {
+    padding-right: 40px;
+  }
+  .about {
+    width: 100vw;
+    box-sizing: border-box;
+    padding: 1em;
+    margin: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  section#about {
+    width: 100%;
+  }
+  .avatar-about {
+    width: 100%;
+    margin-right: 0;
+    margin-top: -30em;
+    max-width: 100%;
+  }
+  header {
     /*! flex-direction: column; */
     height: 15vh;
     /*! padding: 1em; */
     text-align: center;
-    } 
+  }
 
   .main,
   .main-section p,
@@ -415,7 +459,19 @@ nav.nav-links {
   }
 
   button {
-    max-width: 40%;
+    background-color: #63e6be;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    width: 100%;
+    max-width: 300px;
+    margin: 20px auto;
+    margin-top: 20px;
+    display: block;
+    margin-top: 3.29em;
   }
 
   .services-container {

@@ -50,7 +50,7 @@ $posts = $posts_stmt->fetchAll();
 <header>
         <h2><i class="fa-solid fa-stethoscope"></i> Rezadok</h2>
         <nav> 
-            <a href="patient_dashboard.php" class="icon-btn" data-text="الرئيسية">
+            <a href="patient_dashboard" class="icon-btn" data-text="الرئيسية">
                 <i class="fa-solid fa-house"></i>
             </a>
             <div class="dropdown">

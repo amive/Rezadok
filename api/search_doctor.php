@@ -32,7 +32,7 @@ $patient_id = $_COOKIE['user_id']; // استخدام الـ cookie بدلاً م
             </a>
             <div class="dropdown">
                 <button>
-                    <i class="fa-solid fa-user-circle"></i>
+                    <i id="usercircle" class="fa-solid fa-user-circle"></i>
                 </button>
                 <div class="dropdown-content">
                     <a href="#"><i class="fa-solid fa-user"></i> حسابي</a>
@@ -69,7 +69,7 @@ $patient_id = $_COOKIE['user_id']; // استخدام الـ cookie بدلاً م
                 <?php endforeach; ?>
             </select>
 
-            <button type="button" onclick="searchDoctors()">بحث</button>
+            <button class="searchbtn" type="button" onclick="searchDoctors()">بحث</button>
         </form>
 
         <ul id="doctor-list">

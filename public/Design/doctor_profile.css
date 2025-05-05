@@ -161,13 +161,17 @@ button:hover {
   padding-bottom: 0.5em;
 }
 .btn-book {
+  font-size: 20px;
+  text-align: center;
   display: inline-block;
   padding: 0.7em 1.2em;
-  background-color: #ffdc88;
-  color: black;
+  background-color: #2c3e50;
+  color: #fff;
   text-decoration: none;
   border-radius: 21px;
   margin-top: 1em;
+  margin-right: 94px;
+  width: 55%;
   transition: background-color 0.3s;
 }
 .btn-book:hover {
@@ -240,8 +244,9 @@ small {
   }
   .container {
     flex-direction: column;
-    margin-top: 11vh;
+    /* margin-top: 0vh; */
     padding: 0 1em;
+    margin-left: 11px;
   }
   .doctor-posts {
     overflow-y: visible !important; /* يعطل التمرير الداخلي */
@@ -262,7 +267,7 @@ small {
     max-width: 100%;
   }
   .btn-book {
-    width: 92%;
+    width: 30%;
     text-align: center;
   }
 }

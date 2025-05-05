@@ -4,7 +4,7 @@
 
 ## 🌐 Live Demo
 
-> [Rezadok] (https://rezadok.vercel.app)
+> (https://rezadok.vercel.app)
 
 ---
 

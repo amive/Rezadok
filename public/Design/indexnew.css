@@ -6,7 +6,7 @@ body {
   direction: rtl;
   padding: 0 37px;
   margin: 0;
-  padding-bottom: 48px; /* نفس ارتفاع الـ footer */
+  padding-bottom: 48px; /* Ù†ÙØ³ Ø§Ø±ØªÙØ§Ø¹ Ø§Ù„Ù€ footer */
 }
 
 input,
@@ -409,7 +409,7 @@ footer {
   left: 0;
   width: 100%;
   justify-content: center;
-  background-color: #f1f1f1; /* يمكنك تغيير اللون */
+  background-color: #f1f1f1; /* ÙŠÙ…ÙƒÙ†Ùƒ ØªØºÙŠÙŠØ± Ø§Ù„Ù„ÙˆÙ† */
   text-align: center;
   padding: 10px 5px;
   font-size: 0.9rem;
@@ -417,7 +417,7 @@ footer {
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 }
 .reza{
-  margin-left: 95px;
+  margin-left: 50px;
 }
 /* Responsive tweaks */
 @media (max-width: 768px){
@@ -600,19 +600,24 @@ footer {
   body{
     padding: 0%;
   }
+  .reza {
+    font-size: 12px;
+    margin-left: 30px;
+}
   /* Icons */
 .icon-btn {
   position: relative;
   text-decoration: none;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   color: #63e6be;
+  margin-left: -45px;
   padding: 1em;
 }
 .icon-btn::after {
   content: attr(data-text);
   position: absolute;
   top: 55%;
-  left: 15%;
+  left: 29%;
   transform: translateY(10px);
   background-color: #63e6be;
   color: #fff;
@@ -628,7 +633,15 @@ footer {
 }
 
   .main-section {
-    padding-right: 40px;
+    padding-right: 20px;
+  }
+  .main h1{
+    
+font-size: 25px;
+    
+margin-left: 12px;
+    
+margin-top: -10px;
   }
   .about {
     width: 100vw;
@@ -661,7 +674,7 @@ footer {
     text-align: center;
   }
   header h2 {
-    margin: 90px;
+    margin: 47px;
     font-size: 1.5rem;
   }
 
@@ -683,7 +696,9 @@ footer {
   }
 
   .toggle-buttons button {
-    width: 85%; /* Make buttons full width on small screens */
+    font-size: 10px;
+    width: 41%; /* Make buttons full width on small screens */
+    margin-left: 18px;
     max-width: 300px; /* Limit width to prevent overflow */
   }
 
@@ -734,7 +749,9 @@ footer {
   }
 
   nav.nav-links.active {
+    margin-top: -50px;
     transform: translateX(0);
+    width: 42%;
   }
   .avatar-main {
     margin-top: 0;

@@ -2,7 +2,7 @@
 
 body,
 html {
-  margin: 0;
+  margin: 40px 0;
   padding: 0;
   height: 100%;
   font-family: "Arial", sans-serif;
@@ -10,6 +10,8 @@ html {
   direction: rtl;
   color: #333;
 }
+
+/* Dropdown */
 .dropdown {
   position: relative;
   display: inline-block;
@@ -36,6 +38,7 @@ html {
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
 /* Header */
 header {
   position: fixed;
@@ -82,21 +85,18 @@ button:hover {
 /* Buttons container */
 .toggle-buttons {
   display: flex;
-  gap: 13px; /* Space between the buttons */
-  align-items: center; /* Vertically center buttons */
-  flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+  gap: 13px;
+  align-items: center;
+  flex-wrap: wrap;
 }
-
-/* Individual button */
 .toggle-buttons button {
   padding: 0.5em;
   font-size: 18px;
   border-radius: 15px;
-  flex: 1 1 auto; /* Allow buttons to grow and shrink as needed */
-  max-width: 200px; /* Limit the width to prevent overflow */
-  width: auto; /* Remove the full width to prevent overflow */
+  flex: 1 1 auto;
+  max-width: 200px;
+  width: auto;
 }
-
 .toggle-buttons button:hover {
   background-color: #4ecaa0;
 }
@@ -128,14 +128,14 @@ button:hover {
   opacity: 1;
 }
 
-/* الحاوية الرئيسية */
+/* Main container */
 .container {
   display: flex;
-  height: calc(100vh - 100px); /* نقصنا ارتفاع الهيدر */
+  height: calc(100vh - 100px);
   margin-top: 0;
 }
 
-/* معلومات الطبيب - ثابتة */
+/* Doctor Info */
 .doctor-info {
   width: 30%;
   background-color: white;
@@ -147,7 +147,6 @@ button:hover {
   max-width: 500px;
   position: sticky;
 }
-
 .doctor-info img {
   width: 100%;
   max-width: 200px;
@@ -156,7 +155,11 @@ button:hover {
   display: block;
   margin: 0 auto 1em;
 }
-
+.doctor-info h3 {
+  margin-bottom: 0.5em;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 0.5em;
+}
 .btn-book {
   display: inline-block;
   padding: 0.7em 1.2em;
@@ -167,13 +170,11 @@ button:hover {
   margin-top: 1em;
   transition: background-color 0.3s;
 }
-
 .btn-book:hover {
   background-color: #219150;
 }
 
-/* منشورات الطبيب - قابلة للتمرير */
-
+/* Doctor Posts */
 .doctor-posts {
   width: 70%;
   padding: 2em;
@@ -181,20 +182,16 @@ button:hover {
   height: 100%;
   background-color: white;
   border-radius: 10px;
-  padding: 2em;
   margin: 1em;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   flex: 1 1 400px;
 }
-
 .doctor-posts h3 {
   margin-top: 0;
 }
-
 .post {
   margin-bottom: 1.5em;
 }
-
 .post img {
   display: block;
   margin: 0 auto 1em;
@@ -202,34 +199,70 @@ button:hover {
   height: auto;
   border-radius: 8px;
 }
-
+.post p {
+  line-height: 1.6;
+  margin-bottom: 1em;
+}
 small {
   color: #888;
   font-size: 0.9em;
 }
 
-/* تحسين العرض في الشاشات الصغيرة */
-@media (max-width: 768px) {
+/* Responsive */
+@media (max-width: 600px) {
+  body {
+    max-height: 60vh;
+    overflow-y: auto;
+    background-color: #f4f4f4; /* استبدال الأحمر بخلفية افتراضية */
+  }
+  header {
+    flex-direction: column;
+    height: 44px;
+    /* height: auto; */
+    padding: 1em 0.5em;
+    text-align: center;
+  }
+  header h2 {
+    right: 22px;
+    margin: 0.5em 0;
+    font-size: 1.2rem;
+    position: absolute;
+  }
+  nav {
+    flex-direction: row;
+    top: -30px;
+    left: 13px;
+    gap: 10px;
+    position: absolute;
+  }
+  nav a {
+    font-size: 1rem;
+  }
   .container {
     flex-direction: column;
-    height: auto;
+    margin-top: 11vh;
+    padding: 0 1em;
   }
-
+  .doctor-posts {
+    overflow-y: visible !important; /* يعطل التمرير الداخلي */
+    height: auto !important;        /* يسمح بالتمدد الطبيعي */
+  }
   .doctor-info,
   .doctor-posts {
-    width: 100%;
-    height: auto;
-    position: static;
+    width: 93%;
+    margin: 1.5em 1px;
+    padding: 1em 1em;
   }
-
-  nav {
-    position: static;
-    transform: none;
+  .toggle-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .toggle-buttons button {
+    font-size: 1rem;
+    max-width: 100%;
+  }
+  .btn-book {
+    width: 92%;
     text-align: center;
-    margin-top: 1em;
-  }
-
-  nav a {
-    margin: 0 0.5em;
   }
 }

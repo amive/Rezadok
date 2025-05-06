@@ -76,7 +76,7 @@ $posts = $stmt_posts->fetchAll(PDO::FETCH_ASSOC);
                         <h3><?php echo htmlspecialchars($post['title']); ?></h3>
                         <p><?php echo htmlspecialchars($post['content']); ?></p>
                         <?php if ($post['image']): ?>
-                            <img src="uploads/<?php echo htmlspecialchars($post['image']); ?>" alt="Post Image">
+                            <img src="<?php echo htmlspecialchars($post['image']); ?>" alt="Post Image">
                         <?php endif; ?>                
                         <p><small>تاريخ المنشور: <?php echo date('d-m-Y H:i', strtotime($post['created_at'])); ?></small></p>
                     </div>

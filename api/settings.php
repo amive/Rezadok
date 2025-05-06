@@ -57,7 +57,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     <title>إعدادات الحساب</title>
 </head>
-<body class="settings-body">
+<body >
+     <header>
+        <h2><i class="fa-solid fa-stethoscope"></i>Rezadok</h2>
+        <nav> 
+            <a href="patient_dashboard" class="icon-btn" data-text="الرئيسية">
+                <i class="fa-solid fa-house"></i>
+            </a>
+        </nav>
+    </header>
     <h1>إعدادات الحساب</h1>
 
     <?php if (isset($success_message)): ?>

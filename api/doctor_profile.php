@@ -41,6 +41,7 @@ $posts = $posts_stmt->fetchAll();
 <head>
     <meta charset="UTF-8">
     <title>ملف الطبيب</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Design/doctor_profile.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">

@@ -54,16 +54,6 @@ $posts = $posts_stmt->fetchAll();
             <a href="patient_dashboard" class="icon-btn" data-text="الرئيسية">
                 <i class="fa-solid fa-house"></i>
             </a>
-            <div class="dropdown">
-                <button>
-                    <i class="fa-solid fa-user-circle"></i>
-                </button>
-                <div class="dropdown-content">
-                    <a href="#"><i class="fa-solid fa-user"></i> حسابي</a>
-                    <a href="#"><i class="fa-solid fa-cog"></i> الإعدادات</a>
-                    <a href="logout.php"><i class="fa-solid fa-sign-out-alt"></i> تسجيل الخروج</a>
-                </div>
-            </div>
         </nav>
     </header>
     <div class="container">

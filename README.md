@@ -20,4 +20,4 @@
 - ✅ Email duplication check before registration
 - 🛠️ Built using PHP (with PDO), HTML, CSS, JavaScript
 
----
+----

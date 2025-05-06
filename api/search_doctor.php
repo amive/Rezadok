@@ -18,6 +18,7 @@ $patient_id = $_COOKIE['user_id']; // استخدام الـ cookie بدلاً م
     <title>البحث عن طبيب</title>
     <link rel="stylesheet" href="Design/search_doctor.css">
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="https://www.fontstatic.com/f=geeza-pro" />
 
 </head>
 <body>
@@ -35,7 +36,6 @@ $patient_id = $_COOKIE['user_id']; // استخدام الـ cookie بدلاً م
                     <i id="usercircle" class="fa-solid fa-user-circle"></i>
                 </button>
                 <div class="dropdown-content">
-                    <a href="#"><i class="fa-solid fa-user"></i> حسابي</a>
                     <a href="settings"><i class="fa-solid fa-cog"></i> الإعدادات</a>
                     <a href="logout"><i class="fa-solid fa-sign-out-alt"></i> تسجيل الخروج</a>
                 </div>

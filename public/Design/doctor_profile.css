@@ -5,7 +5,7 @@ html {
   margin: 40px 0;
   padding: 0;
   height: 100%;
-  font-family: "Arial", sans-serif;
+  font-family: "geeza-pro";
   background-color: #f4f4f4;
   direction: rtl;
   color: #333;
@@ -250,7 +250,7 @@ small {
   }
   .doctor-posts {
     overflow-y: visible !important; /* يعطل التمرير الداخلي */
-    height: auto !important;        /* يسمح بالتمدد الطبيعي */
+    height: auto !important; /* يسمح بالتمدد الطبيعي */
   }
   .doctor-info,
   .doctor-posts {

@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (strtotime($appointment_date) < time()) {
         setcookie('error', "<i class='fa-solid fa-calendar-xmark'></i> لا يمكنك حجز موعد في تاريخ ووقت قديمين!", time() + 3600, "/");
-        header("Location: book_appointments.php?doctor_id=$doctor_id");
+        header("Location: book_appointments?doctor_id=$doctor_id");
         exit();
     } else {
         // التحقق من عدم وجود حجز سابق لنفس الطبيب والمريض في نفس التاريخ
@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 setcookie('error', "<i class='fa-solid fa-circle-xmark'></i> حدث خطأ أثناء الحجز!", time() + 3600, "/");
             }
         }
-        header("Location: book_appointments.php?doctor_id=$doctor_id");
+        header("Location: book_appointments?doctor_id=$doctor_id");
         exit();
     }
 }
@@ -55,12 +55,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="Design/book_appointments.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        <link rel="stylesheet" type="text/css" href="https://www.fontstatic.com/f=geeza-pro" />
     </head>
     <body>
         <header>
             <h2><i class="fa-solid fa-stethoscope"></i> Rezadok</h2>
             <nav>
-                <a href="patient_dashboard.php" class="icon-btn" data-text="الرئيسية">
+                <a href="patient_dashboard" class="icon-btn" data-text="الرئيسية">
                     <i class="fa-solid fa-house"></i>
                 </a>
             </nav>

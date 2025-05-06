@@ -1,150 +1,177 @@
 /* إعدادات عامة */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f6f6f6;
-    margin: 0;
-    padding: 0;
-    direction: rtl;
-    text-align: right;
+  font-family: "geeza-pro";
+  background-color: #f6f6f6;
+  margin: 0;
+  padding: 0;
+  direction: rtl;
+  text-align: right;
 }
 
 /* الهيدر */
 header {
-    background-color: #2c3e50;
-    color: white;
-    padding: 20px 30px;
-    position: relative;
+  background-color: #2c3e50;
+  color: white;
+  padding: 20px 30px;
+  position: relative;
 }
 
 header h2 {
-    margin: 0;
-    font-size: 2em;
-    text-align: right;
-    padding-right: 40px;
+  margin: 0;
+  font-size: 2em;
+  text-align: right;
+  padding-right: 40px;
 }
 
 header a {
-    color: white;
-    text-decoration: none;
+  color: white;
+  text-decoration: none;
 }
 
 /* التنقل */
 nav {
-    position: absolute;
-    left: 30px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    align-items: center;
-    gap: 50px;
+  position: absolute;
+  left: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 50px;
 }
 
 nav a {
-    color: white;
-    font-size: 1.3em;
-    text-decoration: none;
+  color: white;
+  font-size: 1.3em;
+  text-decoration: none;
+}
+/* Dropdown */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  z-index: 1;
+  right: 0;
+}
+.dropdown-content a {
+  color: black;
+  padding: 10px 12px;
+  text-decoration: none;
+  display: block;
+}
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
 }
 
 /* النموذج */
 .container {
-    max-width: 800px;
-    margin: 40px auto;
-    background-color: white;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  max-width: 800px;
+  margin: 40px auto;
+  background-color: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 form h2 {
-    color: #2c3e50;
-    margin-bottom: 20px;
+  color: #2c3e50;
+  margin-bottom: 20px;
 }
 
 #method_search label {
-    margin-left: 15px;
-    font-weight: bold;
-    color: #333;
+  margin-left: 15px;
+  font-weight: bold;
+  color: #333;
 }
 
 #searchName,
 #searchSpecialty {
-    width: 100%;
-    padding: 10px;
-    margin: 15px 0;
-    font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+  width: 100%;
+  padding: 10px;
+  margin: 15px 0;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
 }
 
 /* زر البحث */
 .searchbtn {
-    background-color: #63e6be;
-    color: #2c3e50;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
+  background-color: #63e6be;
+  color: #2c3e50;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 .searchbtn:hover {
-    background-color: #4ddbb0;
+  background-color: #4ddbb0;
 }
 
 /* قائمة الأطباء */
 #doctor-list {
-    list-style: none;
-    padding: 0;
-    margin-top: 30px;
+  list-style: none;
+  padding: 0;
+  margin-top: 30px;
 }
 
 .doctor-item {
-    padding: 12px 20px;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    margin-bottom: 10px;
-    background-color: #f9f9f9;
-    transition: 0.3s;
+  padding: 12px 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+  transition: 0.3s;
 }
 
 .doctor-item a {
-    text-decoration: none;
-    color: #2c3e50;
-    font-weight: bold;
-    font-size: 18px;
+  text-decoration: none;
+  color: #2c3e50;
+  font-weight: bold;
+  font-size: 18px;
 }
 
 .doctor-item:hover {
-    background-color: #e0f2f1;
+  background-color: #e0f2f1;
 }
 
 /* أيقونات */
 i {
-    color: #63e6be;
-    transition: 0.3s;
-    font-size: 1.2em;
+  color: #63e6be;
+  transition: 0.3s;
+  font-size: 1.2em;
 }
 
 nav a.icon-btn:hover i {
-    color: #09eea983;
-    transform: scale(1.1);
+  color: #09eea983;
+  transform: scale(1.1);
 }
 footer {
-    display: flex;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    justify-content: center;
-    background-color: #f1f1f1; /* ÙŠÙ…ÙƒÙ†Ùƒ ØªØºÙŠÙŠØ± Ø§Ù„Ù„ÙˆÙ† */
-    text-align: center;
-    padding: 10px 5px;
-    font-size: 0.9rem;
-    z-index: 1000;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-  }
-  .reza{
-    margin-left: 50px;
-  }
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  justify-content: center;
+  background-color: #f1f1f1; /* ÙŠÙ…ÙƒÙ†Ùƒ ØªØºÙŠÙŠØ± Ø§Ù„Ù„ÙˆÙ† */
+  text-align: center;
+  padding: 10px 5px;
+  font-size: 0.9rem;
+  z-index: 1000;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+.reza {
+  margin-left: 50px;
+}

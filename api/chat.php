@@ -79,7 +79,7 @@ if (!empty($message) || !empty($file_path)) {
     $stmt->execute([$user_id, $receiver_id, $message, $file_path, $file_type]);
 }
 
-header("Location: chat.php?receiver_id=$receiver_id");
+header("Location: chat?receiver_id=$receiver_id");
 exit();
 }
 
@@ -106,6 +106,7 @@ if ($receiver_id) {
     <link rel="stylesheet" href="Design/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="https://www.fontstatic.com/f=geeza-pro" />
 
     <style>
         #chat-box {
@@ -150,7 +151,6 @@ if ($receiver_id) {
         <div class="dropdown">
             <button><i class="fa-solid fa-user-circle"></i></button>
             <div class="dropdown-content">
-                <a href="#"><i class="fa-solid fa-user"></i>حسابي</a>
                 <a href="settings"><i class="fa-solid fa-cog"></i> الإعدادات</a>
                 <a href="logout"><i class="fa-solid fa-sign-out-alt"></i> تسجيل الخروج</a>
             </div>

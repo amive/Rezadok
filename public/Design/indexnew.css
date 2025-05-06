@@ -1,7 +1,7 @@
 /* Global Styles */
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@100..900&display=swap");
 body {
-  font-family: "Noto Sans Arabic", sans-serif;
+  font-family: "geeza-pro";
   background-color: #f5f5f5;
   direction: rtl;
   padding: 0 37px;
@@ -416,40 +416,40 @@ footer {
   z-index: 1000;
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 }
-.reza{
+.reza {
   margin-left: 50px;
 }
 /* Responsive tweaks */
-@media (max-width: 768px){
-  body{
+@media (max-width: 768px) {
+  body {
     padding: 0%;
   }
   /* Icons */
-.icon-btn {
-  position: relative;
-  text-decoration: none;
-  font-size: 1.4rem;
-  color: #63e6be;
-  padding: 1em;
-}
-.icon-btn::after {
-  content: attr(data-text);
-  position: absolute;
-  top: 55%;
-  left: 15%;
-  transform: translateY(10px);
-  background-color: #63e6be;
-  color: #fff;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 1rem;
-  opacity: 0;
-  transition: opacity 0.3s;
-  white-space: nowrap;
-}
-.icon-btn:hover::after {
-  opacity: 1;
-}
+  .icon-btn {
+    position: relative;
+    text-decoration: none;
+    font-size: 1.4rem;
+    color: #63e6be;
+    padding: 1em;
+  }
+  .icon-btn::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 55%;
+    left: 15%;
+    transform: translateY(10px);
+    background-color: #63e6be;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 1rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+    white-space: nowrap;
+  }
+  .icon-btn:hover::after {
+    opacity: 1;
+  }
 
   .main-section {
     padding-right: 40px;
@@ -464,15 +464,14 @@ footer {
     align-items: center;
     text-align: center;
   }
-  .about h2{
+  .about h2 {
     margin-bottom: -3px;
   }
   section#about {
     width: 96%;
     margin-top: -120px;
-
   }
-  section#services{
+  section#services {
     padding-top: 60px;
   }
   .avatar-about {
@@ -597,51 +596,50 @@ footer {
   }
 }
 @media (max-width: 500px) {
-  body{
+  body {
     padding: 0%;
   }
   .reza {
     font-size: 12px;
     margin-left: 30px;
-}
+  }
   /* Icons */
-.icon-btn {
-  position: relative;
-  text-decoration: none;
-  font-size: 1.2rem;
-  color: #63e6be;
-  margin-left: -45px;
-  padding: 1em;
-}
-.icon-btn::after {
-  content: attr(data-text);
-  position: absolute;
-  top: 55%;
-  left: 29%;
-  transform: translateY(10px);
-  background-color: #63e6be;
-  color: #fff;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 1rem;
-  opacity: 0;
-  transition: opacity 0.3s;
-  white-space: nowrap;
-}
-.icon-btn:hover::after {
-  opacity: 1;
-}
+  .icon-btn {
+    position: relative;
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: #63e6be;
+    margin-left: -45px;
+    padding: 1em;
+  }
+  .icon-btn::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 55%;
+    left: 29%;
+    transform: translateY(10px);
+    background-color: #63e6be;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 1rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+    white-space: nowrap;
+  }
+  .icon-btn:hover::after {
+    opacity: 1;
+  }
 
   .main-section {
     padding-right: 20px;
   }
-  .main h1{
-    
-font-size: 25px;
-    
-margin-left: 12px;
-    
-margin-top: -10px;
+  .main h1 {
+    font-size: 25px;
+
+    margin-left: 12px;
+
+    margin-top: -10px;
   }
   .about {
     width: 100vw;
@@ -656,9 +654,8 @@ margin-top: -10px;
   section#about {
     width: 96%;
     margin-top: -120px;
-
   }
-  section#services{
+  section#services {
     padding-top: 60px;
   }
   .avatar-about {
@@ -785,4 +782,3 @@ margin-top: -10px;
     padding-top: 0em;
   }
 }
-

@@ -45,6 +45,7 @@ $posts = $posts_stmt->fetchAll();
     <link rel="stylesheet" href="Design/doctor_profile.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="https://www.fontstatic.com/f=geeza-pro" />
 
 </head>
 <body>
@@ -72,7 +73,7 @@ $posts = $posts_stmt->fetchAll();
             <?php endif; ?>
 
             <!-- زر حجز موعد -->
-            <a href="book_appointments?doctor_id=<?php echo $doctor_id; ?>" class="btn-book">📅 احجز موعد</a>
+            <a href="book_appointments?doctor_id=<?php echo $doctor_id; ?>" class="btn-book"><strong>حجز موعد</strong></a>
         </div>
 
         <!-- المنشورات الخاصة بالطبيب -->

@@ -1,143 +1,144 @@
 /* إعدادات عامة للصفحة */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f2f2f2;
-    direction: rtl;
-    text-align: right;
-    margin: 0;
-    padding: 0;
+  font-family: "geeza-pro";
+  background-color: #f2f2f2;
+  direction: rtl;
+  text-align: right;
+  margin: 0;
+  padding: 0;
 }
 
 /* الهيدر */
 header {
-    right: 0px;
-    top: 0px;
-    width: 100%;
-    height: 10vh;
-    background-color: #2c3e50;
-    color: white;
-    padding: 10px 0;
-    position: fixed;
-    z-index: 100;
+  right: 0px;
+  top: 0px;
+  width: 100%;
+  height: 10vh;
+  background-color: #2c3e50;
+  color: white;
+  padding: 10px 0;
+  position: fixed;
+  z-index: 100;
 }
 
 header h2 {
-    margin-right: 30px;
-    font-size: 36px;
-    text-align: right;
+  margin-right: 30px;
+  font-size: 36px;
+  text-align: right;
+  margin-top: 0.3em;
 }
 
 /* التنقل */
 nav {
-    position: absolute;
-    left: 30px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    align-items: center;
-    gap: 50px;
+  position: absolute;
+  left: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 50px;
 }
 
 nav a {
-    color: white;
-    font-size: 1.3em;
-    text-decoration: none;
-    padding: 10px;
-    transition: background-color 0.3s ease;
+  color: white;
+  font-size: 1.3em;
+  text-decoration: none;
+  padding: 10px;
+  transition: background-color 0.3s ease;
 }
 
 nav a:hover {
-    background-color: #34495e;
-    border-radius: 5px;
+  background-color: #34495e;
+  border-radius: 5px;
 }
 
 /* عنوان الصفحة */
 h1 {
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 100px;  /* تعويض المسافة التي أخذها الهيدر */
-    margin-bottom: 30px;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 100px; /* تعويض المسافة التي أخذها الهيدر */
+  margin-bottom: 30px;
 }
 
 /* تنسيق النموذج */
 form {
-    max-width: 500px;
-    margin: 0 auto;
-    background-color: #fff;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* تنسيق العناصر داخل النموذج */
 label {
-    display: block;
-    margin-top: 15px;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #333;
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
 }
 
 input[type="text"],
 input[type="email"],
 input[type="password"] {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 15px;
-    box-sizing: border-box;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  box-sizing: border-box;
 }
 
 /* زر التحديث */
 button {
-    margin-top: 20px;
-    padding: 12px;
-    background-color: #198754;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    cursor: pointer;
-    width: 100%;
-    transition: background-color 0.3s ease;
+  margin-top: 20px;
+  padding: 12px;
+  background-color: #198754;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #157347;
+  background-color: #157347;
 }
 
 /* رابط تسجيل الخروج */
 a {
-    display: block;
-    text-align: center;
-    margin-top: 0px;
-    color: #d9534f;
-    font-weight: bold;
-    text-decoration: none;
+  display: block;
+  text-align: center;
+  margin-top: 0px;
+  color: #d9534f;
+  font-weight: bold;
+  text-decoration: none;
 }
 
 a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 /* الفوتر */
 footer {
-    display: flex;
-    position: fixed;
-    bottom: 5px;
-    left: 0;
-    width: 100%;
-    justify-content: center;
-    background-color: #f1f1f1;
-    text-align: center;
-    padding: 21px 5px;
-    font-size: 1rem;
-    z-index: 1000;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  position: fixed;
+  bottom: 5px;
+  left: 0;
+  width: 100%;
+  justify-content: center;
+  background-color: #f1f1f1;
+  text-align: center;
+  padding: 21px 5px;
+  font-size: 1rem;
+  z-index: 1000;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* فئة reza للمحتوى */
 .reza {
-    margin-left: 50px;
+  margin-left: 50px;
 }

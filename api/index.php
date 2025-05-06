@@ -190,6 +190,7 @@ $form_data = isset($_COOKIE['form_data']) ? json_decode($_COOKIE['form_data'], t
         <meta property="og:description" content="احجز مواعيد الأطباء بسهولة - تواصل مباشر وتنظيم المواعيد.">
         <link rel="stylesheet" href="Design/indexnew.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        <link rel="stylesheet" type="text/css" href="https://www.fontstatic.com/f=geeza-pro" />
         <title>Rezadok | الصفحة الرئيسية</title>
 
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
@@ -216,7 +217,7 @@ $form_data = isset($_COOKIE['form_data']) ? json_decode($_COOKIE['form_data'], t
         </header>
         <div class="main-section" id="main-section">
             <div class="main">
-                <h1> مرحبًا بك في <span>Rezadok</span> <br>
+                <h1> مرحبًا بك في <span style="color: #5f3fa5;">Rezadok</span> <br>
                     منصتك المثالية لحجز المواعيد الطبية في الجزائر</h1>
                 <p>نقدم لك تجربة حجز سريعة وآمنة مع أطباء من مختلف التخصصات. سهولة في البحث، مرونة في الحجز، وراحة في التواصل.</p>
                 <p>احصل على موعدك الطبي في دقائق وابقَ مطمئنًا بأن بياناتك محفوظة ومحمية.</p>

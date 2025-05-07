@@ -134,11 +134,7 @@ textarea:focus {
   outline: none;
   box-shadow: 0 0 5px rgba(99, 230, 190, 0.5);
 }
-/* (النهاية)أنماط عامة لكل الصفحات */
 
-/*--------------------------------------------------------------------------------*/
-
-/* (البداية)أنماط الصفحة الرئيسية index*/
 .container-index {
   padding: 20px;
   margin: 130px auto;
@@ -192,23 +188,6 @@ span {
 #doctorFields {
   display: none;
 }
-/* (النهاية)أنماط الصفحة الرئيسية index*/
-
-/*--------------------------------------------------------------------------------*/
-
-/* (البداية)أنماط الصفحة الرئيسية doctor_dashboard*/
-
-/* (النهاية)أنماط الصفحة الرئيسية doctor_dashboard*/
-
-/*--------------------------------------------------------------------------------*/
-
-/* (البداية)أنماط الصفحة الرئيسية patient_dashboard*/
-
-/* (النهاية)أنماط الصفحة الرئيسية patient_dashboard*/
-
-/*--------------------------------------------------------------------------------*/
-
-/* (البداية)أنماط الصفحة الرئيسية appointments*/
 .container-appointments {
   background: white;
   padding: 20px;
@@ -284,11 +263,6 @@ td {
   font-size: 20px;
   color: #f70b02;
 }
-/* (النهاية)أنماط الصفحة الرئيسية appointments*/
-
-/*--------------------------------------------------------------------------------*/
-
-/* (البداية)أنماط الصفحة الرئيسية chat*/
 .chat-container {
   width: 80%;
   max-width: 500px;
@@ -358,7 +332,6 @@ textarea {
   background-color: white;
   color: #63e6be;
 }
-/* زر "+" لإظهار خيارات الملفات */
 .file-upload {
   width: 0px;
   position: relative;
@@ -416,9 +389,6 @@ textarea {
 .custom-btn:hover::after {
   opacity: 1;
 }
-/* (النهاية)أنماط الصفحة الرئيسية chat*/
-
-/*--------------------------------------------------------------------------------*/
 #photo-btn {
   background: #4ecdc4;
   padding: 10px;
@@ -439,7 +409,10 @@ label i {
   margin-left: 8px;
   color: #4ecdc4;
 }
-
+.posts {
+  max-width: 44%;
+  margin-right: 2em;
+}
 /* تنسيق الإطار */
 .file-upload-container {
   display: flex;
